@@ -1,3 +1,11 @@
+type color_rgb
+	r as _unsigned _byte
+	g as _unsigned _byte
+	b as _unsigned _byte
+	tcr as _unsigned _byte
+	tcg as _unsigned _byte
+	tcb as _unsigned _byte
+end type
 type settings
 	isPlatformer as _unsigned _byte
 	tile_size as long
@@ -12,18 +20,25 @@ type xy_int
 	x as _unsigned long
 	y as _unsigned long
 end type
+type tile_graphics
+	is_image as _unsigned _byte
+	index_start as _unsigned long
+	index_end as _unsigned long
+	frame_counter as _unsigned long
+	frame_threshold as _unsigned long
+	frame_step as _unsigned long
+	solid_color as color_rgb
+end type
+type map_tile
+	tile_type as _unsigned integer
+	var_A as long
+	var_B as long
+	var_C as long
+end type
 type screen_tile
 	tile_start as xy_int
 	tile_end as xy_int
 	tile_index as _unsigned integer
-end type
-type color_rgb
-	r as _unsigned _byte
-	g as _unsigned _byte
-	b as _unsigned _byte
-	tcr as _unsigned _byte
-	tcg as _unsigned _byte
-	tcb as _unsigned _byte
 end type
 type entity
 	state as _unsigned _byte
@@ -50,7 +65,19 @@ type entity
 	look as color_rgb
 end type
 dim shared gset as settings
-dim shared map(128,128) as _unsigned integer
+
+dim shared map_tileset_gfx(2) as long
+map_tileset_gfx(0) = _loadimage("gfx/0.png", 32)
+map_tileset_gfx(1) = _loadimage("gfx/1.png", 32)
+dim shared map_tileset(128) as tile_graphics
+map_tileset(0).is_image = 1
+map_tileset(1).is_image = 1
+map_tileset(1).index_start = 1
+map_tileset(0).solid_color.g = 64
+map_tileset(1).solid_color.r = 128
+map_tileset(1).solid_color.g = 128
+
+dim shared map(128,128) as map_tile
 dim shared tile_map(21, 16) as screen_tile
 
 gset.tile_size = 32
@@ -62,9 +89,9 @@ for y = 0 to 128
 		randomize (timer + x + y)
 		select case int(rnd * 10)
 			case 0:
-				map(x, y) = 1
+				map(x, y).tile_type = 1
 			case else:
-				map(x, y) = 0
+				map(x, y).tile_type = 0
 		end select
 	next x
 next y
@@ -157,9 +184,9 @@ sub ui_input
 					randomize (timer + x + y)
 					select case int(rnd * 10)
 						case 0:
-							map(x, y) = 1
+							map(x, y).tile_type = 1
 						case else:
-							map(x, y) = 0
+							map(x, y).tile_type = 0
 					end select
 				next x
 			next y
@@ -310,7 +337,7 @@ sub draw_map
 					tile_map(x, y).tile_start.y = y * gset.tile_size
 					tile_map(x, y).tile_end.x = x * gset.tile_size + gset.tile_size
 					tile_map(x, y).tile_end.y = y * gset.tile_size + gset.tile_size
-					tile_map(x, y).tile_index = map(newx, newy)
+					tile_map(x, y).tile_index = map(newx, newy).tile_type
 					
 					draw_tile tile_map(x, y)
 				end if
@@ -325,14 +352,18 @@ sub draw_tile (t as screen_tile)
 	drawy1 = t.tile_start.y
 	drawx2 = t.tile_end.x
 	drawy2 = t.tile_end.y
-	select case t.tile_index
-		case 0:
-			line (drawx1, drawy1)-(drawx2, drawy2), _rgb(0, 64, 0), BF
-		case 1:
-			line (drawx1, drawy1)-(drawx2, drawy2), _rgb(128, 128, 0), BF
-	end select
-	line (drawx1, drawy1)-(drawx2, drawy2), _rgb(0, 0, 0), B
-	if isColWMap(entities(0).p.x, entities(0).p.y) = 1 then line (drawx1 + 4, drawy1 + 4)-(drawx2 - 4, drawy2 - 4), _rgb(0, 0, 255), B
+	
+	r = map_tileset(t.tile_index).solid_color.r
+	g = map_tileset(t.tile_index).solid_color.g
+	b = map_tileset(t.tile_index).solid_color.b
+	
+	if map_tileset(t.tile_index).is_image = 0 then
+		line (drawx1, drawy1)-(drawx2, drawy2), _rgb(r, g, b), BF
+		line (drawx1, drawy1)-(drawx2, drawy2), _rgb(0, 0, 0), B
+	else
+		_putimage(drawx1, drawy1)-(drawx2, drawy2), map_tileset_gfx(map_tileset(t.tile_index).index_start)
+		line (drawx1, drawy1)-(drawx2, drawy2), _rgba(r, g, b, 64), B
+	end if
 end sub
 
 sub draw_entity (e as entity)
@@ -395,7 +426,7 @@ function isColWMap(x1 as double, y1 as double)
 	
 	if inBounds = 1 then
 		'If we're inside the boundary, compare against the world map grid.
-		if map(x, y) <> 0 then
+		if map(x, y).tile_type <> 0 then
 			isColWMap = 1
 		else
 			isColWMap = 0
