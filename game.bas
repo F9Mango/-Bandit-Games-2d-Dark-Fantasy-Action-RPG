@@ -62,7 +62,18 @@ type entity
 	gravity as double
 	'Determines if the entity is on the ground.
 	onGround as _unsigned _byte
+	'Graphics values
+	is_image as _unsigned _byte
+	index_start as _unsigned long
+	index_end as _unsigned long
+	frame_counter as _unsigned long
+	frame_threshold as _unsigned long
+	frame_step as _unsigned long
 	look as color_rgb
+	direction as xy
+	'Position from which the entity shoots projectile/interacts with environment.
+	actionPoint_default as xy
+	actionPoint as xy
 end type
 dim shared gset as settings
 
@@ -120,6 +131,7 @@ print "  Rescale the map with -/+ keys"
 print "  Regenerate the map with G key"
 print "  Spawn a random entity on the current screen with the L key"
 print "  Switch between top-down and platformer control with P key"
+print "  Delete tiles under the player's action point with the . key"
 print
 print "  Top-down:"
 print "		Move with WASD"
@@ -203,6 +215,10 @@ sub ui_input
 			if gset.tile_size < 128 then gset.tile_size = gset.tile_size + 8: gset.scale_multiplier = gset.tile_size / 32
 		case "l":
 			create_entity
+		case ".":
+			x = int(entities(0).actionPoint.x / 32)
+			y = int(entities(0).actionPoint.y / 32)
+			if isColWMap(entities(0).actionPoint.x, entities(0).actionPoint.y) = 1 then map(x ,y).tile_type = 0
 	end select
 end sub
 
@@ -288,27 +304,56 @@ sub entity_physics (j as _unsigned long)
 		
 		entities(j).p.x = entities(j).p.x + entities(j).v.x
 		entities(j).p.y = entities(j).p.y + entities(j).v.y
+		
+		entities(j).actionPoint_default.x = (((entities(j).direction.x * (entities(j).w / 2) * entities(j).wm) + (entities(j).w / 2) * entities(j).wm)) + entities(j).direction.x
+		entities(j).actionPoint_default.y = (((entities(j).direction.y * (entities(j).h / 2) * entities(j).hm) + (entities(j).h / 2) * entities(j).hm)) + entities(j).direction.y
+		
+		entities(j).actionPoint.x = entities(j).tl.x + entities(j).actionPoint_default.x
+		entities(j).actionPoint.y = entities(j).tl.y + entities(j).actionPoint_default.y
 	end if
 end sub
 
 sub player_specific_physics
 	if gset.isPlatformer = 0 then
-		if _keydown(asc("w")) then entities(0).v.y = entities(0).v.y - 0.02
-		if _keydown(asc("s")) then entities(0).v.y = entities(0).v.y + 0.02
-		if _keydown(asc("a")) then entities(0).v.x = entities(0).v.x - 0.02
-		if _keydown(asc("d")) then entities(0).v.x = entities(0).v.x + 0.02
+		if _keydown(asc("w")) then
+			entities(0).v.y = entities(0).v.y - 0.02
+			entities(0).direction.y = -1
+			entities(0).direction.x = 0
+			vert = 1
+		end if
+		if _keydown(asc("s")) then
+			entities(0).v.y = entities(0).v.y + 0.02
+			entities(0).direction.y = 1
+			entities(0).direction.x = 0
+			vert = 1
+		end if
+		if _keydown(asc("a")) then
+			entities(0).v.x = entities(0).v.x - 0.02
+			if vert = 0 then entities(0).direction.y = 0
+			entities(0).direction.x = -1
+		end if
+		if _keydown(asc("d")) then
+			entities(0).v.x = entities(0).v.x + 0.02
+			if vert = 0 then entities(0).direction.y = 0
+			entities(0).direction.x = 1
+		end if
 		entities(0).v.x = entities(0).v.x * 0.9
 		entities(0).v.y = entities(0).v.y * 0.9
 	else
 		if entities(0).onGround = 1 then
-			if _keydown(asc("a")) then entities(0).v.x = entities(0).v.x - 0.02
-			if _keydown(asc("d")) then entities(0).v.x = entities(0).v.x + 0.02
+			entities(0).direction.y = 0
+			if _keydown(asc("a")) then entities(0).v.x = entities(0).v.x - 0.02: entities(0).direction.x = -1
+			if _keydown(asc("d")) then entities(0).v.x = entities(0).v.x + 0.02: entities(0).direction.x = 1
 		else
-			if _keydown(asc("a")) then entities(0).v.x = entities(0).v.x - 0.0005
-			if _keydown(asc("d")) then entities(0).v.x = entities(0).v.x + 0.0005
+			'if entities(0).v.y < 0 then entities(0).direction.y = -1
+			'if entities(0).v.y > 0 then entities(0).direction.y = 1
+			'if entities(0).v.x = 0 then entities(0).direction.x = 0
+			if _keydown(asc("a")) then entities(0).v.x = entities(0).v.x - 0.0005: entities(0).direction.x = -1
+			if _keydown(asc("d")) then entities(0).v.x = entities(0).v.x + 0.0005: entities(0).direction.x = 1
 		end if
 		if _keydown(asc("w")) then
-			if playerHoldingJump = 1 then
+			if entities(0).onGround = 0 and playerHoldingJump = 1 then
+				entities(0).direction.y = -1
 				entities(0).v.y = entities(0).v.y - 0.0035
 			end if
 			if entities(0).onGround = 1 and playerHoldingJump = 0 then
@@ -319,6 +364,7 @@ sub player_specific_physics
 		else
 			playerHoldingJump = 0
 		end if
+		if _keydown(asc("s")) then entities(0).direction.y = 1
 		if entities(0).onGround = 0 then entities(0).v.y = entities(0).v.y + 0.005
 	end if
 end sub
@@ -368,38 +414,38 @@ end sub
 
 sub draw_entity (e as entity)
 	if e.state <> 0 then
+		cx = camera.x * (32)
+		cy = camera.y * (32)
 		tileSizeX = tile_map(0, 0).tile_end.x - tile_map(0, 0).tile_start.x
 		tileSizeY = tile_map(0, 0).tile_end.y - tile_map(0, 0).tile_start.y
-		ex = (e.p.x * gset.scale_multiplier) - ((camera.x * (32)) * gset.scale_multiplier)
-		ey = (e.p.y * gset.scale_multiplier) - ((camera.y * (32)) * gset.scale_multiplier)
+		ex = (e.p.x - cx) * gset.scale_multiplier
+		ey = (e.p.y - cy) * gset.scale_multiplier
 		
-		etlx = (e.tl.x * gset.scale_multiplier) - ((camera.x * (32)) * gset.scale_multiplier)
-		etly = (e.tl.y * gset.scale_multiplier) - ((camera.y * (32)) * gset.scale_multiplier)
+		etlx = (e.tl.x - cx) * gset.scale_multiplier
+		etly = (e.tl.y - cy) * gset.scale_multiplier
 		
-		etrx = (e.tr.x * gset.scale_multiplier) - ((camera.x * (32)) * gset.scale_multiplier)
-		etry = (e.tr.y * gset.scale_multiplier) - ((camera.y * (32)) * gset.scale_multiplier)
+		etrx = (e.tr.x - cx) * gset.scale_multiplier
+		etry = (e.tr.y - cy) * gset.scale_multiplier
 		
-		eblx = (e.bl.x * gset.scale_multiplier) - ((camera.x * (32)) * gset.scale_multiplier)
-		ebly = (e.bl.y * gset.scale_multiplier) - ((camera.y * (32)) * gset.scale_multiplier)
+		eblx = (e.bl.x - cx) * gset.scale_multiplier
+		ebly = (e.bl.y - cy) * gset.scale_multiplier
 		
-		ebrx = (e.br.x * gset.scale_multiplier) - ((camera.x * (32)) * gset.scale_multiplier)
-		ebry = (e.br.y * gset.scale_multiplier) - ((camera.y * (32)) * gset.scale_multiplier)
+		ebrx = (e.br.x - cx) * gset.scale_multiplier
+		ebry = (e.br.y - cy) * gset.scale_multiplier
 		
 		e1x = ex + e.o.x * gset.scale_multiplier
 		e1y = ey + e.o.y * gset.scale_multiplier
 		e2x = ex + (e.o.x + e.w) * gset.scale_multiplier
 		e2y = ey + (e.o.y + e.h) * gset.scale_multiplier
 		
-		'e1x = ex - (e.w * e.wm * gset.scale_multiplier)
-		'e1y = ey - (e.h * e.hm * gset.scale_multiplier)
-		'e2x = ex + (e.w * e.wm * gset.scale_multiplier)
-		'e2y = ey
 		line (e1x, e1y)-(e2x, e2y), _rgb(e.look.r, e.look.g, e.look.b), BF
 		pset (ex, ey), _rgb(255, 255, 255)
 		pset (etlx, etly), _rgb(255, 255, 255)
 		pset (etrx, etry), _rgb(255, 255, 255)
 		pset (eblx, ebly), _rgb(255, 255, 255)
 		pset (ebrx, ebry), _rgb(255, 255, 255)
+		circle ((e.actionPoint.x * gset.scale_multiplier) - (cx * gset.scale_multiplier), (e.actionPoint.y * gset.scale_multiplier) - (cy * gset.scale_multiplier)), 5 * gset.scale_multiplier, _rgb(255, 255, 255)
+		pset ((e.actionPoint.x * gset.scale_multiplier) - (cx * gset.scale_multiplier), (e.actionPoint.y * gset.scale_multiplier) - (cy * gset.scale_multiplier)), _rgb(255, 255, 255)
 	end if
 end sub
 
