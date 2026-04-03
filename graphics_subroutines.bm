@@ -1,0 +1,80 @@
+
+sub draw_map
+	for y = 0 to 14
+		for x = 0 to 19
+			
+			newx = camera.x + x
+			newy = camera.y + y
+			
+			'Check if the x and y values are within the array boundaries.
+			if newx >= 0 and newx <= gset.world_size.x then
+				if newy >= 0 and newy <= gset.world_size.y then
+					tile_map(x, y).tile_start.x = x * gset.tile_size
+					tile_map(x, y).tile_start.y = y * gset.tile_size
+					tile_map(x, y).tile_end.x = x * gset.tile_size + gset.tile_size
+					tile_map(x, y).tile_end.y = y * gset.tile_size + gset.tile_size
+					tile_map(x, y).tile_index = map(newx, newy).tile_type
+					
+					draw_tile tile_map(x, y)
+				end if
+			end if
+			
+		next x
+	next y
+end sub
+
+sub draw_tile (t as screen_tile)
+	drawx1 = t.tile_start.x
+	drawy1 = t.tile_start.y
+	drawx2 = t.tile_end.x
+	drawy2 = t.tile_end.y
+	
+	r = map_tileset(t.tile_index).solid_color.r
+	g = map_tileset(t.tile_index).solid_color.g
+	b = map_tileset(t.tile_index).solid_color.b
+	
+	if map_tileset(t.tile_index).is_image = 0 then
+		line (drawx1, drawy1)-(drawx2, drawy2), _rgb(r, g, b), BF
+		line (drawx1, drawy1)-(drawx2, drawy2), _rgb(0, 0, 0), B
+	else
+		_putimage(drawx1, drawy1)-(drawx2, drawy2), map_tileset_gfx(map_tileset(t.tile_index).index_start)
+		line (drawx1, drawy1)-(drawx2, drawy2), _rgba(r, g, b, 64), B
+	end if
+end sub
+
+sub draw_entity (e as entity)
+	if e.state <> 0 then
+		cx = camera.x * (32)
+		cy = camera.y * (32)
+		tileSizeX = tile_map(0, 0).tile_end.x - tile_map(0, 0).tile_start.x
+		tileSizeY = tile_map(0, 0).tile_end.y - tile_map(0, 0).tile_start.y
+		ex = (e.p.x - cx) * gset.scale_multiplier
+		ey = (e.p.y - cy) * gset.scale_multiplier
+		
+		etlx = (e.tl.x - cx) * gset.scale_multiplier
+		etly = (e.tl.y - cy) * gset.scale_multiplier
+		
+		etrx = (e.tr.x - cx) * gset.scale_multiplier
+		etry = (e.tr.y - cy) * gset.scale_multiplier
+		
+		eblx = (e.bl.x - cx) * gset.scale_multiplier
+		ebly = (e.bl.y - cy) * gset.scale_multiplier
+		
+		ebrx = (e.br.x - cx) * gset.scale_multiplier
+		ebry = (e.br.y - cy) * gset.scale_multiplier
+		
+		e1x = ex + e.o.x * gset.scale_multiplier
+		e1y = ey + e.o.y * gset.scale_multiplier
+		e2x = ex + (e.o.x + e.w) * gset.scale_multiplier
+		e2y = ey + (e.o.y + e.h) * gset.scale_multiplier
+		
+		line (e1x, e1y)-(e2x, e2y), _rgb(e.look.r, e.look.g, e.look.b), BF
+		pset (ex, ey), _rgb(255, 255, 255)
+		pset (etlx, etly), _rgb(255, 255, 255)
+		pset (etrx, etry), _rgb(255, 255, 255)
+		pset (eblx, ebly), _rgb(255, 255, 255)
+		pset (ebrx, ebry), _rgb(255, 255, 255)
+		circle ((e.actionPoint.x * gset.scale_multiplier) - (cx * gset.scale_multiplier), (e.actionPoint.y * gset.scale_multiplier) - (cy * gset.scale_multiplier)), 5 * gset.scale_multiplier, _rgb(255, 255, 255)
+		pset ((e.actionPoint.x * gset.scale_multiplier) - (cx * gset.scale_multiplier), (e.actionPoint.y * gset.scale_multiplier) - (cy * gset.scale_multiplier)), _rgb(255, 255, 255)
+	end if
+end sub

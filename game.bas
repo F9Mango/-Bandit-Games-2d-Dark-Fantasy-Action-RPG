@@ -1,92 +1,28 @@
-type color_rgb
-	r as _unsigned _byte
-	g as _unsigned _byte
-	b as _unsigned _byte
-	tcr as _unsigned _byte
-	tcg as _unsigned _byte
-	tcb as _unsigned _byte
-end type
-type settings
-	isPlatformer as _unsigned _byte
-	tile_size as long
-	scale_multiplier as double
-	numberOfEntities as long
-end type
-type xy
-	x as double
-	y as double
-end type
-type xy_int
-	x as _unsigned long
-	y as _unsigned long
-end type
-type tile_graphics
-	is_image as _unsigned _byte
-	index_start as _unsigned long
-	index_end as _unsigned long
-	frame_counter as _unsigned long
-	frame_threshold as _unsigned long
-	frame_step as _unsigned long
-	solid_color as color_rgb
-end type
-type map_tile
-	tile_type as _unsigned integer
-	var_A as long
-	var_B as long
-	var_C as long
-end type
-type screen_tile
-	tile_start as xy_int
-	tile_end as xy_int
-	tile_index as _unsigned integer
-end type
-type entity
-	state as _unsigned _byte
-	'Position and velocity
-	p as xy
-	v as xy
-	'Base dimensions
-	w as double
-	h as double
-	'XY offset between core coordinates and bounding box
-	o as xy
-	'Four corners' coordinates
-	tl as xy
-	tr as xy
-	bl as xy
-	br as xy
-	'Width and height multipliers
-	wm as double
-	hm as double
-	'Controls and multiplies the entity's interaction with gravity.
-	gravity as double
-	'Determines if the entity is on the ground.
-	onGround as _unsigned _byte
-	'Graphics values
-	is_image as _unsigned _byte
-	index_start as _unsigned long
-	index_end as _unsigned long
-	frame_counter as _unsigned long
-	frame_threshold as _unsigned long
-	frame_step as _unsigned long
-	look as color_rgb
-	direction as xy
-	'Position from which the entity shoots projectile/interacts with environment.
-	actionPoint_default as xy
-	actionPoint as xy
-end type
+'$include: 'data_types.bi'
 dim shared gset as settings
+gset.world_size.x = 128
+gset.world_size.y = 128
+gset.screen_resolution.x = 640
+gset.screen_resolution.y = 480
 
-dim shared map_tileset_gfx(2) as long
+dim shared map_tileset_gfx(3) as long
 map_tileset_gfx(0) = _loadimage("gfx/0.png", 32)
 map_tileset_gfx(1) = _loadimage("gfx/1.png", 32)
-dim shared map_tileset(128) as tile_graphics
+dim shared map_tileset(128) as tile_attributes
 map_tileset(0).is_image = 1
 map_tileset(1).is_image = 1
 map_tileset(1).index_start = 1
 map_tileset(0).solid_color.g = 64
 map_tileset(1).solid_color.r = 128
 map_tileset(1).solid_color.g = 128
+map_tileset(1).has_collision = 1
+map_tileset(2).is_image = 0
+map_tileset(2).solid_color.r = 255
+map_tileset(2).solid_color.g = 255
+map_tileset(2).has_collision = 1
+map_tileset(3).is_image = 0
+map_tileset(3).solid_color.r = 64
+map_tileset(3).solid_color.g = 64
 
 dim shared map(128,128) as map_tile
 dim shared tile_map(21, 16) as screen_tile
@@ -95,22 +31,14 @@ gset.tile_size = 32
 gset.scale_multiplier = gset.tile_size / 32
 gset.numberOfEntities = 0
 
-for y = 0 to 128
-	for x = 0 to 128
-		randomize (timer + x + y)
-		select case int(rnd * 10)
-			case 0:
-				map(x, y).tile_type = 1
-			case else:
-				map(x, y).tile_type = 0
-		end select
-	next x
-next y
+generate_map
 
 
 dim shared camera as xy
 dim shared entities(100) as entity
 dim shared playerHoldingJump as _unsigned _byte
+dim shared player_data as player_variables
+player_data.keys = 10
 
 entities(0).state = 1
 entities(0).w = 16
@@ -125,13 +53,15 @@ entities(0).p.y = 32
 entities(0).look.r = 255
 entities(0).look.b = 255
 
-screen _newimage(800, 600, 32)
+screen _newimage(gset.screen_resolution.x, gset.screen_resolution.y, 32)
+_printmode _keepbackground
 print "Commands:"
 print "  Rescale the map with -/+ keys"
 print "  Regenerate the map with G key"
 print "  Spawn a random entity on the current screen with the L key"
 print "  Switch between top-down and platformer control with P key"
 print "  Delete tiles under the player's action point with the . key"
+print "  Unlock yellow tiles under the player's action point with the E key"
 print
 print "  Top-down:"
 print "		Move with WASD"
@@ -150,6 +80,12 @@ do
 		player_specific_physics
 		for j = 0 to gset.numberOfEntities
 			entity_physics j
+			if j <> 0 then
+				if entity_is_colliding(entities(0), entities(j)) = 1 then
+					entities(j).state = 0
+					player_data.keys = player_data.keys + 1
+				end if
+			end if
 		next j
 	next i
 
@@ -162,46 +98,16 @@ do
 	next i
 	
 	locate 1,1
-	print gset.numberOfEntities
+	print "Keys: "; player_data.keys
 	
 	_display
 loop
-
-sub create_entity
-	for i = 0 to 100
-		if entities(i).state = 0 then
-			gset.numberOfEntities = gset.numberOfEntities + 1
-			entities(i).state = 1
-			randomize timer * i
-			entities(i).p.x = int(rnd * 640) + (camera.x * 32)
-			entities(i).p.y = int(rnd * 480) + (camera.y * 32)
-			entities(i).w = int(rnd * 64)
-			entities(i).h = int(rnd * 64)
-			entities(i).wm = 1
-			entities(i).hm = 1
-			entities(i).look.r = int(rnd * 256)
-			entities(i).look.g = int(rnd * 256)
-			entities(i).look.b = int(rnd * 256)
-			exit for
-		end if
-	next i
-end sub
 
 sub ui_input
 	a$ = inkey$
 	select case a$
 		case "g":
-			for y = 0 to 128
-				for x = 0 to 128
-					randomize (timer + x + y)
-					select case int(rnd * 10)
-						case 0:
-							map(x, y).tile_type = 1
-						case else:
-							map(x, y).tile_type = 0
-					end select
-				next x
-			next y
+			generate_map
 		case "p":
 			if gset.isPlatformer = 0 then
 				gset.isPlatformer = 1
@@ -219,265 +125,19 @@ sub ui_input
 			x = int(entities(0).actionPoint.x / 32)
 			y = int(entities(0).actionPoint.y / 32)
 			if isColWMap(entities(0).actionPoint.x, entities(0).actionPoint.y) = 1 then map(x ,y).tile_type = 0
+		case "e":
+			x = int(entities(0).actionPoint.x / 32)
+			y = int(entities(0).actionPoint.y / 32)
+			if map(x, y).tile_type = 2 then
+				if player_data.keys > 0 then
+					map(x ,y).tile_type = 3
+					player_data.keys = player_data.keys - 1
+				end if
+			end if
 	end select
 end sub
 
-sub entity_physics (j as _unsigned long)
-	if entities(j).state <> 0 then
-		if j >< 0 then
-			if gset.isPlatformer = 0 then
-			entities(j).v.x = entities(j).v.x * 0.9
-			entities(j).v.y = entities(j).v.y * 0.9
-			else
-				if entities(j).onGround = 0 then 
-					entities(j).v.y = entities(j).v.y + 0.005
-				end if
-			end if
-		end if
-		
-		if entities(j).v.x > 0.5 then entities(j).v.x = 0.5
-		if entities(j).v.y > 0.5 then entities(j).v.y = 0.5
-		if entities(j).v.x < -0.5 then entities(j).v.x = -0.5
-		if entities(j).v.y < -0.5 then entities(j).v.y = -0.5
-		
-		'Initializing the values for the entity's corner collisions.
-		'Top left xy
-		entities(j).tl.x = entities(j).p.x + (entities(j).o.x * entities(j).wm)
-		entities(j).tl.y = entities(j).p.y + (entities(j).o.y * entities(j).hm)
-		'Top right xy
-		entities(j).tr.x = entities(j).p.x + ((entities(j).o.x + entities(j).w) * entities(j).wm)
-		entities(j).tr.y = entities(j).p.y + (entities(j).o.y * entities(j).hm)
-		'Bottom left xy
-		entities(j).bl.x = entities(j).p.x + (entities(j).o.x * entities(j).wm)
-		entities(j).bl.y = entities(j).p.y + ((entities(j).o.y + entities(j).h) * entities(j).hm)
-		'Bottom right xy
-		entities(j).br.x = entities(j).p.x + ((entities(j).o.x + entities(j).w) * entities(j).wm)
-		entities(j).br.y = entities(j).p.y + ((entities(j).o.y + entities(j).h) * entities(j).hm)
-		
-		'Add velocity values to corner collisions and check.
-		if isColWMap(entities(j).tl.x + entities(j).v.x, entities(j).tl.y) = 1 then
-			entities(j).v.x = 0.001
-		end if
-		
-		if isColWMap(entities(j).tl.x, entities(j).tl.y + entities(j).v.y) = 1 then
-			entities(j).v.y = 0.001
-		end if
-		
-		if isColWMap(entities(j).tr.x + entities(j).v.x, entities(j).tr.y) = 1 then
-			entities(j).v.x = -0.001
-		end if
-		
-		if isColWMap(entities(j).tr.x, entities(j).tr.y + entities(j).v.y) = 1 then
-			entities(j).v.y = 0.001
-		end if
-		
-		if isColWMap(entities(j).bl.x + entities(j).v.x, entities(j).bl.y) = 1 then
-			entities(j).v.x = 0.001
-		end if
-		
-		if isColWMap(entities(j).bl.x, entities(j).bl.y + entities(j).v.y) = 1 then
-			entities(j).v.y = -0.001
-		end if
-		
-		if isColWMap(entities(j).br.x + entities(j).v.x, entities(j).br.y) = 1 then
-			entities(j).v.x = -0.001
-		end if
-		
-		if isColWMap(entities(j).br.x, entities(j).br.y + entities(j).v.y) = 1 then
-			entities(j).v.y = -0.001
-		end if
-		
-		if gset.isPlatformer = 1 then
-			if isColWMap(entities(j).p.x, entities(j).p.y + 1) = 1 then
-				entities(j).v.x = entities(j).v.x * 0.9
-				entities(j).onGround = 1
-			elseif isColWMap(entities(j).p.x - 8, entities(j).p.y + 1) = 1 then
-				entities(j).v.x = entities(j).v.x * 0.9
-				entities(j).onGround = 1
-			elseif isColWMap(entities(j).p.x + 8, entities(j).p.y + 1) = 1 then
-				entities(j).v.x = entities(j).v.x * 0.9
-				entities(j).onGround = 1
-			else
-				entities(j).onGround = 0
-			end if
-		end if
-		
-		entities(j).p.x = entities(j).p.x + entities(j).v.x
-		entities(j).p.y = entities(j).p.y + entities(j).v.y
-		
-		entities(j).actionPoint_default.x = (((entities(j).direction.x * (entities(j).w / 2) * entities(j).wm) + (entities(j).w / 2) * entities(j).wm)) + entities(j).direction.x
-		entities(j).actionPoint_default.y = (((entities(j).direction.y * (entities(j).h / 2) * entities(j).hm) + (entities(j).h / 2) * entities(j).hm)) + entities(j).direction.y
-		
-		entities(j).actionPoint.x = entities(j).tl.x + entities(j).actionPoint_default.x
-		entities(j).actionPoint.y = entities(j).tl.y + entities(j).actionPoint_default.y
-	end if
-end sub
-
-sub player_specific_physics
-	if gset.isPlatformer = 0 then
-		if _keydown(asc("w")) then
-			entities(0).v.y = entities(0).v.y - 0.02
-			entities(0).direction.y = -1
-			entities(0).direction.x = 0
-			vert = 1
-		end if
-		if _keydown(asc("s")) then
-			entities(0).v.y = entities(0).v.y + 0.02
-			entities(0).direction.y = 1
-			entities(0).direction.x = 0
-			vert = 1
-		end if
-		if _keydown(asc("a")) then
-			entities(0).v.x = entities(0).v.x - 0.02
-			if vert = 0 then entities(0).direction.y = 0
-			entities(0).direction.x = -1
-		end if
-		if _keydown(asc("d")) then
-			entities(0).v.x = entities(0).v.x + 0.02
-			if vert = 0 then entities(0).direction.y = 0
-			entities(0).direction.x = 1
-		end if
-		entities(0).v.x = entities(0).v.x * 0.9
-		entities(0).v.y = entities(0).v.y * 0.9
-	else
-		if entities(0).onGround = 1 then
-			entities(0).direction.y = 0
-			if _keydown(asc("a")) then entities(0).v.x = entities(0).v.x - 0.02: entities(0).direction.x = -1
-			if _keydown(asc("d")) then entities(0).v.x = entities(0).v.x + 0.02: entities(0).direction.x = 1
-		else
-			'if entities(0).v.y < 0 then entities(0).direction.y = -1
-			'if entities(0).v.y > 0 then entities(0).direction.y = 1
-			'if entities(0).v.x = 0 then entities(0).direction.x = 0
-			if _keydown(asc("a")) then entities(0).v.x = entities(0).v.x - 0.0005: entities(0).direction.x = -1
-			if _keydown(asc("d")) then entities(0).v.x = entities(0).v.x + 0.0005: entities(0).direction.x = 1
-		end if
-		if _keydown(asc("w")) then
-			if entities(0).onGround = 0 and playerHoldingJump = 1 then
-				entities(0).direction.y = -1
-				entities(0).v.y = entities(0).v.y - 0.0035
-			end if
-			if entities(0).onGround = 1 and playerHoldingJump = 0 then
-				entities(0).v.y = entities(0).v.y - 0.5
-				entities(0).onGround = 0
-				playerHoldingJump = 1
-			end if
-		else
-			playerHoldingJump = 0
-		end if
-		if _keydown(asc("s")) then entities(0).direction.y = 1
-		if entities(0).onGround = 0 then entities(0).v.y = entities(0).v.y + 0.005
-	end if
-end sub
-
-sub draw_map
-	for y = 0 to 14
-		for x = 0 to 19
-			
-			newx = camera.x + x
-			newy = camera.y + y
-			
-			'Check if the x and y values are within the array boundaries.
-			if newx >= 0 and newx <= 128 then
-				if newy >= 0 and newy <= 128 then
-					tile_map(x, y).tile_start.x = x * gset.tile_size
-					tile_map(x, y).tile_start.y = y * gset.tile_size
-					tile_map(x, y).tile_end.x = x * gset.tile_size + gset.tile_size
-					tile_map(x, y).tile_end.y = y * gset.tile_size + gset.tile_size
-					tile_map(x, y).tile_index = map(newx, newy).tile_type
-					
-					draw_tile tile_map(x, y)
-				end if
-			end if
-			
-		next x
-	next y
-end sub
-
-sub draw_tile (t as screen_tile)
-	drawx1 = t.tile_start.x
-	drawy1 = t.tile_start.y
-	drawx2 = t.tile_end.x
-	drawy2 = t.tile_end.y
-	
-	r = map_tileset(t.tile_index).solid_color.r
-	g = map_tileset(t.tile_index).solid_color.g
-	b = map_tileset(t.tile_index).solid_color.b
-	
-	if map_tileset(t.tile_index).is_image = 0 then
-		line (drawx1, drawy1)-(drawx2, drawy2), _rgb(r, g, b), BF
-		line (drawx1, drawy1)-(drawx2, drawy2), _rgb(0, 0, 0), B
-	else
-		_putimage(drawx1, drawy1)-(drawx2, drawy2), map_tileset_gfx(map_tileset(t.tile_index).index_start)
-		line (drawx1, drawy1)-(drawx2, drawy2), _rgba(r, g, b, 64), B
-	end if
-end sub
-
-sub draw_entity (e as entity)
-	if e.state <> 0 then
-		cx = camera.x * (32)
-		cy = camera.y * (32)
-		tileSizeX = tile_map(0, 0).tile_end.x - tile_map(0, 0).tile_start.x
-		tileSizeY = tile_map(0, 0).tile_end.y - tile_map(0, 0).tile_start.y
-		ex = (e.p.x - cx) * gset.scale_multiplier
-		ey = (e.p.y - cy) * gset.scale_multiplier
-		
-		etlx = (e.tl.x - cx) * gset.scale_multiplier
-		etly = (e.tl.y - cy) * gset.scale_multiplier
-		
-		etrx = (e.tr.x - cx) * gset.scale_multiplier
-		etry = (e.tr.y - cy) * gset.scale_multiplier
-		
-		eblx = (e.bl.x - cx) * gset.scale_multiplier
-		ebly = (e.bl.y - cy) * gset.scale_multiplier
-		
-		ebrx = (e.br.x - cx) * gset.scale_multiplier
-		ebry = (e.br.y - cy) * gset.scale_multiplier
-		
-		e1x = ex + e.o.x * gset.scale_multiplier
-		e1y = ey + e.o.y * gset.scale_multiplier
-		e2x = ex + (e.o.x + e.w) * gset.scale_multiplier
-		e2y = ey + (e.o.y + e.h) * gset.scale_multiplier
-		
-		line (e1x, e1y)-(e2x, e2y), _rgb(e.look.r, e.look.g, e.look.b), BF
-		pset (ex, ey), _rgb(255, 255, 255)
-		pset (etlx, etly), _rgb(255, 255, 255)
-		pset (etrx, etry), _rgb(255, 255, 255)
-		pset (eblx, ebly), _rgb(255, 255, 255)
-		pset (ebrx, ebry), _rgb(255, 255, 255)
-		circle ((e.actionPoint.x * gset.scale_multiplier) - (cx * gset.scale_multiplier), (e.actionPoint.y * gset.scale_multiplier) - (cy * gset.scale_multiplier)), 5 * gset.scale_multiplier, _rgb(255, 255, 255)
-		pset ((e.actionPoint.x * gset.scale_multiplier) - (cx * gset.scale_multiplier), (e.actionPoint.y * gset.scale_multiplier) - (cy * gset.scale_multiplier)), _rgb(255, 255, 255)
-	end if
-end sub
-
-function localToGrid(a as double)
-	localToGrid = int(a / 32)
-end function
-
-function isColWMap(x1 as double, y1 as double)
-	'Scale and truncate entity-coordinates to match the tile grid.
-	x = int(x1 / 32)
-	y = int(y1 / 32)
-	
-	'Initialize the inBounds variable, which determines whether or not the coordinates are within the world boundary.
-	inBounds = 0
-	
-	'Check if coordinates are within world boundary.
-	if x >= 0 and x <= 128 then
-		if y >= 0 and y <= 128 then
-			'Affirm that we are inside the boundary.
-			inBounds = 1
-		end if
-	end if
-	
-	
-	if inBounds = 1 then
-		'If we're inside the boundary, compare against the world map grid.
-		if map(x, y).tile_type <> 0 then
-			isColWMap = 1
-		else
-			isColWMap = 0
-		end if
-	else
-		isColWMap = 0
-	end if
-end function
+'$include: 'map_grid.bm'
+'$include: 'physics_subroutines.bm'
+'$include: 'graphics_subroutines.bm'
+'$include: 'entity_programming.bm'

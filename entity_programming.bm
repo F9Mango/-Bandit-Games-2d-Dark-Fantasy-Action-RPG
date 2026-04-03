@@ -1,0 +1,67 @@
+sub create_entity
+	for i = 0 to 100
+		if entities(i).state = 0 then
+			gset.numberOfEntities = gset.numberOfEntities + 1
+			entities(i).state = 1
+			randomize timer * i
+			entities(i).p.x = int(rnd * 640) + (camera.x * 32)
+			entities(i).p.y = int(rnd * 480) + (camera.y * 32)
+			entities(i).w = int(rnd * 64)
+			entities(i).h = int(rnd * 64)
+			entities(i).wm = 1
+			entities(i).hm = 1
+			entities(i).look.r = int(rnd * 256)
+			entities(i).look.g = int(rnd * 256)
+			entities(i).look.b = int(rnd * 256)
+			exit for
+		end if
+	next i
+end sub
+
+function entity_is_colliding (a as entity, b as entity)
+	if b.state <> 0 then
+		'Initializing the values for entity A's corner collisions.
+		'Top left xy
+		a.tl.x = a.p.x + (a.o.x * a.wm)
+		a.tl.y = a.p.y + (a.o.y * a.hm)
+		'Top right xy
+		a.tr.x = a.p.x + ((a.o.x + a.w) * a.wm)
+		a.tr.y = a.p.y + (a.o.y * a.hm)
+		'Bottom left xy
+		a.bl.x = a.p.x + (a.o.x * a.wm)
+		a.bl.y = a.p.y + ((a.o.y + a.h) * a.hm)
+		'Bottom right xy
+		a.br.x = a.p.x + ((a.o.x + a.w) * a.wm)
+		a.br.y = a.p.y + ((a.o.y + a.h) * a.hm)
+		
+		'Initializing the values for entity B's corner collisions.
+		'Top left xy
+		x1 = b.p.x + (b.o.x * b.wm)
+		y1 = b.p.y + (b.o.y * b.hm)
+
+		'Bottom right xy
+		x2 = b.p.x + ((b.o.x + b.w) * b.wm)
+		y2 = b.p.y + ((b.o.y + b.h) * b.hm)
+		
+		if a.tl.x >= x1 and a.tl.x <= x2 then
+			if a.tl.y >= y1 and a.tl.y <= y2 then
+				entity_is_colliding = 1
+			end if
+		end if
+		if a.tr.x >= x1 and a.tr.x <= x2 then
+			if a.tr.y >= y1 and a.tr.y <= y2 then
+				entity_is_colliding = 1
+			end if
+		end if
+		if a.bl.x >= x1 and a.bl.x <= x2 then
+			if a.bl.y >= y1 and a.bl.y <= y2 then
+				entity_is_colliding = 1
+			end if
+		end if
+		if a.br.x >= x1 and a.br.x <= x2 then
+			if a.br.y >= y1 and a.br.y <= y2 then
+				entity_is_colliding = 1
+			end if
+		end if
+	end if
+end function

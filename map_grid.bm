@@ -1,0 +1,50 @@
+sub generate_map
+	for y = 0 to gset.world_size.y
+		for x = 0 to gset.world_size.x
+			randomize (timer + x + y)
+			select case int(rnd * 10)
+				case 0 to 2:
+					map(x, y).tile_type = 1
+				case 3:
+					map(x, y).tile_type = 2
+				case 4:
+					map(x, y).tile_type = 3
+				case else:
+					map(x, y).tile_type = 0
+			end select
+		next x
+	next y
+end sub
+
+function localToGrid(a as double)
+	localToGrid = int(a / 32)
+end function
+
+function isColWMap(x1 as double, y1 as double)
+	'Scale and truncate entity-coordinates to match the tile grid.
+	x = int(x1 / 32)
+	y = int(y1 / 32)
+	
+	'Initialize the inBounds variable, which determines whether or not the coordinates are within the world boundary.
+	inBounds = 0
+	
+	'Check if coordinates are within world boundary.
+	if x >= 0 and x <= gset.world_size.x then
+		if y >= 0 and y <= gset.world_size.y then
+			'Affirm that we are inside the boundary.
+			inBounds = 1
+		end if
+	end if
+	
+	
+	if inBounds = 1 then
+		'If we're inside the boundary, compare against the world map grid.
+		if map_tileset(map(x, y).tile_type).has_collision <> 0 then
+			isColWMap = 1
+		else
+			isColWMap = 0
+		end if
+	else
+		isColWMap = 0
+	end if
+end function
