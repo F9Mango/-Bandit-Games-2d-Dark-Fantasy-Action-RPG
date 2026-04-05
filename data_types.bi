@@ -22,6 +22,13 @@ type settings
 	scale_multiplier as double
 	numberOfEntities as long
 end type
+type graphics_data
+	bg_image as long
+	bg_tiles as long
+	entity_layer as long
+	fg_tiles as long
+	ui as long
+end type
 type tile_attributes
 	is_image as _unsigned _byte
 	index_start as _unsigned long
@@ -31,8 +38,7 @@ type tile_attributes
 	frame_step as _unsigned long
 	solid_color as color_rgb
 	has_collision as _unsigned _byte
-	tile_offset as xy_int
-	tile_size as xy
+	layer as _unsigned _byte
 end type
 type map_tile
 	tile_type as _unsigned integer

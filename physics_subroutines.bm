@@ -63,14 +63,20 @@ sub entity_physics (j as _unsigned long)
 			entities(j).v.y = -0.001
 		end if
 		
+		bmx = entities(j).bl.x + (entities(j).w * entities(i).wm) / 2
+		by = entities(j).br.y + 1
+		
+		blx = entities(j).bl.x
+		blr = entities(j).br.x
+		
 		if gset.isPlatformer = 1 then
-			if isColWMap(entities(j).p.x, entities(j).p.y + 1) = 1 then
+			if isColWMap(bmx, by) = 1 then
 				entities(j).v.x = entities(j).v.x * 0.9
 				entities(j).onGround = 1
-			elseif isColWMap(entities(j).p.x - 8, entities(j).p.y + 1) = 1 then
+			elseif isColWMap(blx, by) = 1 then
 				entities(j).v.x = entities(j).v.x * 0.9
 				entities(j).onGround = 1
-			elseif isColWMap(entities(j).p.x + 8, entities(j).p.y + 1) = 1 then
+			elseif isColWMap(blr, by) = 1 then
 				entities(j).v.x = entities(j).v.x * 0.9
 				entities(j).onGround = 1
 			else

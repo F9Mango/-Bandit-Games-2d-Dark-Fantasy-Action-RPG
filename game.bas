@@ -1,10 +1,14 @@
 rem $DYNAMIC
 '$include: 'data_types.bi'
 dim shared gset as settings
+dim shared gdata as graphics_data
 gset.world_size.x = 128
 gset.world_size.y = 128
 gset.screen_resolution.x = 640
 gset.screen_resolution.y = 480
+gdata.bg_tiles = _newimage(gset.screen_resolution.x, gset.screen_resolution.y, 32)
+gdata.entity_layer = _newimage(gset.screen_resolution.x, gset.screen_resolution.y, 32)
+gdata.fg_tiles = _newimage(gset.screen_resolution.x, gset.screen_resolution.y, 32)
 
 dim shared map_tileset_gfx(3) as long
 map_tileset_gfx(0) = _loadimage("gfx/0.png", 32)
@@ -17,6 +21,7 @@ map_tileset(0).solid_color.g = 64
 map_tileset(1).solid_color.r = 128
 map_tileset(1).solid_color.g = 128
 map_tileset(1).has_collision = 1
+map_tileset(1).layer = 1
 map_tileset(2).is_image = 0
 map_tileset(2).solid_color.r = 255
 map_tileset(2).solid_color.g = 255
@@ -48,9 +53,9 @@ entities(0).o.x = -8
 entities(0).o.y = -16
 
 entities(0).wm = 1
-entities(0).hm = 1
-entities(0).p.x = 32
-entities(0).p.y = 32
+entities(0).hm = 1.5
+entities(0).p.x = 64
+entities(0).p.y = 64
 entities(0).look.r = 255
 entities(0).look.b = 255
 
@@ -92,11 +97,30 @@ do
 
 	camera.x = int(entities(0).p.x / (32 * 20)) * 20
 	camera.y = int(entities(0).p.y / (32 * 15)) * 15
-	cls
-	draw_map
+	
+	_source gdata.bg_tiles
+	_dest gdata.bg_tiles
+	cls , _rgba(0, 0, 0, 0)
+	_source gdata.fg_tiles
+	_dest gdata.fg_tiles
+	cls , _rgba(0, 0, 0, 0)
+	_source gdata.entity_layer
+	_dest gdata.entity_layer
+	cls , _rgba(0, 0, 0, 0)
+	
 	for i = 0 to gset.numberOfEntities
 		draw_entity entities(i)
 	next i
+	
+	_source 0
+	_dest 0
+	cls
+	
+	draw_map
+	
+	_putimage (0, 0), gdata.bg_tiles
+	_putimage (0, 0), gdata.entity_layer
+	_putimage (0, 0), gdata.fg_tiles
 	
 	locate 1,1
 	print "Keys: "; player_data.keys

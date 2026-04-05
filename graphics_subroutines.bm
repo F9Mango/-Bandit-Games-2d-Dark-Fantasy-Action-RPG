@@ -1,4 +1,5 @@
 sub draw_map
+
 	for y = 0 to 14
 		for x = 0 to 19
 			
@@ -8,13 +9,29 @@ sub draw_map
 			'Check if the x and y values are within the array boundaries.
 			if newx >= 0 and newx <= gset.world_size.x then
 				if newy >= 0 and newy <= gset.world_size.y then
+					
 					tile_map(x, y).tile_start.x = x * gset.tile_size
 					tile_map(x, y).tile_start.y = y * gset.tile_size
 					tile_map(x, y).tile_end.x = x * gset.tile_size + gset.tile_size
 					tile_map(x, y).tile_end.y = y * gset.tile_size + gset.tile_size
 					tile_map(x, y).tile_index = map(newx, newy).tile_type
 					
+					select case map_tileset(map(newx, newy).tile_type).layer
+						case 0:
+							_source gdata.bg_tiles
+							_dest gdata.bg_tiles
+						case 1:
+							_source gdata.fg_tiles
+							_dest gdata.fg_tiles
+					end select
+					
+					
 					draw_tile tile_map(x, y)
+					
+					_source 0
+					_dest 0
+					
+					
 				end if
 			end if
 			
@@ -23,14 +40,16 @@ sub draw_map
 end sub
 
 sub draw_tile (t as screen_tile)
+
 	w = _width(map_tileset_gfx(map_tileset(t.tile_index).index_start))
 	h = _height(map_tileset_gfx(map_tileset(t.tile_index).index_start))
-	dim ratio as double
-	ratio = h / w
-	drawx1 = t.tile_start.x + map_tileset(t.tile_index).tile_offset.x
-	drawy1 = t.tile_start.y + map_tileset(t.tile_index).tile_offset.y
-	drawx2 = t.tile_end.x + map_tileset(t.tile_index).tile_offset.x
-	drawy2 = t.tile_end.y + map_tileset(t.tile_index).tile_offset.y
+	
+	yoff = ((h / w) * gset.tile_size) - gset.tile_size
+
+	drawx1 = t.tile_start.x
+	drawy1 = t.tile_start.y - yoff
+	drawx2 = t.tile_end.x
+	drawy2 = t.tile_end.y
 	
 	r = map_tileset(t.tile_index).solid_color.r
 	g = map_tileset(t.tile_index).solid_color.g
@@ -38,10 +57,10 @@ sub draw_tile (t as screen_tile)
 	
 	if map_tileset(t.tile_index).is_image = 0 then
 		line (drawx1, drawy1)-(drawx2, drawy2), _rgb(r, g, b), BF
-		line (drawx1, drawy1)-(drawx2, drawy2), _rgb(0, 0, 0), B
+		'line (drawx1, drawy1)-(drawx2, drawy2), _rgb(0, 0, 0), B
 	else
 		_putimage(drawx1, drawy1)-(drawx2, drawy2), map_tileset_gfx(map_tileset(t.tile_index).index_start)
-		line (drawx1, drawy1)-(drawx2, drawy2), _rgba(r, g, b, 64), B
+		'line (drawx1, drawy1)-(drawx2, drawy2), _rgba(r, g, b, 64), B
 	end if
 end sub
 
@@ -71,7 +90,7 @@ sub draw_entity (e as entity)
 		e2x = ex + (e.o.x + e.w) * gset.scale_multiplier
 		e2y = ey + (e.o.y + e.h) * gset.scale_multiplier
 		
-		line (e1x, e1y)-(e2x, e2y), _rgb(e.look.r, e.look.g, e.look.b), BF
+		line (etlx, etly)-(ebrx, ebry), _rgb(e.look.r, e.look.g, e.look.b), BF
 		pset (ex, ey), _rgb(255, 255, 255)
 		pset (etlx, etly), _rgb(255, 255, 255)
 		pset (etrx, etry), _rgb(255, 255, 255)
