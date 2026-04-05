@@ -1,3 +1,26 @@
+sub load_map(mapName as string * 50)
+	name$ = _trim$(mapName)
+	mapImg = _loadimage(name$, 32)
+	_source mapImg
+	w = _width(mapImg)
+	h = _height(mapImg)
+	gset.world_size.x = w
+	gset.world_size.y = h
+	redim map(gset.world_size.x, gset.world_size.y) as map_tile
+	for y = 0 to w
+		for x = 0 to h
+			clr = point(x, y)
+			r = _red32(clr)
+			g = _green32(clr)
+			b = _blue32(clr)
+			if r = 0 and g = 0 and b = 0 then map(x, y).tile_type = 0
+			if r = 255 and g = 0 and b = 0 then map(x, y).tile_type = 1
+			if r = 255 and g = 255 and b = 0 then map(x, y).tile_type = 2
+			if r = 0 and g = 255 and b = 0 then map(x, y).tile_type = 3
+		next x
+	next y
+end sub
+
 sub generate_map
 	for y = 0 to gset.world_size.y
 		for x = 0 to gset.world_size.x

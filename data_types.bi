@@ -31,6 +31,8 @@ type tile_attributes
 	frame_step as _unsigned long
 	solid_color as color_rgb
 	has_collision as _unsigned _byte
+	tile_offset as xy_int
+	tile_size as xy
 end type
 type map_tile
 	tile_type as _unsigned integer

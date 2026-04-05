@@ -1,3 +1,4 @@
+rem $DYNAMIC
 '$include: 'data_types.bi'
 dim shared gset as settings
 gset.world_size.x = 128
@@ -24,15 +25,15 @@ map_tileset(3).is_image = 0
 map_tileset(3).solid_color.r = 64
 map_tileset(3).solid_color.g = 64
 
-dim shared map(128,128) as map_tile
+dim shared map(0, 0) as map_tile
 dim shared tile_map(21, 16) as screen_tile
 
 gset.tile_size = 32
 gset.scale_multiplier = gset.tile_size / 32
 gset.numberOfEntities = 0
 
-generate_map
-
+'generate_map
+load_map "map.png"
 
 dim shared camera as xy
 dim shared entities(100) as entity

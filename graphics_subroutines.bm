@@ -1,4 +1,3 @@
-
 sub draw_map
 	for y = 0 to 14
 		for x = 0 to 19
@@ -24,10 +23,14 @@ sub draw_map
 end sub
 
 sub draw_tile (t as screen_tile)
-	drawx1 = t.tile_start.x
-	drawy1 = t.tile_start.y
-	drawx2 = t.tile_end.x
-	drawy2 = t.tile_end.y
+	w = _width(map_tileset_gfx(map_tileset(t.tile_index).index_start))
+	h = _height(map_tileset_gfx(map_tileset(t.tile_index).index_start))
+	dim ratio as double
+	ratio = h / w
+	drawx1 = t.tile_start.x + map_tileset(t.tile_index).tile_offset.x
+	drawy1 = t.tile_start.y + map_tileset(t.tile_index).tile_offset.y
+	drawx2 = t.tile_end.x + map_tileset(t.tile_index).tile_offset.x
+	drawy2 = t.tile_end.y + map_tileset(t.tile_index).tile_offset.y
 	
 	r = map_tileset(t.tile_index).solid_color.r
 	g = map_tileset(t.tile_index).solid_color.g
