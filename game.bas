@@ -29,6 +29,9 @@ map_tileset(2).has_collision = 1
 map_tileset(3).is_image = 0
 map_tileset(3).solid_color.r = 64
 map_tileset(3).solid_color.g = 64
+map_tileset(4).is_image = 0
+map_tileset(4).solid_color.r = 0
+map_tileset(4).solid_color.g = 64
 
 dim shared map(0, 0) as map_tile
 dim shared tile_map(21, 16) as screen_tile
@@ -39,6 +42,11 @@ gset.numberOfEntities = 0
 
 'generate_map
 load_map "map.png"
+
+map(10, 10).tile_type = 4
+map(10, 10).var_A = 512
+map(10, 10).var_B = 512
+map(10, 10).var_C = 1
 
 dim shared camera as xy
 dim shared entities(100) as entity

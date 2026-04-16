@@ -43,24 +43,24 @@ function localToGrid(a as double)
 	localToGrid = int(a / 32)
 end function
 
+function checkInBounds (x as double, y as double)
+	a = 0
+	'Check if coordinates are within world boundary.
+	if x >= 0 and x <= gset.world_size.x then
+		if y >= 0 and y <= gset.world_size.y then
+			'Affirm that we are inside the boundary.
+			a = 1
+		end if
+	end if
+	checkInBounds = a
+end function
+
 function isColWMap(x1 as double, y1 as double)
 	'Scale and truncate entity-coordinates to match the tile grid.
 	x = int(x1 / 32)
 	y = int(y1 / 32)
 	
-	'Initialize the inBounds variable, which determines whether or not the coordinates are within the world boundary.
-	inBounds = 0
-	
-	'Check if coordinates are within world boundary.
-	if x >= 0 and x <= gset.world_size.x then
-		if y >= 0 and y <= gset.world_size.y then
-			'Affirm that we are inside the boundary.
-			inBounds = 1
-		end if
-	end if
-	
-	
-	if inBounds = 1 then
+	if checkInBounds(x, y) = 1 then
 		'If we're inside the boundary, compare against the world map grid.
 		if map_tileset(map(x, y).tile_type).has_collision <> 0 then
 			isColWMap = 1
