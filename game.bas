@@ -10,28 +10,120 @@ gdata.bg_tiles = _newimage(gset.screen_resolution.x, gset.screen_resolution.y, 3
 gdata.entity_layer = _newimage(gset.screen_resolution.x, gset.screen_resolution.y, 32)
 gdata.fg_tiles = _newimage(gset.screen_resolution.x, gset.screen_resolution.y, 32)
 
-dim shared map_tileset_gfx(3) as long
+
+dim shared map_tileset_gfx(255) as long
 map_tileset_gfx(0) = _loadimage("gfx/0.png", 32)
 map_tileset_gfx(1) = _loadimage("gfx/1.png", 32)
+map_tileset_gfx(2) = _loadimage("gfx/door_closed.png", 32)
+map_tileset_gfx(3) = _loadimage("gfx/door_open.png", 32)
+map_tileset_gfx(4) = _loadimage("gfx/black.png", 32)
+map_tileset_gfx(5) = _loadimage("gfx/portal1.png", 32)
+map_tileset_gfx(6) = _loadimage("gfx/portal2.png", 32)
+map_tileset_gfx(7) = _loadimage("gfx/portal3.png", 32)
+map_tileset_gfx(8) = _loadimage("gfx/door_closed_d.png", 32)
+map_tileset_gfx(9) = _loadimage("gfx/door_open_d.png", 32)
+map_tileset_gfx(10) = _loadimage("gfx/door_closed_l.png", 32)
+map_tileset_gfx(11) = _loadimage("gfx/door_open_l.png", 32)
+map_tileset_gfx(12) = _loadimage("gfx/door_closed_r.png", 32)
+map_tileset_gfx(13) = _loadimage("gfx/door_open_r.png", 32)
+
+'for i = 0 to 4
+'	_clearcolor _rgb(255, 255, 64), map_tileset(i)
+'next i
+
 dim shared map_tileset(128) as tile_attributes
+
 map_tileset(0).is_image = 1
+map_tileset(0).bg_index = 0
+
+
 map_tileset(1).is_image = 1
 map_tileset(1).index_start = 1
-map_tileset(0).solid_color.g = 64
+map_tileset(1).index_end = 1
 map_tileset(1).solid_color.r = 128
 map_tileset(1).solid_color.g = 128
 map_tileset(1).has_collision = 1
 map_tileset(1).layer = 1
-map_tileset(2).is_image = 0
+
+map_tileset(2).is_image = 1
+map_tileset(2).bg_index = 4
+map_tileset(2).index_start = 2
+map_tileset(2).index_end = 2
 map_tileset(2).solid_color.r = 255
 map_tileset(2).solid_color.g = 255
 map_tileset(2).has_collision = 1
-map_tileset(3).is_image = 0
+map_tileset(2).layer = 1
+map_tileset(2).class = 1
+
+map_tileset(3).is_image = 1
+map_tileset(3).bg_index = 4
+map_tileset(3).index_start = 3
+map_tileset(3).index_end = 3
 map_tileset(3).solid_color.r = 64
 map_tileset(3).solid_color.g = 64
-map_tileset(4).is_image = 0
-map_tileset(4).solid_color.r = 0
-map_tileset(4).solid_color.g = 64
+map_tileset(3).layer = 1
+
+map_tileset(4).is_image = 1
+map_tileset(4).bg_index = 4
+map_tileset(4).index_start = 8
+map_tileset(4).index_end = 8
+map_tileset(4).solid_color.r = 255
+map_tileset(4).solid_color.g = 255
+map_tileset(4).has_collision = 1
+map_tileset(4).layer = 1
+map_tileset(4).class = 1
+
+map_tileset(5).is_image = 1
+map_tileset(5).bg_index = 4
+map_tileset(5).index_start = 9
+map_tileset(5).index_end = 9
+map_tileset(5).solid_color.r = 64
+map_tileset(5).solid_color.g = 64
+map_tileset(5).layer = 1
+
+map_tileset(6).is_image = 1
+map_tileset(6).bg_index = 4
+map_tileset(6).index_start = 10
+map_tileset(6).index_end = 10
+map_tileset(6).solid_color.r = 255
+map_tileset(6).solid_color.g = 255
+map_tileset(6).has_collision = 1
+map_tileset(6).layer = 1
+map_tileset(6).class = 1
+
+map_tileset(7).is_image = 1
+map_tileset(7).bg_index = 4
+map_tileset(7).index_start = 11
+map_tileset(7).index_end = 11
+map_tileset(7).solid_color.r = 64
+map_tileset(7).solid_color.g = 64
+map_tileset(7).layer = 1
+
+map_tileset(8).is_image = 1
+map_tileset(8).bg_index = 4
+map_tileset(8).index_start = 12
+map_tileset(8).index_end = 12
+map_tileset(8).solid_color.r = 255
+map_tileset(8).solid_color.g = 255
+map_tileset(8).has_collision = 1
+map_tileset(8).layer = 1
+map_tileset(8).class = 1
+
+map_tileset(9).is_image = 1
+map_tileset(9).bg_index = 4
+map_tileset(9).index_start = 13
+map_tileset(9).index_end = 13
+map_tileset(9).solid_color.r = 64
+map_tileset(9).solid_color.g = 64
+map_tileset(9).layer = 1
+
+map_tileset(128).is_image = 1
+map_tileset(128).index_start = 5
+map_tileset(128).index_end = 7
+map_tileset(128).frame_threshold = 15
+map_tileset(128).solid_color.r = 0
+map_tileset(128).solid_color.g = 64
+map_tileset(128).class = 2
 
 dim shared map(0, 0) as map_tile
 dim shared tile_map(21, 16) as screen_tile
@@ -41,9 +133,9 @@ gset.scale_multiplier = gset.tile_size / 32
 gset.numberOfEntities = 0
 
 'generate_map
-load_map "map.png"
+load_map "map.bmp"
 
-map(10, 10).tile_type = 4
+map(10, 10).tile_type = 128
 map(10, 10).var_A = 512
 map(10, 10).var_B = 512
 map(10, 10).var_C = 1
@@ -67,6 +159,12 @@ entities(0).p.y = 64
 entities(0).look.r = 255
 entities(0).look.b = 255
 
+
+
+
+
+
+
 screen _newimage(gset.screen_resolution.x, gset.screen_resolution.y, 32)
 _printmode _keepbackground
 print "Commands:"
@@ -86,9 +184,19 @@ print "     Jump with W"
 sleep
 _font 8
 
+
+
+
+
+
+
 do
 	_limit 60
 	ui_input
+	
+	for i = 0 to 128
+		animate_tileset i
+	next i
 	
 	for i = 1 to 10
 		player_specific_physics
@@ -126,6 +234,10 @@ do
 	
 	draw_map
 	
+	_clearcolor _rgb(255, 64, 255), gdata.bg_tiles
+	_clearcolor _rgb(255, 64, 255), gdata.entity_layer
+	_clearcolor _rgb(255, 64, 255), gdata.fg_tiles
+	
 	_putimage (0, 0), gdata.bg_tiles
 	_putimage (0, 0), gdata.entity_layer
 	_putimage (0, 0), gdata.fg_tiles
@@ -161,10 +273,19 @@ sub ui_input
 		case "e":
 			x = int(entities(0).actionPoint.x / 32)
 			y = int(entities(0).actionPoint.y / 32)
-			if map(x, y).tile_type = 2 then
-				if player_data.keys > 0 then
-					map(x ,y).tile_type = 3
-					player_data.keys = player_data.keys - 1
+			if isColWMap(entities(0).actionPoint.x, entities(0).actionPoint.y) = 1 then
+				if map_tileset(map(x, y).tile_type).class = 1 then
+					if player_data.keys > 0 then
+						map(x ,y).tile_type = map(x ,y).tile_type + 1
+						for y2 = 0 to gset.world_size.y
+							for x2 = 0 to gset.world_size.x
+								if map_tileset(map(x2, y2).tile_type).class = 1 and map(x2, y2).var_C = map(x, y).var_C then
+									map(x2, y2).tile_type = map(x2, y2).tile_type + 1
+								end if
+							next x2
+						next y2
+						player_data.keys = player_data.keys - 1
+					end if
 				end if
 			end if
 	end select

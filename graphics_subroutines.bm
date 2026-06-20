@@ -51,16 +51,35 @@ sub draw_tile (t as screen_tile)
 	drawx2 = t.tile_end.x
 	drawy2 = t.tile_end.y
 	
+	bg_r = map_tileset(t.tile_index).bg_color.r
+	bg_g = map_tileset(t.tile_index).bg_color.g
+	bg_b = map_tileset(t.tile_index).bg_color.b
+	
 	r = map_tileset(t.tile_index).solid_color.r
 	g = map_tileset(t.tile_index).solid_color.g
 	b = map_tileset(t.tile_index).solid_color.b
 	
 	if map_tileset(t.tile_index).is_image = 0 then
+		line (drawx1, drawy1)-(drawx2, drawy2), _rgb(bg_r, bg_g, bg_b), BF
 		line (drawx1, drawy1)-(drawx2, drawy2), _rgb(r, g, b), BF
 		'line (drawx1, drawy1)-(drawx2, drawy2), _rgb(0, 0, 0), B
 	else
-		_putimage(drawx1, drawy1)-(drawx2, drawy2), map_tileset_gfx(map_tileset(t.tile_index).index_start)
+		_putimage(drawx1, drawy1)-(drawx2, drawy2), map_tileset_gfx(map_tileset(t.tile_index).bg_index)
+		frame = int(map_tileset(t.tile_index).index_start + map_tileset(t.tile_index).frame_counter)
+		_putimage(drawx1, drawy1)-(drawx2, drawy2), map_tileset_gfx(frame)
 		'line (drawx1, drawy1)-(drawx2, drawy2), _rgba(r, g, b, 64), B
+	end if
+end sub
+
+sub animate_tileset(t as _unsigned integer)
+	map_tileset(t).frame_step = map_tileset(t).frame_step + 1
+	if map_tileset(t).frame_step >= map_tileset(t).frame_threshold then
+		map_tileset(t).frame_counter = map_tileset(t).frame_counter + 1
+		map_tileset(t).frame_step = 0
+	end if
+	if int(map_tileset(t).frame_counter + map_tileset(t).index_start) > map_tileset(t).index_end then
+		map_tileset(t).frame_counter = 0
+		map_tileset(t).frame_step = 0
 	end if
 end sub
 

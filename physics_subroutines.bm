@@ -154,7 +154,7 @@ sub player_specific_physics
 	x = int(entities(0).p.x / 32): y = int(entities(0).p.y / 32)
 	
 	if checkInBounds(x, y) = 1 then
-		if map(x, y).tile_type = 4 then
+		if map_tileset(map(x, y).tile_type).class = 2 then
 			entities(0).p.x = map(x, y).var_A
 			entities(0).p.y = map(x, y).var_B
 			gset.isPlatformer = map(x, y).var_C
