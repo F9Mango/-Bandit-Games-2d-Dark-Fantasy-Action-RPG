@@ -1,98 +1,96 @@
 sub entity_physics (j as _unsigned long)
-	if entities(j).state <> 0 then
-		if j >< 0 then
-			if gset.isPlatformer = 0 then
-			entities(j).v.x = entities(j).v.x * 0.9
-			entities(j).v.y = entities(j).v.y * 0.9
-			else
-				if entities(j).onGround = 0 then 
-					entities(j).v.y = entities(j).v.y + 0.005
-				end if
+	if j >< 0 then
+		if gset.isPlatformer = 0 then
+		entities(j).v.x = entities(j).v.x * 0.9
+		entities(j).v.y = entities(j).v.y * 0.9
+		else
+			if entities(j).onGround = 0 then 
+				entities(j).v.y = entities(j).v.y + 0.005
 			end if
 		end if
-		
-		if entities(j).v.x > 0.5 then entities(j).v.x = 0.5
-		if entities(j).v.y > 0.5 then entities(j).v.y = 0.5
-		if entities(j).v.x < -0.5 then entities(j).v.x = -0.5
-		if entities(j).v.y < -0.5 then entities(j).v.y = -0.5
-		
-		'Initializing the values for the entity's corner collisions.
-		'Top left xy
-		entities(j).tl.x = entities(j).p.x + (entities(j).o.x * entities(j).wm)
-		entities(j).tl.y = entities(j).p.y + (entities(j).o.y * entities(j).hm)
-		'Top right xy
-		entities(j).tr.x = entities(j).p.x + ((entities(j).o.x + entities(j).w) * entities(j).wm)
-		entities(j).tr.y = entities(j).p.y + (entities(j).o.y * entities(j).hm)
-		'Bottom left xy
-		entities(j).bl.x = entities(j).p.x + (entities(j).o.x * entities(j).wm)
-		entities(j).bl.y = entities(j).p.y + ((entities(j).o.y + entities(j).h) * entities(j).hm)
-		'Bottom right xy
-		entities(j).br.x = entities(j).p.x + ((entities(j).o.x + entities(j).w) * entities(j).wm)
-		entities(j).br.y = entities(j).p.y + ((entities(j).o.y + entities(j).h) * entities(j).hm)
-		
-		'Add velocity values to corner collisions and check.
-		if isColWMap(entities(j).tl.x + entities(j).v.x, entities(j).tl.y) = 1 then
-			entities(j).v.x = 0.001
-		end if
-		
-		if isColWMap(entities(j).tl.x, entities(j).tl.y + entities(j).v.y) = 1 then
-			entities(j).v.y = 0.001
-		end if
-		
-		if isColWMap(entities(j).tr.x + entities(j).v.x, entities(j).tr.y) = 1 then
-			entities(j).v.x = -0.001
-		end if
-		
-		if isColWMap(entities(j).tr.x, entities(j).tr.y + entities(j).v.y) = 1 then
-			entities(j).v.y = 0.001
-		end if
-		
-		if isColWMap(entities(j).bl.x + entities(j).v.x, entities(j).bl.y) = 1 then
-			entities(j).v.x = 0.001
-		end if
-		
-		if isColWMap(entities(j).bl.x, entities(j).bl.y + entities(j).v.y) = 1 then
-			entities(j).v.y = -0.001
-		end if
-		
-		if isColWMap(entities(j).br.x + entities(j).v.x, entities(j).br.y) = 1 then
-			entities(j).v.x = -0.001
-		end if
-		
-		if isColWMap(entities(j).br.x, entities(j).br.y + entities(j).v.y) = 1 then
-			entities(j).v.y = -0.001
-		end if
-		
-		bmx = entities(j).bl.x + (entities(j).w * entities(i).wm) / 2
-		by = entities(j).br.y + 1
-		
-		blx = entities(j).bl.x
-		blr = entities(j).br.x
-		
-		if gset.isPlatformer = 1 then
-			if isColWMap(bmx, by) = 1 then
-				entities(j).v.x = entities(j).v.x * 0.9
-				entities(j).onGround = 1
-			elseif isColWMap(blx, by) = 1 then
-				entities(j).v.x = entities(j).v.x * 0.9
-				entities(j).onGround = 1
-			elseif isColWMap(blr, by) = 1 then
-				entities(j).v.x = entities(j).v.x * 0.9
-				entities(j).onGround = 1
-			else
-				entities(j).onGround = 0
-			end if
-		end if
-		
-		entities(j).p.x = entities(j).p.x + entities(j).v.x
-		entities(j).p.y = entities(j).p.y + entities(j).v.y
-		
-		entities(j).actionPoint_default.x = (((entities(j).direction.x * (entities(j).w / 2) * entities(j).wm) + (entities(j).w / 2) * entities(j).wm)) + entities(j).direction.x
-		entities(j).actionPoint_default.y = (((entities(j).direction.y * (entities(j).h / 2) * entities(j).hm) + (entities(j).h / 2) * entities(j).hm)) + entities(j).direction.y
-		
-		entities(j).actionPoint.x = entities(j).tl.x + entities(j).actionPoint_default.x
-		entities(j).actionPoint.y = entities(j).tl.y + entities(j).actionPoint_default.y
 	end if
+	
+	if entities(j).v.x > 0.5 then entities(j).v.x = 0.5
+	if entities(j).v.y > 0.5 then entities(j).v.y = 0.5
+	if entities(j).v.x < -0.5 then entities(j).v.x = -0.5
+	if entities(j).v.y < -0.5 then entities(j).v.y = -0.5
+	
+	'Initializing the values for the entity's corner collisions.
+	'Top left xy
+	entities(j).tl.x = entities(j).p.x + (entities(j).o.x * entities(j).wm)
+	entities(j).tl.y = entities(j).p.y + (entities(j).o.y * entities(j).hm)
+	'Top right xy
+	entities(j).tr.x = entities(j).p.x + ((entities(j).o.x + entities(j).w) * entities(j).wm)
+	entities(j).tr.y = entities(j).p.y + (entities(j).o.y * entities(j).hm)
+	'Bottom left xy
+	entities(j).bl.x = entities(j).p.x + (entities(j).o.x * entities(j).wm)
+	entities(j).bl.y = entities(j).p.y + ((entities(j).o.y + entities(j).h) * entities(j).hm)
+	'Bottom right xy
+	entities(j).br.x = entities(j).p.x + ((entities(j).o.x + entities(j).w) * entities(j).wm)
+	entities(j).br.y = entities(j).p.y + ((entities(j).o.y + entities(j).h) * entities(j).hm)
+	
+	'Add velocity values to corner collisions and check.
+	if isColWMap(entities(j).tl.x + entities(j).v.x, entities(j).tl.y) = 1 then
+		entities(j).v.x = 0.001
+	end if
+	
+	if isColWMap(entities(j).tl.x, entities(j).tl.y + entities(j).v.y) = 1 then
+		entities(j).v.y = 0.001
+	end if
+	
+	if isColWMap(entities(j).tr.x + entities(j).v.x, entities(j).tr.y) = 1 then
+		entities(j).v.x = -0.001
+	end if
+	
+	if isColWMap(entities(j).tr.x, entities(j).tr.y + entities(j).v.y) = 1 then
+		entities(j).v.y = 0.001
+	end if
+	
+	if isColWMap(entities(j).bl.x + entities(j).v.x, entities(j).bl.y) = 1 then
+		entities(j).v.x = 0.001
+	end if
+	
+	if isColWMap(entities(j).bl.x, entities(j).bl.y + entities(j).v.y) = 1 then
+		entities(j).v.y = -0.001
+	end if
+	
+	if isColWMap(entities(j).br.x + entities(j).v.x, entities(j).br.y) = 1 then
+		entities(j).v.x = -0.001
+	end if
+	
+	if isColWMap(entities(j).br.x, entities(j).br.y + entities(j).v.y) = 1 then
+		entities(j).v.y = -0.001
+	end if
+	
+	bmx = entities(j).bl.x + (entities(j).w * entities(i).wm) / 2
+	by = entities(j).br.y + 1
+	
+	blx = entities(j).bl.x
+	blr = entities(j).br.x
+	
+	if gset.isPlatformer = 1 then
+		if isColWMap(bmx, by) = 1 then
+			entities(j).v.x = entities(j).v.x * 0.9
+			entities(j).onGround = 1
+		elseif isColWMap(blx, by) = 1 then
+			entities(j).v.x = entities(j).v.x * 0.9
+			entities(j).onGround = 1
+		elseif isColWMap(blr, by) = 1 then
+			entities(j).v.x = entities(j).v.x * 0.9
+			entities(j).onGround = 1
+		else
+			entities(j).onGround = 0
+		end if
+	end if
+	
+	entities(j).p.x = entities(j).p.x + entities(j).v.x
+	entities(j).p.y = entities(j).p.y + entities(j).v.y
+	
+	entities(j).actionPoint_default.x = (((entities(j).direction.x * (entities(j).w / 2) * entities(j).wm) + (entities(j).w / 2) * entities(j).wm)) + entities(j).direction.x
+	entities(j).actionPoint_default.y = (((entities(j).direction.y * (entities(j).h / 2) * entities(j).hm) + (entities(j).h / 2) * entities(j).hm)) + entities(j).direction.y
+	
+	entities(j).actionPoint.x = entities(j).tl.x + entities(j).actionPoint_default.x
+	entities(j).actionPoint.y = entities(j).tl.y + entities(j).actionPoint_default.y
 end sub
 
 sub player_specific_physics

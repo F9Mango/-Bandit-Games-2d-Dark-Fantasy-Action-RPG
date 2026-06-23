@@ -26,10 +26,11 @@ map_tileset_gfx(10) = _loadimage("gfx/door_closed_l.png", 32)
 map_tileset_gfx(11) = _loadimage("gfx/door_open_l.png", 32)
 map_tileset_gfx(12) = _loadimage("gfx/door_closed_r.png", 32)
 map_tileset_gfx(13) = _loadimage("gfx/door_open_r.png", 32)
+map_tileset_gfx(14) = _loadimage("gfx/shrubbery.png", 32)
 
-'for i = 0 to 4
-'	_clearcolor _rgb(255, 255, 64), map_tileset(i)
-'next i
+dim shared entity_sprites(255) as long
+entity_sprites(0) = _loadimage("gfx/key.png", 32)
+entity_sprites(1) = _loadimage("gfx/bat.png", 32)
 
 dim shared map_tileset(128) as tile_attributes
 
@@ -117,6 +118,12 @@ map_tileset(9).solid_color.r = 64
 map_tileset(9).solid_color.g = 64
 map_tileset(9).layer = 1
 
+map_tileset(10).is_image = 1
+map_tileset(10).index_start = 14
+map_tileset(10).index_end = 14
+map_tileset(10).has_collision = 1
+map_tileset(10).layer = 1
+
 map_tileset(128).is_image = 1
 map_tileset(128).index_start = 5
 map_tileset(128).index_end = 7
@@ -170,7 +177,8 @@ _printmode _keepbackground
 print "Commands:"
 print "  Rescale the map with -/+ keys"
 print "  Regenerate the map with G key"
-print "  Spawn a random entity on the current screen with the L key"
+print "  Spawn a key entity on the current screen with the L key"
+print "  Spawn an enemy bat entity on the current screen with the ; key"
 print "  Switch between top-down and platformer control with P key"
 print "  Delete tiles under the player's action point with the . key"
 print "  Unlock yellow tiles under the player's action point with the E key"
@@ -201,11 +209,17 @@ do
 	for i = 1 to 10
 		player_specific_physics
 		for j = 0 to gset.numberOfEntities
-			entity_physics j
+			if entities(j).state <> 0 then
+				entity_ai j
+				entity_physics j
+			end if
 			if j <> 0 then
 				if entity_is_colliding(entities(0), entities(j)) = 1 then
-					entities(j).state = 0
-					player_data.keys = player_data.keys + 1
+					select case entities(j).id
+						case 0:
+							destroy_entity j
+							player_data.keys = player_data.keys + 1
+					end select
 				end if
 			end if
 		next j
@@ -265,7 +279,9 @@ sub ui_input
 		case "=":
 			if gset.tile_size < 128 then gset.tile_size = gset.tile_size + 8: gset.scale_multiplier = gset.tile_size / 32
 		case "l":
-			create_entity
+			create_entity 0
+		case ";":
+			create_entity 1
 		case ".":
 			x = int(entities(0).actionPoint.x / 32)
 			y = int(entities(0).actionPoint.y / 32)
@@ -287,6 +303,12 @@ sub ui_input
 						player_data.keys = player_data.keys - 1
 					end if
 				end if
+			end if
+		case "h":
+			if gdata.show_hotpoints = 0 then
+				gdata.show_hotpoints = 1
+			else
+				gdata.show_hotpoints = 0
 			end if
 	end select
 end sub

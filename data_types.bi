@@ -28,6 +28,7 @@ type graphics_data
 	entity_layer as long
 	fg_tiles as long
 	ui as long
+	show_hotpoints as _unsigned _byte
 end type
 type tile_attributes
 	'Determines whether the object is drawn from an image handle or a solid color value
@@ -93,11 +94,22 @@ type entity
 	frame_counter as _unsigned long
 	frame_threshold as _unsigned long
 	frame_step as _unsigned long
+	is_looping as _unsigned _byte 'Specifies whether or not to reset the frame counter once the sum of the frame counter and index_start is equal to index_end.
 	look as color_rgb
 	direction as xy
 	'Position from which the entity shoots projectile/interacts with environment.
 	actionPoint_default as xy
 	actionPoint as xy
+	
+	'Entity-specific values
+	var_A as long
+	var_B as long
+	var_C as long
+	var_D as long
+	var_E as long
+	var_F as long
+	var_G as long
+	var_H as long
 end type
 type player_variables
 	health as double
@@ -106,4 +118,8 @@ type player_variables
 	bow_level as _unsigned _byte
 	keys as _unsigned integer
 	big_keys as _unsigned integer
+end type
+type inventory_slot
+	item_id as _unsigned integer
+	item_name as string * 255
 end type

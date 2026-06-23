@@ -1,25 +1,98 @@
-sub create_entity
+sub create_entity(id as integer)
 	for i = 0 to 100
 		if entities(i).state = 0 then
+			
+			entities(i).id = id
 			gset.numberOfEntities = gset.numberOfEntities + 1
 			entities(i).state = 1
 			randomize timer * i
 			entities(i).p.x = int(rnd * 640) + (camera.x * 32)
 			entities(i).p.y = int(rnd * 480) + (camera.y * 32)
-			entities(i).w = int(rnd * 64)
-			entities(i).h = int(rnd * 64)
-			entities(i).wm = 1
-			entities(i).hm = 1
-			entities(i).look.r = int(rnd * 256)
-			entities(i).look.g = int(rnd * 256)
-			entities(i).look.b = int(rnd * 256)
+			
+				select case id
+					case 0:
+						'entities(i).w = int(rnd * 64)
+						'entities(i).h = int(rnd * 64)
+						entities(i).w = 16
+						entities(i).h = 16
+						entities(i).wm = 1
+						entities(i).hm = 1
+						'entities(i).look.r = int(rnd * 256)
+						'entities(i).look.g = int(rnd * 256)
+						'entities(i).look.b = int(rnd * 256)
+						entities(i).is_image = 1
+						entities(i).index_start = 0
+						entities(i).index_end = 0
+					case 1:
+						'entities(i).w = int(rnd * 64)
+						'entities(i).h = int(rnd * 64)
+						entities(i).w = 16
+						entities(i).h = 16
+						entities(i).o.x = -(entities(i).w / 2)
+						entities(i).o.y = -(entities(i).h / 2)
+						entities(i).wm = 1
+						entities(i).hm = 1
+						'entities(i).look.r = int(rnd * 256)
+						'entities(i).look.g = int(rnd * 256)
+						'entities(i).look.b = int(rnd * 256)
+						entities(i).is_image = 1
+						entities(i).index_start = 1
+						entities(i).index_end = 1
+					case else:
+						entities(i).w = int(rnd * 64)
+						entities(i).h = int(rnd * 64)
+						entities(i).wm = 1
+						entities(i).hm = 1
+						entities(i).look.r = int(rnd * 256)
+						entities(i).look.g = int(rnd * 256)
+						entities(i).look.b = int(rnd * 256)
+				end select
+				
 			exit for
 		end if
 	next i
 end sub
 
+sub destroy_entity(e as _unsigned _byte)
+	dim blank_entity as entity
+	entities(e) = blank_entity
+	for i = e to 99
+		entities(i) = entities(i + 1)
+	next i
+end sub
+
+sub entity_ai(e as _unsigned _byte)
+	select case entities(e).id
+		case 1: 'temp id for bats
+			px = entities(0).tl.x + entities(0).w / 2
+			py = entities(0).tl.y + entities(0).h / 2
+			randomize timer
+			xdiff = px - entities(e).p.x
+			xdir = (xdiff / abs(xdiff)) * 0.25 * rnd
+			ydiff = py - entities(e).p.y
+			ydir = (ydiff / abs(ydiff)) * 0.25 * rnd
+			if entities(e).var_B = 0 then
+				entities(e).v.x = xdir 'entities(e).v.x + xdir
+				entities(e).v.y = ydir 'entities(e).v.y + ydir
+			else
+				if entities(e).var_C > 0 then
+					entities(e).v.x = -xdir 'entities(e).v.x + xdir
+					entities(e).v.y = -ydir 'entities(e).v.y + ydir
+					entities(e).var_C = entities(e).var_C - 1
+				else
+					entities(e).var_B = 0
+					entities(e).var_C = 0
+				end if
+			end if
+			if entity_is_colliding(entities(e), entities(0)) = 1 and entities(e).var_B = 0 then
+				entities(e).var_B = 1
+				entities(e).var_C = 300
+			end if
+	end select
+end sub
+
 function entity_is_colliding (a as entity, b as entity)
-	if b.state <> 0 then
+	if a.state <> 0 and b.state <> 0 then
 		'Initializing the values for entity A's corner collisions.
 		'Top left xy
 		a.tl.x = a.p.x + (a.o.x * a.wm)
@@ -45,23 +118,73 @@ function entity_is_colliding (a as entity, b as entity)
 		
 		if a.tl.x >= x1 and a.tl.x <= x2 then
 			if a.tl.y >= y1 and a.tl.y <= y2 then
-				entity_is_colliding = 1
+				collision_a = 1
 			end if
 		end if
 		if a.tr.x >= x1 and a.tr.x <= x2 then
 			if a.tr.y >= y1 and a.tr.y <= y2 then
-				entity_is_colliding = 1
+				collision_a = 1
 			end if
 		end if
 		if a.bl.x >= x1 and a.bl.x <= x2 then
 			if a.bl.y >= y1 and a.bl.y <= y2 then
-				entity_is_colliding = 1
+				collision_a = 1
 			end if
 		end if
 		if a.br.x >= x1 and a.br.x <= x2 then
 			if a.br.y >= y1 and a.br.y <= y2 then
-				entity_is_colliding = 1
+				collision_a = 1
 			end if
 		end if
+		
+		
+		'Initializing the values for entity B's corner collisions.
+		'Top left xy
+		b.tl.x = b.p.x + (b.o.x * b.wm)
+		b.tl.y = b.p.y + (b.o.y * b.hm)
+		'Top right xy
+		b.tr.x = b.p.x + ((b.o.x + b.w) * b.wm)
+		b.tr.y = b.p.y + (b.o.y * b.hm)
+		'Bottom left xy
+		b.bl.x = b.p.x + (b.o.x * b.wm)
+		b.bl.y = b.p.y + ((b.o.y + b.h) * b.hm)
+		'Bottom right xy
+		b.br.x = b.p.x + ((b.o.x + b.w) * b.wm)
+		b.br.y = b.p.y + ((b.o.y + b.h) * b.hm)
+		
+		'Initializing the values for entity A's corner collisions.
+		'Top left xy
+		x1 = a.p.x + (a.o.x * a.wm)
+		y1 = a.p.y + (a.o.y * a.hm)
+
+		'Bottom right xy
+		x2 = a.p.x + ((a.o.x + a.w) * a.wm)
+		y2 = a.p.y + ((a.o.y + a.h) * a.hm)
+		
+		if b.tl.x >= x1 and b.tl.x <= x2 then
+			if b.tl.y >= y1 and b.tl.y <= y2 then
+				collision_b = 1
+			end if
+		end if
+		if b.tr.x >= x1 and b.tr.x <= x2 then
+			if b.tr.y >= y1 and b.tr.y <= y2 then
+				collision_b = 1
+			end if
+		end if
+		if b.bl.x >= x1 and b.bl.x <= x2 then
+			if b.bl.y >= y1 and b.bl.y <= y2 then
+				collision_b = 1
+			end if
+		end if
+		if b.br.x >= x1 and b.br.x <= x2 then
+			if b.br.y >= y1 and b.br.y <= y2 then
+				collision_b = 1
+			end if
+		end if
+		
+		if collision_a = 1 or collision_b = 1 then
+			entity_is_colliding = 1
+		end if
+		
 	end if
 end function
