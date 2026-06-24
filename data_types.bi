@@ -1,6 +1,6 @@
 type xy
-	x as double
-	y as double
+	x as single
+	y as single
 end type
 type xy_int
 	x as _unsigned long
@@ -17,6 +17,8 @@ end type
 type settings
 	world_size as xy_int
 	screen_resolution as xy_int
+	window_size as single
+	window_offset as xy
 	isPlatformer as _unsigned _byte
 	tile_size as long
 	scale_multiplier as double
@@ -55,6 +57,7 @@ type tile_attributes
 end type
 type map_tile
 	tile_type as _unsigned integer
+	animation_offset as integer
 	var_A as long
 	var_B as long
 	var_C as long
@@ -67,6 +70,7 @@ end type
 type entity
 	state as _unsigned _byte
 	id as _unsigned integer
+	home as xy
 	'Position and velocity
 	p as xy
 	v as xy

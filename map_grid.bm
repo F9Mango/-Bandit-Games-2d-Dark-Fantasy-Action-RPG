@@ -8,14 +8,13 @@ sub load_map(mapName as string * 50)
 	gset.world_size.x = w
 	gset.world_size.y = h
 	redim map(gset.world_size.x, gset.world_size.y) as map_tile
-	open "log.txt" for output as #1
+
 	for y = 0 to w
 		for x = 0 to h
 			clr = point(x, y)
 			r = _red32(clr)
 			g = _green32(clr)
 			b = _blue32(clr)
-			print #1, x, y, r, g, b
 			if r = 0   and g = 0   and b = 0   then map(x, y).tile_type = 0
 			if r = 255 and g = 0   and b = 0   then map(x, y).tile_type = 1
 			if r = 255 and g = 255 and b = 0   then map(x, y).tile_type = 2
@@ -38,9 +37,12 @@ sub load_map(mapName as string * 50)
 					if map(x - 1, y).tile_type = 8 then map(x - 1, y).var_C = map(x, y).var_C
 			end select
 			
+			map(x, y).animation_offset = int(rnd * (map_tileset(map(x, y).tile_type).index_end - map_tileset(map(x, y).tile_type).index_start))
+			
+			'map(x, y).tile_type = 0
+			
 		next x
 	next y
-	close #1
 end sub
 
 sub generate_map

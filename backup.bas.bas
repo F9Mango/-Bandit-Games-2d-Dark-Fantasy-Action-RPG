@@ -7,16 +7,16 @@ dim shared gdata as graphics_data
 gset.world_size.x = 128
 gset.world_size.y = 128
 
-gset.screen_resolution.x = 1920
-gset.screen_resolution.y = 1080
+gset.screen_resolution.x = 1366
+gset.screen_resolution.y = 768
 
 gset.window_size = 0.85
 
 gwindowx = gset.screen_resolution.x * gset.window_size
 gwindowy = gset.screen_resolution.y * gset.window_size
 
-gset.window_offset.x = int(gset.screen_resolution.x * (250 / 1366))
-gset.window_offset.y = 0' (gset.screen_resolution.y * (1 - gset.window_size))
+gset.window_offset.x = 250
+gset.window_offset.y = (gset.screen_resolution.y * (1 - gset.window_size)) / 2
 gset.tile_size = (gset.screen_resolution.x / 20) * gset.window_size
 gset.scale_multiplier = gset.tile_size / 32
 
@@ -207,7 +207,7 @@ print "  Delete tiles under the player's action point with the . key"
 print "  Unlock yellow tiles under the player's action point with the E key"
 print
 print "  Top-down:"
-print "		Move with WASD"
+print "     Move with WASD"
 print
 print "  Platform:"
 print "     Move left and right with A & D"
@@ -222,93 +222,93 @@ _font 8
 
 
 do
-	_limit 60
-	ui_input
-	
-	for i = 0 to 128
-		animate_tileset i
-	next i
-	
-	for i = 1 to 10
-		player_specific_physics
-		for j = 0 to gset.numberOfEntities
-			if entities(j).state <> 0 then
-				entity_ai j
-				entity_physics j
-			end if
-			if j <> 0 then
-				if entity_is_colliding(entities(0), entities(j)) = 1 then
-					select case entities(j).id
-						case 0:
-							destroy_entity j
-							player_data.keys = player_data.keys + 1
-					end select
-				end if
-			end if
-		next j
-	next i
+    _limit 60
+    ui_input
+    
+    for i = 0 to 128
+        animate_tileset i
+    next i
+    
+    for i = 1 to 10
+        player_specific_physics
+        for j = 0 to gset.numberOfEntities
+            if entities(j).state <> 0 then
+                entity_ai j
+                entity_physics j
+            end if
+            if j <> 0 then
+                if entity_is_colliding(entities(0), entities(j)) = 1 then
+                    select case entities(j).id
+                        case 0:
+                            destroy_entity j
+                            player_data.keys = player_data.keys + 1
+                    end select
+                end if
+            end if
+        next j
+    next i
 
-	camera.x = int(entities(0).p.x / (32 * 20)) * 20
-	camera.y = int(entities(0).p.y / (32 * 15)) * 15
-	
-	draw_screen
-	
-	_display
+    camera.x = int(entities(0).p.x / (32 * 20)) * 20
+    camera.y = int(entities(0).p.y / (32 * 15)) * 15
+    
+    draw_screen
+    
+    _display
 loop
 
 sub ui_input
-	a$ = inkey$
-	select case a$
-		case "g":
-			generate_map
-		case "p":
-			if gset.isPlatformer = 0 then
-				gset.isPlatformer = 1
-			else
-				gset.isPlatformer = 0
-			end if
-			pp = 60
-		'case "-":
-		'	if gset.tile_size > 8 then gset.tile_size = gset.tile_size - 8: gset.scale_multiplier = gset.tile_size / 32
-		'case "=":
-		'	if gset.tile_size < 128 then gset.tile_size = gset.tile_size + 8: gset.scale_multiplier = gset.tile_size / 32
-		case "l":
-			create_entity 0
-		case ";":
-			create_entity 1
-		case ".":
-			x = int(entities(0).actionPoint.x / 32)
-			y = int(entities(0).actionPoint.y / 32)
-			if isColWMap(entities(0).actionPoint.x, entities(0).actionPoint.y) = 1 then map(x ,y).tile_type = 0
-		case "e":
-			x = int(entities(0).actionPoint.x / 32)
-			y = int(entities(0).actionPoint.y / 32)
-			if isColWMap(entities(0).actionPoint.x, entities(0).actionPoint.y) = 1 then
-				if map_tileset(map(x, y).tile_type).class = 1 then
-					if player_data.keys > 0 then
-						map(x ,y).tile_type = map(x ,y).tile_type + 1
-						for y2 = 0 to gset.world_size.y
-							for x2 = 0 to gset.world_size.x
-								if map_tileset(map(x2, y2).tile_type).class = 1 and map(x2, y2).var_C = map(x, y).var_C then
-									map(x2, y2).tile_type = map(x2, y2).tile_type + 1
-								end if
-							next x2
-						next y2
-						player_data.keys = player_data.keys - 1
-					end if
-				end if
-			end if
-		case "h":
-			if gdata.show_hotpoints = 0 then
-				gdata.show_hotpoints = 1
-			else
-				gdata.show_hotpoints = 0
-			end if
-	end select
+    a$ = inkey$
+    select case a$
+        case "g":
+            generate_map
+        case "p":
+            if gset.isPlatformer = 0 then
+                gset.isPlatformer = 1
+            else
+                gset.isPlatformer = 0
+            end if
+            pp = 60
+        'case "-":
+        '   if gset.tile_size > 8 then gset.tile_size = gset.tile_size - 8: gset.scale_multiplier = gset.tile_size / 32
+        'case "=":
+        '   if gset.tile_size < 128 then gset.tile_size = gset.tile_size + 8: gset.scale_multiplier = gset.tile_size / 32
+        case "l":
+            create_entity 0
+        case ";":
+            create_entity 1
+        case ".":
+            x = int(entities(0).actionPoint.x / 32)
+            y = int(entities(0).actionPoint.y / 32)
+            if isColWMap(entities(0).actionPoint.x, entities(0).actionPoint.y) = 1 then map(x ,y).tile_type = 0
+        case "e":
+            x = int(entities(0).actionPoint.x / 32)
+            y = int(entities(0).actionPoint.y / 32)
+            if isColWMap(entities(0).actionPoint.x, entities(0).actionPoint.y) = 1 then
+                if map_tileset(map(x, y).tile_type).class = 1 then
+                    if player_data.keys > 0 then
+                        map(x ,y).tile_type = map(x ,y).tile_type + 1
+                        for y2 = 0 to gset.world_size.y
+                            for x2 = 0 to gset.world_size.x
+                                if map_tileset(map(x2, y2).tile_type).class = 1 and map(x2, y2).var_C = map(x, y).var_C then
+                                    map(x2, y2).tile_type = map(x2, y2).tile_type + 1
+                                end if
+                            next x2
+                        next y2
+                        player_data.keys = player_data.keys - 1
+                    end if
+                end if
+            end if
+        case "h":
+            if gdata.show_hotpoints = 0 then
+                gdata.show_hotpoints = 1
+            else
+                gdata.show_hotpoints = 0
+            end if
+    end select
 end sub
 
 function distance2d(a as xy, b as xy)
-	distance2d = sqr(abs((b.x - a.x) ^ 2 + (b.y - a.y) ^ 2))
+    distance2d = sqr(abs((b.x - a.x) ^ 2 + (b.y - a.y) ^ 2))
 end function
 
 '$include: 'map_grid.bm'

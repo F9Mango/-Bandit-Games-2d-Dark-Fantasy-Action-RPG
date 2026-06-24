@@ -1,5 +1,5 @@
 sub create_entity(id as integer)
-	for i = 0 to 100
+	for i = 0 to 128
 		if entities(i).state = 0 then
 			
 			entities(i).id = id
@@ -8,6 +8,7 @@ sub create_entity(id as integer)
 			randomize timer * i
 			entities(i).p.x = int(rnd * 640) + (camera.x * 32)
 			entities(i).p.y = int(rnd * 480) + (camera.y * 32)
+			entities(i).home = entities(i).p
 			
 				select case id
 					case 0:
@@ -48,6 +49,10 @@ sub create_entity(id as integer)
 						entities(i).look.b = int(rnd * 256)
 				end select
 				
+					open "log.txt" for append as #1
+						print #1, "created entity "; i; " at "; entities(i).p.x;"x";entities(i).p.y; " with an id of "; entities(i).id; " and a state of "; entities(i).state
+					close #1
+				
 			exit for
 		end if
 	next i
@@ -56,25 +61,56 @@ end sub
 sub destroy_entity(e as _unsigned _byte)
 	dim blank_entity as entity
 	entities(e) = blank_entity
-	for i = e to 99
+	for i = e to 127
 		entities(i) = entities(i + 1)
 	next i
 end sub
 
 sub entity_ai(e as _unsigned _byte)
 	select case entities(e).id
+	
 		case 1: 'temp id for bats
+			
+			'locate the center of the player
 			px = entities(0).tl.x + entities(0).w / 2
 			py = entities(0).tl.y + entities(0).h / 2
-			randomize timer
-			xdiff = px - entities(e).p.x
+			
+			xdiff = px - entities(e).p.x 'finds the horizontal distance between the player and the bat
+			ydiff = py - entities(e).p.y 'finds the vertical distance between the player and the bat
+			
+			randomize timer 'prime the random number generator using system time as a seed.
+			'find the directional vectors by dividing the difference variables by their absolute values to produce coefficients of 1, -1, or 0.
+			'Then multiply them by a speed-limiting value and a random number to produce erratic motion.
 			xdir = (xdiff / abs(xdiff)) * 0.25 * rnd
-			ydiff = py - entities(e).p.y
 			ydir = (ydiff / abs(ydiff)) * 0.25 * rnd
-			if entities(e).var_B = 0 then
-				entities(e).v.x = xdir 'entities(e).v.x + xdir
-				entities(e).v.y = ydir 'entities(e).v.y + ydir
+			
+			if distance2d(entities(e).p, entities(0).p) < 128 then
+				if entities(e).var_B = 0 then
+					entities(e).v.x = xdir
+					entities(e).v.y = ydir
+					if entity_is_colliding(entities(e), entities(0)) = 1 then
+						entities(e).var_B = 1
+						entities(e).var_C = 300
+					end if
+				end if
+				
+				
 			else
+				if entities(e).p.x <> entities(e).home.x and entities(e).p.y <> entities(e).home.y then
+					xdiff = entities(e).home.x - entities(e).p.x
+					ydiff = entities(e).home.y - entities(e).p.y
+					
+					randomize timer
+					xdir = (xdiff / abs(xdiff)) * 0.25 * rnd
+					ydir = (ydiff / abs(ydiff)) * 0.25 * rnd
+					'
+					entities(e).v.x = xdir
+					entities(e).v.y = ydir
+				end if
+				
+				
+			end if
+			if entities(e).var_B = 1 then
 				if entities(e).var_C > 0 then
 					entities(e).v.x = -xdir 'entities(e).v.x + xdir
 					entities(e).v.y = -ydir 'entities(e).v.y + ydir
@@ -84,11 +120,12 @@ sub entity_ai(e as _unsigned _byte)
 					entities(e).var_C = 0
 				end if
 			end if
-			if entity_is_colliding(entities(e), entities(0)) = 1 and entities(e).var_B = 0 then
-				entities(e).var_B = 1
-				entities(e).var_C = 300
-			end if
+		
+		
+		case 2: 'temp id for zombies
+			
 	end select
+	
 end sub
 
 function entity_is_colliding (a as entity, b as entity)
