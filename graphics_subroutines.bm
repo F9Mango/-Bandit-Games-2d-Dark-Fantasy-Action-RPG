@@ -1,4 +1,4 @@
-sub draw_screen
+sub draw_screen_gameplay
 	
 	gset.tile_size = (gset.screen_resolution.y / 15) * gset.window_size
 	gset.scale_multiplier = gset.tile_size / 32
@@ -12,14 +12,36 @@ sub draw_screen
 	_source gdata.entity_layer
 	_dest gdata.entity_layer
 	cls , _rgba(0, 0, 0, 0)
+	_source gdata.entity_fg_layer
+	_dest gdata.entity_fg_layer
+	cls , _rgba(0, 0, 0, 0)
 	
-	for i = 0 to gset.numberOfEntities
+	for i = 0 to 128 'gset.numberOfEntities
 		draw_entity entities(i)
 	next i
 	
-	_source gdata.ui
-	_dest gdata.ui
-	cls
+	
+	
+	'_source gdata.ui_bg
+	'_dest gdata.ui_bg
+	'cls
+	'_putimage (0, 0)-(799, 599), overlay_img
+	
+	
+	
+	
+	'locate 1,1
+	'print entities(0).p.x, entities(0).p.y
+	'print "K: "; player_data.keys
+	'print "E:"; gset.numberOfEntities
+	'print gset.window_offset.x, gset.window_offset.y
+	'a = _mouseinput
+	'? _mousex, _mousey
+	
+	draw_hotpoints
+	
+	
+	
 	
 	_source 0
 	_dest 0
@@ -30,22 +52,41 @@ sub draw_screen
 	_clearcolor _rgb(255, 64, 255), gdata.bg_tiles
 	_clearcolor _rgb(255, 64, 255), gdata.entity_layer
 	_clearcolor _rgb(255, 64, 255), gdata.fg_tiles
+	_clearcolor _rgb(255, 64, 255), gdata.entity_fg_layer
+	_clearcolor _rgb(255, 64, 255), gdata.ui_bg
+	_clearcolor _rgb(255, 64, 255), gdata.ui
+
 	
 	_putimage (gset.window_offset.x, gset.window_offset.y), gdata.bg_tiles
 	_putimage (gset.window_offset.x, gset.window_offset.y), gdata.entity_layer
 	_putimage (gset.window_offset.x, gset.window_offset.y), gdata.fg_tiles
-	'_putimage (0, 0), gdata.ui
+	_putimage (gset.window_offset.x, gset.window_offset.y), gdata.entity_fg_layer
+	_putimage (0, 0), gdata.ui_bg
+	_putimage (0, 0), gdata.ui
 	
-	locate 1,1
-	print entities(0).p.x, entities(0).p.y
-	print "Keys: "; player_data.keys
-	print "Entities: "; gset.numberOfEntities
-	print gset.window_offset.x, gset.window_offset.y
-	a = _mouseinput
-	? _mousex, _mousey
-	
+end sub
+
+sub update_ui
+	_source gdata.ui_bg
+	_dest gdata.ui_bg
+	_putimage (0, 0)-(799, 599), overlay_img
+	_source gdata.ui
+	_dest gdata.ui
+	_printmode _keepbackground
+	cls, _rgb(255, 64, 255)
+	print "E:"; gset.numberOfEntities
+	_putimage (64, 532), heart_img
+	_printstring (116, 550), "x " + str$(player_data.health)
+	for i = 0 to 2
+		_printstring (180 + (i * 192), 532), str$(i + 1) + ". " + str$(inventory(i).quantity) + "x " + inventory(i).item_name
+		_printstring (180 + (i * 192), 548), str$(i + 4) + ". " + str$(inventory(i + 3).quantity) + "x " + inventory(i + 3).item_name
+		_printstring (180 + (i * 192), 564), str$(i + 7) + ". " + str$(inventory(i + 6).quantity) + "x " + inventory(i + 6).item_name
+	next i
+end sub
+
+sub draw_hotpoints
 	if gdata.show_hotpoints = 1 then
-		for i = 0 to gset.numberOfEntities
+		for i = 0 to 128
 			if entities(i).state <> 0 then
 				cx = camera.x * (32)
 				cy = camera.y * (32)
@@ -84,7 +125,6 @@ sub draw_screen
 		next i
 	end if
 end sub
-
 
 sub draw_map
 
@@ -198,8 +238,7 @@ sub draw_entity (e as entity)
 		e2x = ex + (e.o.x + e.w) * gset.scale_multiplier
 		e2y = ey + (e.o.y + e.h) * gset.scale_multiplier
 		
-		
-		_dest gdata.entity_layer
+		if e.layer = 0 then _dest gdata.entity_layer else _dest gdata.entity_fg_layer
 		
 		if e.is_image = 0 then
 			line (etlx, etly)-(ebrx, ebry), _rgb(e.look.r, e.look.g, e.look.b), BF

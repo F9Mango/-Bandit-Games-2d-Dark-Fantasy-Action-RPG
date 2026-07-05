@@ -1,7 +1,10 @@
 sub create_entity(id as integer)
+	i = 0
+	print #1, ">>>order recieved to create entity with an id of"; id
 	for i = 0 to 128
 		if entities(i).state = 0 then
-			
+			print "   unused location in entity array found at"; i; "-- creating entity..."
+			entities(i) = blank_entity
 			entities(i).id = id
 			gset.numberOfEntities = gset.numberOfEntities + 1
 			entities(i).state = 1
@@ -27,15 +30,17 @@ sub create_entity(id as integer)
 					case 1: 'bat
 						'entities(i).w = int(rnd * 64)
 						'entities(i).h = int(rnd * 64)
-						entities(i).w = 16
-						entities(i).h = 16
+						entities(i).w = 32
+						entities(i).h = 32
 						entities(i).o.x = -(entities(i).w / 2)
 						entities(i).o.y = -(entities(i).h / 2)
 						entities(i).wm = 1
 						entities(i).hm = 1
+						entities(i).isFlying = 1
 						'entities(i).look.r = int(rnd * 256)
 						'entities(i).look.g = int(rnd * 256)
 						'entities(i).look.b = int(rnd * 256)
+						entities(i).layer = 1
 						entities(i).is_image = 1
 						entities(i).index_start = 1
 						entities(i).index_end = 1
@@ -64,22 +69,155 @@ sub create_entity(id as integer)
 						entities(i).look.b = int(rnd * 256)
 				end select
 				
-					open "log.txt" for append as #1
-						print #1, "created entity "; i; " at "; entities(i).p.x;"x";entities(i).p.y; " with an id of "; entities(i).id; " and a state of "; entities(i).state
-					close #1
+						print #1, "   created entity "; i; " at "; entities(i).p.x;"x";entities(i).p.y; " with an id of "; entities(i).id; " and a state of "; entities(i).state
 				
 			exit for
+		else
+			if i = 128 then
+				print #1, "   ***Entity buffer full! Cannot generate any more!***"
+			end if
 		end if
 	next i
+	update_ui
 end sub
 
-sub destroy_entity(e as _unsigned _byte)
-	dim blank_entity as entity
+sub destroy_entity(e as _unsigned _byte, shuffle as _unsigned _byte)
+	print #1, ">>>destroyed entity "; e; " at "; entities(e).p.x;"x";entities(e).p.y; " with an id of "; entities(e).id; " and a state of "; entities(e).state
+	
 	entities(e) = blank_entity
-	for i = e to 127
-		entities(i) = entities(i + 1)
-	next i
+	entities(e).state = 0
+	print #1, "   entity"; e; "state post-deletion:"; entities(e).state
+	
+	'if shuffle = 1 then
+	'	'for i = e to gset.numberOfEntities - 1
+	'	'	entities(i) = entities(i + 1)
+	'	'	print #1, "   ("; i - e; ") Reshuffled entity in array-space "; i + 1; " to occupy array-space "; i
+	'	'next i
+	'	for i = 0 to 128
+	'		for j = i to 128
+	'			if entities(j).state = 1 then e_sorting_buffer(i) = entities(j): exit for
+	'		next j
+	'	next i
+	'	for i = 0 to 128
+	'		entities(i) = e_sorting_buffer(i)
+	'	next i
+	'else
+	'	'print #1, "   Entities not shuffling. May require sorting later."
+	'end if
+	
+	print #1, "   reducing entity count by 1"
 	gset.numberOfEntities = gset.numberOfEntities - 1
+	print #1, "   Entity count now at"; gset.numberOfEntities
+	update_ui
+end sub
+
+sub sort_entities
+	print #1, "!!!Sorting entities"
+	for i = 1 to 128
+		for j = i to 128
+			if entities(i).state <> 0 then
+				e_sorting_buffer(i).state = entities(j).state
+				e_sorting_buffer(i).id = entities(j).id
+				e_sorting_buffer(i).home.x = entities(j).home.x
+				e_sorting_buffer(i).home.y = entities(j).home.y
+				e_sorting_buffer(i).p.x = entities(j).p.x
+				e_sorting_buffer(i).p.y = entities(j).p.y
+				e_sorting_buffer(i).v.x = entities(j).v.x
+				e_sorting_buffer(i).v.y = entities(j).v.y
+				e_sorting_buffer(i).w = entities(j).w
+				e_sorting_buffer(i).h = entities(j).h
+				e_sorting_buffer(i).o.x = entities(j).o.x
+				e_sorting_buffer(i).o.y = entities(j).o.y
+				e_sorting_buffer(i).tl.x = entities(j).tl.x
+				e_sorting_buffer(i).tl.y = entities(j).tl.y
+				e_sorting_buffer(i).tr.x = entities(j).tr.x
+				e_sorting_buffer(i).tr.y = entities(j).tr.y
+				e_sorting_buffer(i).bl.x = entities(j).bl.x
+				e_sorting_buffer(i).bl.y = entities(j).bl.y
+				e_sorting_buffer(i).br.x = entities(j).br.x
+				e_sorting_buffer(i).br.y = entities(j).br.y
+				e_sorting_buffer(i).wm = entities(j).wm
+				e_sorting_buffer(i).hm = entities(j).hm
+				e_sorting_buffer(i).gravity = entities(j).gravity
+				e_sorting_buffer(i).onGround = entities(j).onGround
+				e_sorting_buffer(i).is_image = entities(j).is_image
+				e_sorting_buffer(i).index_start = entities(j).index_start
+				e_sorting_buffer(i).index_end = entities(j).index_end
+				e_sorting_buffer(i).frame_counter = entities(j).frame_counter
+				e_sorting_buffer(i).frame_threshold = entities(j).frame_threshold
+				e_sorting_buffer(i).frame_step = entities(j).frame_step
+				e_sorting_buffer(i).is_looping = entities(j).is_looping
+				e_sorting_buffer(i).look.r = entities(j).look.r
+				e_sorting_buffer(i).look.g = entities(j).look.g
+				e_sorting_buffer(i).look.b = entities(j).look.b
+				e_sorting_buffer(i).direction.x = entities(j).direction.x
+				e_sorting_buffer(i).direction.y = entities(j).direction.y
+				e_sorting_buffer(i).actionPoint_default.x = entities(j).actionPoint_default.x
+				e_sorting_buffer(i).actionPoint_default.y = entities(j).actionPoint_default.y
+				e_sorting_buffer(i).actionPoint.x = entities(j).actionPoint.x
+				e_sorting_buffer(i).actionPoint.y = entities(j).actionPoint.y
+				e_sorting_buffer(i).var_A = entities(j).var_A
+				e_sorting_buffer(i).var_B = entities(j).var_B
+				e_sorting_buffer(i).var_C = entities(j).var_C
+				e_sorting_buffer(i).var_D = entities(j).var_D
+				e_sorting_buffer(i).var_E = entities(j).var_E
+				e_sorting_buffer(i).var_F = entities(j).var_F
+				e_sorting_buffer(i).var_G = entities(j).var_G
+				e_sorting_buffer(i).var_H = entities(j).var_H
+				exit for
+			end if
+		next j
+	next i
+	for i = 1 to 128
+		entities(i).state = e_sorting_buffer(i).state
+		entities(i).id = e_sorting_buffer(i).id
+		entities(i).home.x = e_sorting_buffer(i).home.x
+		entities(i).home.y = e_sorting_buffer(i).home.y
+		entities(i).p.x = e_sorting_buffer(i).p.x
+		entities(i).p.y = e_sorting_buffer(i).p.y
+		entities(i).v.x = e_sorting_buffer(i).v.x
+		entities(i).v.y = e_sorting_buffer(i).v.y
+		entities(i).w = e_sorting_buffer(i).w
+		entities(i).h = e_sorting_buffer(i).h
+		entities(i).o.x = e_sorting_buffer(i).o.x
+		entities(i).o.y = e_sorting_buffer(i).o.y
+		entities(i).tl.x = e_sorting_buffer(i).tl.x
+		entities(i).tl.y = e_sorting_buffer(i).tl.y
+		entities(i).tr.x = e_sorting_buffer(i).tr.x
+		entities(i).tr.y = e_sorting_buffer(i).tr.y
+		entities(i).bl.x = e_sorting_buffer(i).bl.x
+		entities(i).bl.y = e_sorting_buffer(i).bl.y
+		entities(i).br.x = e_sorting_buffer(i).br.x
+		entities(i).br.y = e_sorting_buffer(i).br.y
+		entities(i).wm = e_sorting_buffer(i).wm
+		entities(i).hm = e_sorting_buffer(i).hm
+		entities(i).gravity = e_sorting_buffer(i).gravity
+		entities(i).onGround = e_sorting_buffer(i).onGround
+		entities(i).is_image = e_sorting_buffer(i).is_image
+		entities(i).index_start = e_sorting_buffer(i).index_start
+		entities(i).index_end = e_sorting_buffer(i).index_end
+		entities(i).frame_counter = e_sorting_buffer(i).frame_counter
+		entities(i).frame_threshold = e_sorting_buffer(i).frame_threshold
+		entities(i).frame_step = e_sorting_buffer(i).frame_step
+		entities(i).is_looping = e_sorting_buffer(i).is_looping
+		entities(i).look.r = e_sorting_buffer(i).look.r
+		entities(i).look.g = e_sorting_buffer(i).look.g
+		entities(i).look.b = e_sorting_buffer(i).look.b
+		entities(i).direction.x = e_sorting_buffer(i).direction.x
+		entities(i).direction.y = e_sorting_buffer(i).direction.y
+		entities(i).actionPoint_default.x = e_sorting_buffer(i).actionPoint_default.x
+		entities(i).actionPoint_default.y = e_sorting_buffer(i).actionPoint_default.y
+		entities(i).actionPoint.x = e_sorting_buffer(i).actionPoint.x
+		entities(i).actionPoint.y = e_sorting_buffer(i).actionPoint.y
+		entities(i).var_A = e_sorting_buffer(i).var_A
+		entities(i).var_B = e_sorting_buffer(i).var_B
+		entities(i).var_C = e_sorting_buffer(i).var_C
+		entities(i).var_D = e_sorting_buffer(i).var_D
+		entities(i).var_E = e_sorting_buffer(i).var_E
+		entities(i).var_F = e_sorting_buffer(i).var_F
+		entities(i).var_G = e_sorting_buffer(i).var_G
+		entities(i).var_H = e_sorting_buffer(i).var_H
+	next i
 end sub
 
 sub entity_ai(e as _unsigned _byte)
@@ -140,69 +278,78 @@ sub entity_ai(e as _unsigned _byte)
 		
 		case 2: 'temp id for zombies
 		
-			if distance2d(entities(e).p, entities(0).p) < 192 then
-				entities(e).var_A = 1
-			else
-				entities(e).var_A = 0
-			end if
-		
-			select case entities(e).var_A
-				case 0: 'wandering
-					if gset.isPlatformer = 0 then
-						randomize timer
-						random_value = int(rnd * 2048)
-						if random_value <= 8 then entities(e).var_B = random_value
+			if gset.isPlatformer = 0 then
+				if distance2d(entities(e).p, entities(0).p) < 192 then
+					entities(e).var_A = 1
+				else
+					entities(e).var_A = 0
+				end if
+			
+				select case entities(e).var_A
+					case 0: 'wandering
+						if gset.isPlatformer = 0 then
+							randomize timer
+							random_value = int(rnd * 2048)
+							if random_value <= 8 then entities(e).var_B = random_value
+							
+							select case entities(e).var_B
+								case 1:
+									entities(e).v.x = 0.05
+									entities(e).v.y = 0
+								case 2:
+									entities(e).v.x = 0.05
+									entities(e).v.y = 0.05
+								case 3:
+									entities(e).v.x = 0
+									entities(e).v.y = 0.05
+								case 4:
+									entities(e).v.x = -0.05
+									entities(e).v.y = 0.05
+								case 5:
+									entities(e).v.x = -0.05
+									entities(e).v.y = 0
+								case 6:
+									entities(e).v.x = -0.05
+									entities(e).v.y = -0.05
+								case 7:
+									entities(e).v.x = 0
+									entities(e).v.y = -0.05
+								case 8:
+									entities(e).v.x = 0.05
+									entities(e).v.y = -0.05
+							end select
+						end if
 						
-						select case entities(e).var_B
-							case 1:
-								entities(e).v.x = 0.05
-								entities(e).v.y = 0
-							case 2:
-								entities(e).v.x = 0.05
-								entities(e).v.y = 0.05
-							case 3:
-								entities(e).v.x = 0
-								entities(e).v.y = 0.05
-							case 4:
-								entities(e).v.x = -0.05
-								entities(e).v.y = 0.05
-							case 5:
-								entities(e).v.x = -0.05
-								entities(e).v.y = 0
-							case 6:
-								entities(e).v.x = -0.05
-								entities(e).v.y = -0.05
-							case 7:
-								entities(e).v.x = 0
-								entities(e).v.y = -0.05
-							case 8:
-								entities(e).v.x = 0.05
-								entities(e).v.y = -0.05
-						end select
-					end if
+					case 1: 'attacking
+						'locate the center of the player
+						'px = entities(0).tl.x + entities(0).w / 2
+						'py = entities(0).tl.y + entities(0).h / 2
+						
+						xdiff = entities(0).p.x - entities(e).p.x 'finds the horizontal distance between the player and the enemy
+						ydiff = entities(0).p.y - entities(e).p.y 'finds the vertical distance between the player and the enemy
+						
+						randomize timer 'prime the random number generator using system time as a seed.
+						'find the directional vectors by dividing the difference variables by their absolute values to produce coefficients of 1, -1, or 0.
+						'Then multiply them by a speed-limiting value and a random number to produce erratic motion.
+						xdir = (xdiff / abs(xdiff)) * 0.1
+						ydir = (ydiff / abs(ydiff)) * 0.1
+						
+						entities(e).v.x = xdir
+						entities(e).v.y = ydir
+						if entity_is_colliding(entities(0), entities(e)) = 1 then
+							entities(e).v.x = 0
+							entities(e).v.y = 0
+						end if
 					
-				case 1: 'attacking
-					'locate the center of the player
-					'px = entities(0).tl.x + entities(0).w / 2
-					'py = entities(0).tl.y + entities(0).h / 2
-					
-					xdiff = entities(0).p.x - entities(e).p.x 'finds the horizontal distance between the player and the enemy
-					ydiff = entities(0).p.y - entities(e).p.y 'finds the vertical distance between the player and the enemy
-					
-					randomize timer 'prime the random number generator using system time as a seed.
-					'find the directional vectors by dividing the difference variables by their absolute values to produce coefficients of 1, -1, or 0.
-					'Then multiply them by a speed-limiting value and a random number to produce erratic motion.
-					xdir = (xdiff / abs(xdiff)) * 0.1
-					ydir = (ydiff / abs(ydiff)) * 0.1
-					
-					entities(e).v.x = xdir
-					entities(e).v.y = ydir
-					if entity_is_colliding(entities(0), entities(e)) = 1 then
-						entities(e).v.x = 0
-						entities(e).v.y = 0
-					end if
+				end select
+			
+			
+			else
+			
 				
-			end select
+			
+			end if
+			
 	end select
 	
 end sub

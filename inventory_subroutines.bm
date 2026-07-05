@@ -1,0 +1,71 @@
+sub add_to_inventory(item as string * 255, quantity as _unsigned integer, unstackable as _unsigned _byte)
+	slot_found = 0
+	print #1, "!!!adding item"; _trim$(item); "to player's inventory! Searching for a suitable inventory slot..."
+	print #1, "   first, we look for a slot already containing this item.
+	for i = 0 to 128
+		if inventory(i).state = 1 and _trim$(lcase$(inventory(i).item_name)) = _trim$(lcase$(item)) and inventory(i).unstackable = 0 then
+			print #1, "   found slot already containing the item. Adding to it..."
+			inventory(i).quantity = inventory(i).quantity + quantity
+			slot_found = 1
+			exit for
+		end if
+	next i
+	if slot_found = 0 then
+		for i = 0 to 128
+			if inventory(i).state = 0 then
+				inventory(i).state = 1
+				inventory(i).item_name = ""
+				inventory(i).item_name = item
+				inventory(i).quantity = quantity
+				inventory(i).unstackable = unstackable
+				exit for
+			end if
+		next i
+	end if
+	update_ui
+end sub
+
+function check_inventory(item as string * 255)
+	item_found = 0
+	dim quantity as _unsigned integer
+	quantity = 0
+	for i = 0 to 128
+		if inventory(i).state = 1 and _trim$(lcase$(inventory(i).item_name)) = _trim$(lcase$(item)) then
+			quantity = quantity + inventory(i).quantity
+			item_found = 1
+		end if
+	next i
+	update_ui
+	check_inventory = quantity
+end function
+
+sub remove_from_inventory(item as string * 255, quantity as _unsigned integer)
+	a = func_remove_from_inventory(item, quantity)
+end sub
+
+function func_remove_from_inventory(item as string * 255, quantity as _unsigned integer)
+	dim q_to_remove as _unsigned integer
+	q_to_remove = quantity
+	i$ = lcase$(_trim$(item))
+	for i = 0 to 128
+		if q_to_remove > 0 then
+			if _trim$(lcase$(inventory(i).item_name)) = i$ then
+				if inventory(i).quantity >= q_to_remove then
+					inventory(i).quantity = inventory(i).quantity - q_to_remove
+					q_to_remove = 0
+				else
+					q_to_remove = q_to_remove - inventory(i).quantity
+					inventory(i).quantity = 0
+				end if
+			end if
+		else
+			exit for
+		end if
+	next i
+	update_ui
+	if q_to_remove = 0 then
+		func_remove_from_inventory = 1
+	else
+		func_remove_from_inventory = 0
+	end if
+end function

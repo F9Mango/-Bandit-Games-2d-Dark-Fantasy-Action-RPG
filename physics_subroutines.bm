@@ -29,37 +29,39 @@ sub entity_physics (j as _unsigned long)
 	entities(j).br.x = entities(j).p.x + ((entities(j).o.x + entities(j).w) * entities(j).wm)
 	entities(j).br.y = entities(j).p.y + ((entities(j).o.y + entities(j).h) * entities(j).hm)
 	
-	'Add velocity values to corner collisions and check.
-	if isColWMap(entities(j).tl.x + entities(j).v.x, entities(j).tl.y) = 1 then
-		entities(j).v.x = 0.001
-	end if
-	
-	if isColWMap(entities(j).tl.x, entities(j).tl.y + entities(j).v.y) = 1 then
-		entities(j).v.y = 0.001
-	end if
-	
-	if isColWMap(entities(j).tr.x + entities(j).v.x, entities(j).tr.y) = 1 then
-		entities(j).v.x = -0.001
-	end if
-	
-	if isColWMap(entities(j).tr.x, entities(j).tr.y + entities(j).v.y) = 1 then
-		entities(j).v.y = 0.001
-	end if
-	
-	if isColWMap(entities(j).bl.x + entities(j).v.x, entities(j).bl.y) = 1 then
-		entities(j).v.x = 0.001
-	end if
-	
-	if isColWMap(entities(j).bl.x, entities(j).bl.y + entities(j).v.y) = 1 then
-		entities(j).v.y = -0.001
-	end if
-	
-	if isColWMap(entities(j).br.x + entities(j).v.x, entities(j).br.y) = 1 then
-		entities(j).v.x = -0.001
-	end if
-	
-	if isColWMap(entities(j).br.x, entities(j).br.y + entities(j).v.y) = 1 then
-		entities(j).v.y = -0.001
+	if entities(j).isFlying = 0 then
+		'Add velocity values to corner collisions and check.
+		if isColWMap(entities(j).tl.x + entities(j).v.x, entities(j).tl.y) = 1 then
+			entities(j).v.x = 0.001
+		end if
+		
+		if isColWMap(entities(j).tl.x, entities(j).tl.y + entities(j).v.y) = 1 then
+			entities(j).v.y = 0.001
+		end if
+		
+		if isColWMap(entities(j).tr.x + entities(j).v.x, entities(j).tr.y) = 1 then
+			entities(j).v.x = -0.001
+		end if
+		
+		if isColWMap(entities(j).tr.x, entities(j).tr.y + entities(j).v.y) = 1 then
+			entities(j).v.y = 0.001
+		end if
+		
+		if isColWMap(entities(j).bl.x + entities(j).v.x, entities(j).bl.y) = 1 then
+			entities(j).v.x = 0.001
+		end if
+		
+		if isColWMap(entities(j).bl.x, entities(j).bl.y + entities(j).v.y) = 1 then
+			entities(j).v.y = -0.001
+		end if
+		
+		if isColWMap(entities(j).br.x + entities(j).v.x, entities(j).br.y) = 1 then
+			entities(j).v.x = -0.001
+		end if
+		
+		if isColWMap(entities(j).br.x, entities(j).br.y + entities(j).v.y) = 1 then
+			entities(j).v.y = -0.001
+		end if
 	end if
 	
 	bmx = entities(j).bl.x + (entities(j).w * entities(i).wm) / 2

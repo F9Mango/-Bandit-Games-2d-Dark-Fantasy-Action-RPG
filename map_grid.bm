@@ -22,6 +22,7 @@ sub load_map(mapName as string * 50)
 			if r = 0   and g = 255 and b = 255 then map(x, y).tile_type = 6
 			if r = 0   and g = 0   and b = 255 then map(x, y).tile_type = 8
 			if r = 255 and g = 64  and b = 255 then map(x, y).tile_type = 10
+			if r = 0   and g = 64  and b = 255 then map(x, y).tile_type = 11
 			
 			'if r = 255 and g = 255 and b = 255 then map(x, y).tile_type = 128
 			
@@ -73,7 +74,9 @@ sub generate_map
 end sub
 
 function localToGrid(a as double)
-	localToGrid = int(a / 32)
+	dim b as integer
+	b = int(a / 32)
+	localToGrid = b
 end function
 
 function checkInBounds (x as double, y as double)

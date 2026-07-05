@@ -23,12 +23,15 @@ type settings
 	tile_size as long
 	scale_multiplier as double
 	numberOfEntities as long
+	interaction_mode as _unsigned _byte
 end type
 type graphics_data
 	bg_image as long
 	bg_tiles as long
 	entity_layer as long
+	entity_fg_layer as long
 	fg_tiles as long
+	ui_bg as long
 	ui as long
 	show_hotpoints as _unsigned _byte
 end type
@@ -54,6 +57,8 @@ type tile_attributes
 	has_collision as _unsigned _byte
 	layer as _unsigned _byte
 	class as _unsigned _byte '0 = inert tile, 1 = door, 2 = teleport zone, 3 = event trigger
+	spawn_entity as _unsigned integer '
+	entity_spawned as _unsigned _byte
 end type
 type map_tile
 	tile_type as _unsigned integer
@@ -61,59 +66,13 @@ type map_tile
 	var_A as long
 	var_B as long
 	var_C as long
+	event_index_interact as integer
+	event_index_zone as integer
 end type
 type screen_tile
 	tile_start as xy_int
 	tile_end as xy_int
 	tile_index as _unsigned integer
-end type
-type entity
-	state as _unsigned _byte
-	id as _unsigned integer
-	home as xy
-	'Position and velocity
-	p as xy
-	v as xy
-	'Base dimensions
-	w as double
-	h as double
-	'XY offset between core coordinates and bounding box
-	o as xy
-	'Four corners' coordinates
-	tl as xy
-	tr as xy
-	bl as xy
-	br as xy
-	'Width and height multipliers
-	wm as double
-	hm as double
-	'Controls and multiplies the entity's interaction with gravity.
-	gravity as double
-	'Determines if the entity is on the ground.
-	onGround as _unsigned _byte
-	'Graphics values
-	is_image as _unsigned _byte
-	index_start as _unsigned long
-	index_end as _unsigned long
-	frame_counter as _unsigned long
-	frame_threshold as _unsigned long
-	frame_step as _unsigned long
-	is_looping as _unsigned _byte 'Specifies whether or not to reset the frame counter once the sum of the frame counter and index_start is equal to index_end.
-	look as color_rgb
-	direction as xy
-	'Position from which the entity shoots projectile/interacts with environment.
-	actionPoint_default as xy
-	actionPoint as xy
-	
-	'Entity-specific values
-	var_A as long
-	var_B as long
-	var_C as long
-	var_D as long
-	var_E as long
-	var_F as long
-	var_G as long
-	var_H as long
 end type
 type player_variables
 	health as double
@@ -124,6 +83,8 @@ type player_variables
 	big_keys as _unsigned integer
 end type
 type inventory_slot
-	item_id as _unsigned integer
+	state as _unsigned _byte
 	item_name as string * 255
+	unstackable as _unsigned _byte
+	quantity as _unsigned integer
 end type
