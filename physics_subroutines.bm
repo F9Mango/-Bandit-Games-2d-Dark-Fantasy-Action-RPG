@@ -127,9 +127,6 @@ sub player_specific_physics
 			if _keydown(asc("a")) then entities(0).v.x = entities(0).v.x - 0.02: entities(0).direction.x = -1
 			if _keydown(asc("d")) then entities(0).v.x = entities(0).v.x + 0.02: entities(0).direction.x = 1
 		else
-			'if entities(0).v.y < 0 then entities(0).direction.y = -1
-			'if entities(0).v.y > 0 then entities(0).direction.y = 1
-			'if entities(0).v.x = 0 then entities(0).direction.x = 0
 			if _keydown(asc("a")) then entities(0).v.x = entities(0).v.x - 0.0005: entities(0).direction.x = -1
 			if _keydown(asc("d")) then entities(0).v.x = entities(0).v.x + 0.0005: entities(0).direction.x = 1
 		end if
@@ -160,4 +157,11 @@ sub player_specific_physics
 			gset.isPlatformer = map(x, y).var_C
 		end if
 	end if
+	
+	dx = entities(0).direction.x * entities(0).w
+	dy = entities(0).direction.y * entities(0).h
+	player_data.meleeboxtl.x = entities(0).actionPoint.x - 15 + dx
+	player_data.meleeboxtl.y = entities(0).actionPoint.y - 15 + dy
+	player_data.meleeboxbr.x = entities(0).actionPoint.x + 15 + dx
+	player_data.meleeboxbr.y = entities(0).actionPoint.y + 15 + dy
 end sub

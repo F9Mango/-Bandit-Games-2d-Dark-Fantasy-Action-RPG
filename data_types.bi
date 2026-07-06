@@ -57,17 +57,23 @@ type tile_attributes
 	has_collision as _unsigned _byte
 	layer as _unsigned _byte
 	class as _unsigned _byte '0 = inert tile, 1 = door, 2 = teleport zone, 3 = event trigger
-	spawn_entity as _unsigned integer '
-	entity_spawned as _unsigned _byte
 end type
 type map_tile
 	tile_type as _unsigned integer
 	animation_offset as integer
+	
 	var_A as long
 	var_B as long
 	var_C as long
+	
 	event_index_interact as integer
 	event_index_zone as integer
+	
+	spawn_entity as _unsigned _byte
+	entity_id as _unsigned integer
+	entity_quantity as _unsigned integer
+	entity_spawned as _unsigned _byte
+	dont_repeat_spawning as _unsigned _byte
 end type
 type screen_tile
 	tile_start as xy_int
@@ -77,10 +83,15 @@ end type
 type player_variables
 	health as double
 	maxHealth as double
+	sanity as double
+	maxSanity as double
 	sword_level as _unsigned _byte
 	bow_level as _unsigned _byte
 	keys as _unsigned integer
 	big_keys as _unsigned integer
+	dmg_cooldown as _unsigned integer
+	meleeboxtl as xy
+	meleeboxbr as xy
 end type
 type inventory_slot
 	state as _unsigned _byte

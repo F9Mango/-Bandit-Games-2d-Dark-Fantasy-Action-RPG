@@ -22,6 +22,7 @@ sub add_to_inventory(item as string * 255, quantity as _unsigned integer, unstac
 			end if
 		next i
 	end if
+	clear_empties
 	update_ui
 end sub
 
@@ -41,6 +42,7 @@ end function
 
 sub remove_from_inventory(item as string * 255, quantity as _unsigned integer)
 	a = func_remove_from_inventory(item, quantity)
+	clear_empties
 end sub
 
 function func_remove_from_inventory(item as string * 255, quantity as _unsigned integer)
@@ -63,9 +65,21 @@ function func_remove_from_inventory(item as string * 255, quantity as _unsigned 
 		end if
 	next i
 	update_ui
+	clear_empties
 	if q_to_remove = 0 then
 		func_remove_from_inventory = 1
 	else
 		func_remove_from_inventory = 0
 	end if
 end function
+
+sub clear_empties
+	for i = 0 to 128
+		if inventory(i).quantity = 0 then
+			inventory(i).state = 0
+			inventory(i).item_name = ""
+			inventory(i).unstackable = 0
+			inventory(i).quantity = 0
+		end if
+	next i
+end sub

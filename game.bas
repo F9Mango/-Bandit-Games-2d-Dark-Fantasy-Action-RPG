@@ -60,7 +60,9 @@ map_tileset_gfx(15) = _loadimage("gfx/water.png", 32)
 dim shared entity_sprites(255) as long
 entity_sprites(0) = _loadimage("gfx/key.png", 32)
 entity_sprites(1) = _loadimage("gfx/bat.png", 32)
-for i = 0 to 1
+entity_sprites(2) = _loadimage("gfx/food.png", 32)
+entity_sprites(3) = _loadimage("gfx/sword.png", 32)
+for i = 0 to 3
 	    _clearcolor _rgb(255, 64, 255), entity_sprites(i)
 next i
 
@@ -177,6 +179,9 @@ gset.scale_multiplier = gset.tile_size / 32
 gset.numberOfEntities = 0
 
 dim shared camera as xy
+dim shared camera_buffer as xy
+camera_buffer.x = -1
+camera_buffer.y = -1
 dim shared entities(128) as entity
 dim shared e_sorting_buffer(128) as entity
 dim shared blank_entity as entity
@@ -184,11 +189,14 @@ dim shared playerHoldingJump as _unsigned _byte
 dim shared player_data as player_variables
 player_data.maxHealth = 10
 player_data.health = player_data.maxHealth
+player_data.sword_level = 1
+
+'player_data.dmg_cooldown = 10000
 
 'player_data.keys = 10
 
 dim shared inventory(255) as inventory_slot
-add_to_inventory "key", 1, 0
+add_to_inventory "key", 4, 0
 
 entities(0).state = 1
 entities(0).w = 16
@@ -217,19 +225,21 @@ map(11, 10).var_A = 50*32
 map(11, 10).var_B = 7*32
 map(11, 10).var_C = 0
 
-map(10, 11).event_index_zone = 1
+map(10, 11).spawn_entity = 1
+map(10, 11).entity_id = 2
+map(10, 11).entity_quantity = 1
+map(10, 11).dont_repeat_spawning = 1
 
 
 screen _newimage(gset.screen_resolution.x, gset.screen_resolution.y, 32)
 _printmode _keepbackground
 print "Commands:"
-print "  Rescale the map with -/+ keys"
 print "  Regenerate the map with G key"
-print "  Spawn a key entity on the current screen with the L key"
-print "  Spawn an enemy bat entity on the current screen with the ; key"
 print "  Switch between top-down and platformer control with P key"
 print "  Delete tiles under the player's action point with the . key"
-print "  Unlock yellow tiles under the player's action point with the E key"
+print "  Unlock door tiles under the player's action point with the E key"
+print "  Attack with spacebar"
+print "  Consume food from your inventory with the F key"
 print
 print "  Top-down:"
 print "		Move with WASD"
@@ -238,7 +248,7 @@ print "  Platform:"
 print "     Move left and right with A & D"
 print "     Jump with W"
 sleep
-_font 8
+'_font 8
 
 
 dim pgridx as integer
@@ -251,13 +261,17 @@ do
 		animate_tileset i
 	next i
 	
-	
 	select case gset.interaction_mode
 		case 0: 'Gameplay.
+		
+			if player_data.dmg_cooldown <> 0 then player_data.dmg_cooldown = (player_data.dmg_cooldown - 1)
+			if player_data.health = 0 then gset.interaction_mode = 2
+			
 			ui_input
 			
 			for i = 1 to 10
 				player_specific_physics
+				
 				for j = 0 to 128 'gset.numberOfEntities
 					if entities(j).state <> 0 then
 						entity_ai j
@@ -270,20 +284,30 @@ do
 							if entity_is_colliding(entities(0), entities(j)) = 1 then
 								select case entities(j).id
 									case 0:
-										print #1, "Player has collided with a key! destroying key entity and incrementing key counter..."
-										destroy_entity j, 1
+										destroy_entity j, 0
 										add_to_inventory "key", 1, 0
-										'player_data.keys = player_data.keys + 1
+									case 1:
+										if player_data.dmg_cooldown = 0 then
+											print #1, "Player has collided with a bat! decrementing health by 1 and setting i-frames..."
+											player_data.health = player_data.health - 1
+											player_data.dmg_cooldown = 25
+											update_ui
+										end if
+									case 2:
+										if player_data.dmg_cooldown = 0 then
+											print #1, "Player has collided with a husk! decrementing health by 2 and setting i-frames..."
+											player_data.health = player_data.health - 2
+											player_data.dmg_cooldown = 25
+											update_ui
+										end if
+									case 3:
+										destroy_entity j, 0
+										add_to_inventory "food", 1, 0
+									case 4:
+										player_data.sword_level = entities(j).var_A
+										destroy_entity j, 0
 								end select
 							end if
-							'egridx = int(entities(j).p.x / 32) - camera.x
-							'egridy = int(entities(j).p.y / 32) - camera.y
-							'if egridx < 0 or egridy < 0 or egridx > 19 or egridy > 14 then
-							'	
-							'	print #1, "!!!Entity"; j; "is no longer within the boundary of the visible screen! Destroying..."
-
-							'	destroy_entity j, 0
-							'end if
 						end if
 					end if
 				next j
@@ -298,18 +322,48 @@ do
 
 			camera.x = int(entities(0).p.x / (32 * 20)) * 20
 			camera.y = int(entities(0).p.y / (32 * 15)) * 15
+			
+			if camera.x <> camera_buffer.x or camera.y <> camera_buffer.y then
+				for y = camera.y to camera.y + 15
+					for x = camera.x to camera.x + 20
+						if checkInBounds(x, y) = 1 then
+							if map(x, y).spawn_entity = 1 and map(x, y).entity_spawned = 0 then
+								if map(x, y).entity_quantity = 1 then
+									create_entity map(x, y).entity_id, "grid", x, y, 1, 0
+								end if
+								if map(x, y).entity_quantity > 1 then
+									for i = 1 to map(x, y).entity_quantity
+										create_entity map(x, y).entity_id, "grid", x, y, 1, 0
+									next i
+								end if
+							end if
+						end if
+					next x
+				next y
+			end if
+			
+			camera_buffer.x = camera.x
+			camera_buffer.y = camera.y
+			
+			draw_screen_gameplay
+			print gdata.show_hotpoints
+			
 		case 1: 'NPC chat menu
+			draw_screen_gameplay
 			
 		case 2: 'Defeat screen
-		
+			draw_screen_gameplay
+			_source 0
+			_dest 0
+			line (0, 0)-(800, 600), _rgba(255, 0, 0, 127), bf
+			_printstring (400 - 32, 300 - 8), "YOU DIED!"
+			i$ = inkey$
+			if i$ = chr$(27) then goto end_program
+			
 	end select
 	
-	
-	draw_screen_gameplay
-	
-	egridx = egridx - camera.x
-	egridy = egridy - camera.y
-	'locate 10, 1: print egridx, egridy
+	'l = entity_test_zone(entities(0), 300, 300, 600, 600)
+	'print entities(0).p.x, entities(0).p.y, l
 	
 	_display
 loop
@@ -318,6 +372,24 @@ end_program:
 close #1
 system
 
+sub player_sword_attack
+	damage = player_data.sword_level ^ 2
+	for i = 0 to 128
+		if entities(i).state = 1 then
+			select case entities(i).id
+				case 1 to 2:
+					if entity_test_zone(entities(i), player_data.meleeboxtl.x, player_data.meleeboxtl.y, player_data.meleeboxbr.x, player_data.meleeboxbr.y) = 1 then
+						print #1, "sword struck enemy"; i; "!"
+						if entities(i).var_H > 0 then
+							entities(i).var_H = entities(i).var_H - damage
+						end if
+						if entities(i).var_H <= 0 then destroy_entity i, 0
+					end if
+			end select
+		end if
+	next i
+end sub
+
 sub ui_input
 	a$ = inkey$
 	
@@ -325,6 +397,11 @@ sub ui_input
 		case chr$(27):
 			close #1
 			system
+		
+		case chr$(32):
+			print #1, "sword attack!"
+			player_sword_attack
+		
 		case "g":
 			generate_map
 			
@@ -336,19 +413,6 @@ sub ui_input
 			end if
 			pp = 60
 			
-			
-		'case "-":
-		'	if gset.tile_size > 8 then gset.tile_size = gset.tile_size - 8: gset.scale_multiplier = gset.tile_size / 32
-		'case "=":
-		'	if gset.tile_size < 128 then gset.tile_size = gset.tile_size + 8: gset.scale_multiplier = gset.tile_size / 32
-		
-		
-		case "l":
-			create_entity 0
-		case ";":
-			create_entity 1
-		case "'":
-			create_entity 2
 		case ".":
 			x = int(entities(0).actionPoint.x / 32)
 			y = int(entities(0).actionPoint.y / 32)
@@ -363,63 +427,46 @@ sub ui_input
 				select case map_tileset(map(x, y).tile_type).class
 				
 					case 1:
-						if map_tileset(map(x, y).tile_type).class = 1 then
-							'if player_data.keys > 0 then
-							'	map(x ,y).tile_type = map(x ,y).tile_type + 1
-							'	for y2 = 0 to gset.world_size.y
-							'		for x2 = 0 to gset.world_size.x
-							'			if map_tileset(map(x2, y2).tile_type).class = 1 and map(x2, y2).var_C = map(x, y).var_C then
-							'				map(x2, y2).tile_type = map(x2, y2).tile_type + 1
-							'			end if
-							'		next x2
-							'	next y2
-							'	player_data.keys = player_data.keys - 1
-							'end if
-							if check_inventory("key") > 0 then
-								map(x ,y).tile_type = map(x ,y).tile_type + 1
-								for y2 = 0 to gset.world_size.y
-									for x2 = 0 to gset.world_size.x
-										if map_tileset(map(x2, y2).tile_type).class = 1 and map(x2, y2).var_C = map(x, y).var_C then
-											map(x2, y2).tile_type = map(x2, y2).tile_type + 1
-										end if
-									next x2
-								next y2
-								remove_from_inventory "key", 1
-							end if
+						if check_inventory("key") > 0 then
+							map(x ,y).tile_type = map(x ,y).tile_type + 1
+							for y2 = 0 to gset.world_size.y
+								for x2 = 0 to gset.world_size.x
+									if map_tileset(map(x2, y2).tile_type).class = 1 and map(x2, y2).var_C = map(x, y).var_C then
+										map(x2, y2).tile_type = map(x2, y2).tile_type + 1
+									end if
+								next x2
+							next y2
+							remove_from_inventory "key", 1
+							clear_empties 'clear empty inventory cells
 						end if
 						
 					case 3: 'event trigger
-						'callEvent may(x, y).var_A
+						doEvent map(x, y).var_A
 						
 				end select
 			end if
 			
-			
+		case "f":
+			if check_inventory("food") > 0 then
+				player_data.health = player_data.health + 2
+				remove_from_inventory "food", 1
+			end if
+		
 		case "h":
 			if gdata.show_hotpoints = 0 then
 				gdata.show_hotpoints = 1
 			else
 				gdata.show_hotpoints = 0
 			end if
-			
-		case "o":
-			print #1, "!!!printing entity table data"
-			for i = 0 to 128
-				print #1, "entity"; i;": state = ";entities(i).state; ", id = "; entities(i).id
-			next i
-		case "i":
-			sort_entities
 	end select
 end sub
 
 sub doEvent(event as integer)
 	select case event
 		case 1:
-			for i = 0 to 25
-				create_entity 2
-			next i
+			
 		case 2:
-			beep
+			
 	end select
 end sub
 

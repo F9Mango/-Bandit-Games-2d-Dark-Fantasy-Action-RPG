@@ -2,9 +2,11 @@ type entity
 	state as _unsigned _byte
 	id as _unsigned integer
 	home as xy
+	grid_home as xy_int
 	'Position and velocity
 	p as xy
 	v as xy
+	knock_v as xy
 	'Base dimensions
 	w as double
 	h as double
@@ -25,7 +27,7 @@ type entity
 	isFlying as _unsigned _byte
 	'Graphics values
 	layer as _unsigned _byte
-	is_image as _unsigned _byte
+	is_image as _byte
 	index_start as _unsigned long
 	index_end as _unsigned long
 	frame_counter as _unsigned long
@@ -47,4 +49,7 @@ type entity
 	var_F as long
 	var_G as long
 	var_H as long
+	
+	drop_entity as _unsigned _byte
+	drop_entity_id as _unsigned integer
 end type
