@@ -99,3 +99,14 @@ type inventory_slot
 	unstackable as _unsigned _byte
 	quantity as _unsigned integer
 end type
+type reply
+	text as string * 255
+	destination as integer
+	eventCall as integer
+end type
+type conversation
+	msg as string * 255
+	reply1 as reply
+	replay2 as reply
+	reply3 as reply
+end type
