@@ -198,6 +198,9 @@ player_data.sword_level = 1
 dim shared inventory(255) as inventory_slot
 add_to_inventory "key", 4, 0
 
+dim shared chat_system as chat_system_vars
+dim shared chats(65535) as conversation
+
 entities(0).state = 1
 entities(0).w = 16
 entities(0).h = 16

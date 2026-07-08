@@ -110,3 +110,6 @@ type conversation
 	replay2 as reply
 	reply3 as reply
 end type
+type chat_system_vars
+	active_chat as _unsigned integer
+end type
