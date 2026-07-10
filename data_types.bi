@@ -107,7 +107,7 @@ end type
 type conversation
 	msg as string * 255
 	reply1 as reply
-	replay2 as reply
+	reply2 as reply
 	reply3 as reply
 end type
 type chat_system_vars

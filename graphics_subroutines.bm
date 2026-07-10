@@ -285,3 +285,19 @@ sub draw_entity (e as entity)
 		
 	end if
 end sub
+
+sub draw_screen_chat
+	x1 = gset.screen_resolution.x * 0.25
+	x2 = gset.screen_resolution.x * 0.75
+	y1 = gset.screen_resolution.y * 0.25
+	y2 = gset.screen_resolution.y * 0.5
+	line (x1, y1)-(x2, y2), _rgba(0, 0, 255, 127), bf
+	for i = 1 to 3
+		'if _trim$(chats(chat_system.active_chat).reply.text) <> "" then
+			line (x1, y2 + 8 + ((i - 1) * 64))-(x2, y2 + 64 + ((i - 1) * 64)), _rgba(0, 0, 255, 127), bf
+			if i = 1 then _printstring (x1 + 1, y2 + 8 + ((i - 1) * 64) + 1), str$(i) + ". " + _trim$(chats(chat_system.active_chat).reply1.text)
+			if i = 2 then _printstring (x1 + 1, y2 + 8 + ((i - 1) * 64) + 1), str$(i) + ". " + _trim$(chats(chat_system.active_chat).reply2.text)
+			if i = 3 then _printstring (x1 + 1, y2 + 8 + ((i - 1) * 64) + 1), str$(i) + ". " + _trim$(chats(chat_system.active_chat).reply3.text)
+		'end if
+	next i
+end sub

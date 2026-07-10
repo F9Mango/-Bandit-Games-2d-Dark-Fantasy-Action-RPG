@@ -353,7 +353,7 @@ do
 			
 		case 1: 'NPC chat menu
 			draw_screen_gameplay
-			
+			draw_screen_chat
 		case 2: 'Defeat screen
 			draw_screen_gameplay
 			_source 0
@@ -461,6 +461,9 @@ sub ui_input
 			else
 				gdata.show_hotpoints = 0
 			end if
+			
+		case "c":
+			gset.interaction_mode = 1
 	end select
 end sub
 
