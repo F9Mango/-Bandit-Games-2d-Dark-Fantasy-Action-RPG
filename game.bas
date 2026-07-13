@@ -60,6 +60,7 @@ map_tileset_gfx(15) = _loadimage("gfx/water.png", 32)
 map_tileset_gfx(16) = _loadimage("gfx/1_top.png", 32)
 map_tileset_gfx(17) = _loadimage("gfx/brick.png", 32)
 map_tileset_gfx(18) = _loadimage("gfx/brick_bg.png", 32)
+map_tileset_gfx(19) = _loadimage("gfx/tree.png", 32)
 
 dim shared entity_sprites(255) as long
 entity_sprites(0) = _loadimage("gfx/key.png", 32)
@@ -186,6 +187,12 @@ map_tileset(14).index_start = 18
 map_tileset(14).index_end = 18
 map_tileset(14).has_collision = 0
 map_tileset(14).layer = 0
+
+map_tileset(15).is_image = 1
+map_tileset(15).index_start = 19
+map_tileset(15).index_end = 19
+map_tileset(15).has_collision = 0
+map_tileset(15).layer = 0
 
 map_tileset(127).is_image = 0
 map_tileset(127).solid_color.r = 255
