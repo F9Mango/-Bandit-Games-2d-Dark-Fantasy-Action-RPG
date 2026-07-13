@@ -1,5 +1,6 @@
 type entity
 	state as _unsigned _byte
+	persistent as _unsigned _byte
 	id as _unsigned integer
 	home as xy
 	grid_home as xy_int
@@ -52,4 +53,7 @@ type entity
 	
 	drop_entity as _unsigned _byte
 	drop_entity_id as _unsigned integer
+	
+	can_chat as _unsigned _byte
+	chat as integer
 end type

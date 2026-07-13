@@ -1,4 +1,4 @@
-sub load_map(mapName as string * 50)
+sub load_map_old(mapName as string * 50)
 	dim clr as _unsigned long
 	name$ = _trim$(mapName)
 	mapImg = _loadimage(name$, 32)
@@ -45,6 +45,54 @@ sub load_map(mapName as string * 50)
 		next x
 	next y
 		
+end sub
+
+sub load_map(f as string * 255)
+	file$ = _trim$(f)
+	open file$ for input as #3
+	
+	input #3, gset.world_size.x, gset.world_size.y
+	redim map(gset.world_size.x, gset.world_size.y) as map_tile
+	
+	for y = 0 to gset.world_size.y
+		for x = 0 to gset.world_size.x
+			if not eof(3) then
+				input #3, map(x, y).tile_type
+				input #3, map(x, y).var_A
+				input #3, map(x, y).var_B
+				input #3, map(x, y).var_C
+				input #3, map(x, y).event_index_interact
+				input #3, map(x, y).event_index_zone
+				input #3, map(x, y).spawn_entity
+				input #3, map(x, y).entity_id
+				input #3, map(x, y).entity_quantity
+				input #3, map(x, y).dont_repeat_spawning
+			end if
+		next x
+	next y
+	
+	close #3
+end sub
+
+sub save_map(f as string * 255)
+	file$ = _trim$(f)
+	open file$ for output as #3
+	print #3, gset.world_size.x, gset.world_size.y
+	for y = 0 to gset.world_size.y
+		for x = 0 to gset.world_size.x
+			print #3, map(x, y).tile_type
+			print #3, map(x, y).var_A
+			print #3, map(x, y).var_B
+			print #3, map(x, y).var_C
+			print #3, map(x, y).event_index_interact
+			print #3, map(x, y).event_index_zone
+			print #3, map(x, y).spawn_entity
+			print #3, map(x, y).entity_id
+			print #3, map(x, y).entity_quantity
+			print #3, map(x, y).dont_repeat_spawning
+		next x
+	next y
+	close #3
 end sub
 
 sub generate_map

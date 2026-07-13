@@ -1,0 +1,43 @@
+sub chatsystem
+	key$ = inkey$
+	select case key$
+		case "1":
+			doEvent chats(chat_system.active_chat).reply1.eventCall
+			chat_system.active_chat = chats(chat_system.active_chat).reply1.destination
+		case "2":
+			doEvent chats(chat_system.active_chat).reply2.eventCall
+			chat_system.active_chat = chats(chat_system.active_chat).reply2.destination
+		case "3":
+			doEvent chats(chat_system.active_chat).reply3.eventCall
+			chat_system.active_chat = chats(chat_system.active_chat).reply3.destination
+	end select
+end sub
+
+sub load_chats (amount, filename as string * 255)
+	f$ = _trim$(filename)
+	open f$ for input as #2
+		for i = 1 to amount
+			input #2, index, msg$, reply1$, reply2$, reply3$, dest1, dest2, dest3, event1, event2, event3
+			print #1, "Loaded chat entry:"; index; msg$; reply1$; reply2$; reply3$; dest1; dest2; dest3; event1; event2; event3
+			'msg$ = left$(msg$, len(msg$) - 3)
+			'msg$ = right$(msg$, len(msg$) - 3)
+			'reply1$ = left$(reply1$, len(reply1$) - 3)
+			'reply1$ = right$(reply1$, len(reply1$) - 3)
+			'reply2$ = left$(reply2$, len(reply2$) - 3)
+			'reply2$ = right$(reply2$, len(reply2$) - 3)
+			'reply3$ = left$(reply3$, len(reply3$) - 3)
+			'reply3$ = right$(reply3$, len(reply3$) - 3)
+			chats(index).msg = msg$
+			chats(index).reply1.text = reply1$
+			chats(index).reply2.text = reply2$
+			chats(index).reply3.text = reply3$
+			chats(index).reply1.destination = dest1
+			chats(index).reply2.destination = dest2
+			chats(index).reply3.destination = dest3
+			chats(index).reply1.eventCall = event1
+			chats(index).reply2.eventCall = event2
+			chats(index).reply3.eventCall = event3
+		next i
+	
+	close #2
+end sub

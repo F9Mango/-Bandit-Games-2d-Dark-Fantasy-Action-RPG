@@ -62,6 +62,8 @@ entity_sprites(0) = _loadimage("gfx/key.png", 32)
 entity_sprites(1) = _loadimage("gfx/bat.png", 32)
 entity_sprites(2) = _loadimage("gfx/food.png", 32)
 entity_sprites(3) = _loadimage("gfx/sword.png", 32)
+entity_sprites(4) = _loadimage("gfx/wizard.png", 32)
+entity_sprites(5) = _loadimage("gfx/coin.png", 32)
 for i = 0 to 3
 	    _clearcolor _rgb(255, 64, 255), entity_sprites(i)
 next i
@@ -172,6 +174,7 @@ map_tileset(128).solid_color.g = 64
 map_tileset(128).class = 2
 
 dim shared map(0, 0) as map_tile
+dim shared ebrush as map_tile
 dim shared tile_map(21, 16) as screen_tile
 
 gset.tile_size = 32
@@ -200,6 +203,16 @@ add_to_inventory "key", 4, 0
 
 dim shared chat_system as chat_system_vars
 dim shared chats(65535) as conversation
+chats(0).msg = "123`456`Hello there!"
+chats(0).reply1.text = "General Kenobi!": chats(0).reply1.destination = 1
+chats(0).reply2.text = "You *are* a bold one!": chats(0).reply2.destination = 2
+chats(0).reply3.text = "keeellll himmmmmm!": chats(0).reply3.destination = 3
+chats(1).msg = "trololollooooo"
+chats(1).reply1.text = "Hah! Gaayyyyyyy!"
+chats(1).reply2.text = "lulzzz"
+chats(1).reply3.text = "rofl"
+chats(2).msg = "bob's you're uncle!"
+chats(3).msg = "henry fitzpatrick!"
 
 entities(0).state = 1
 entities(0).w = 16
@@ -215,23 +228,27 @@ entities(0).look.r = 255
 entities(0).look.b = 255
 
 
+gset.world_size.x = 200
+gset.world_size.y = 150
+redim map(gset.world_size.x, gset.world_size.y) as map_tile
+
 'generate_map
-load_map "map.bmp"
+'load_map "map2.bmp"
 
-map(10, 10).tile_type = 128
-map(10, 10).var_A = 50*32
-map(10, 10).var_B = 7*32
-map(10, 10).var_C = 0
+'map(10, 10).tile_type = 128
+'map(10, 10).var_A = 50*32
+'map(10, 10).var_B = 7*32
+'map(10, 10).var_C = 0
 
-map(11, 10).tile_type = 128
-map(11, 10).var_A = 50*32
-map(11, 10).var_B = 7*32
-map(11, 10).var_C = 0
+'map(11, 10).tile_type = 128
+'map(11, 10).var_A = 50*32
+'map(11, 10).var_B = 7*32
+'map(11, 10).var_C = 0
 
-map(10, 11).spawn_entity = 1
-map(10, 11).entity_id = 2
-map(10, 11).entity_quantity = 1
-map(10, 11).dont_repeat_spawning = 1
+'map(10, 11).spawn_entity = 1
+'map(10, 11).entity_id = 2
+'map(10, 11).entity_quantity = 1
+'map(10, 11).dont_repeat_spawning = 1
 
 
 screen _newimage(gset.screen_resolution.x, gset.screen_resolution.y, 32)
@@ -243,6 +260,7 @@ print "  Delete tiles under the player's action point with the . key"
 print "  Unlock door tiles under the player's action point with the E key"
 print "  Attack with spacebar"
 print "  Consume food from your inventory with the F key"
+print "  Switch to editor mode with \ key"
 print
 print "  Top-down:"
 print "		Move with WASD"
@@ -250,6 +268,18 @@ print
 print "  Platform:"
 print "     Move left and right with A & D"
 print "     Jump with W"
+print
+print "  Editor Controls:"
+print "     E - set tile id for the brush"
+print "     R - set brush ABC variables"
+print "     T - set event index for interaction"
+print "     Y - set event index for a zone"
+print "     U - enable entity spawning on the brush"
+print "     I - set entity id"
+print "     O - set quantity to spawn"
+print "     , - load saved map file"
+print "     . - save map file"
+print "     ' - load chat-system file"
 sleep
 '_font 8
 
@@ -280,8 +310,9 @@ do
 						entity_ai j
 						entity_physics j
 						if j <> 0 then
-							if distance2d(entities(0).p, entities(j).p) > 768 then
-								print #1, "!!!Entity"; j; "has exceeded maximum distance from the player. Destroying entity..."
+							'if is_on_screen(entities(i)) = 0 then destroy_entity i, 1
+							if distance2d(entities(0).p, entities(j).p) > 768 and entities(j).persistent = 0 then
+								print #1, "!!!Entity"; j; "has exceeded maximum distance from the player and is not persistent. Destroying entity..."
 								destroy_entity j, 1
 							end if
 							if entity_is_colliding(entities(0), entities(j)) = 1 then
@@ -306,6 +337,9 @@ do
 									case 3:
 										destroy_entity j, 0
 										add_to_inventory "food", 1, 0
+									case 7:
+										destroy_entity j, 0
+										add_to_inventory "gold coins", 1, 0
 									case 4:
 										player_data.sword_level = entities(j).var_A
 										destroy_entity j, 0
@@ -327,19 +361,30 @@ do
 			camera.y = int(entities(0).p.y / (32 * 15)) * 15
 			
 			if camera.x <> camera_buffer.x or camera.y <> camera_buffer.y then
+				'for i = 0 to 128
+				'	if is_on_screen(entities(i)) = 0 then destroy_entity i, 1
+				'next i
 				for y = camera.y to camera.y + 15
 					for x = camera.x to camera.x + 20
 						if checkInBounds(x, y) = 1 then
-							if map(x, y).spawn_entity = 1 and map(x, y).entity_spawned = 0 then
-								if map(x, y).entity_quantity = 1 then
-									create_entity map(x, y).entity_id, "grid", x, y, 1, 0
+						
+							if map(x, y).spawn_entity = 1 then
+								if map(x, y).entity_spawned = 0 then
+								
+									if map(x, y).entity_quantity <= 1 then
+										create_entity map(x, y).entity_id, "grid", x + ((gset.tile_size / 32) / 2), y + ((gset.tile_size / 32) / 2), 0, 0
+										if map(x, y).dont_repeat_spawning = 1 then map(x, y).entity_spawned = 1
+									end if
+									if map(x, y).entity_quantity > 1 then
+										for i = 1 to map(x, y).entity_quantity
+											create_entity map(x, y).entity_id, "grid", x + ((gset.tile_size / 32) / 2), y + ((gset.tile_size / 32) / 2), 0, 0
+											if map(x, y).dont_repeat_spawning = 1 then map(x, y).entity_spawned = 1
+										next i
+									end if
 								end if
-								if map(x, y).entity_quantity > 1 then
-									for i = 1 to map(x, y).entity_quantity
-										create_entity map(x, y).entity_id, "grid", x, y, 1, 0
-									next i
-								end if
+								
 							end if
+							
 						end if
 					next x
 				next y
@@ -354,6 +399,7 @@ do
 		case 1: 'NPC chat menu
 			draw_screen_gameplay
 			draw_screen_chat
+			chatsystem
 		case 2: 'Defeat screen
 			draw_screen_gameplay
 			_source 0
@@ -362,7 +408,74 @@ do
 			_printstring (400 - 32, 300 - 8), "YOU DIED!"
 			i$ = inkey$
 			if i$ = chr$(27) then goto end_program
+		case 50: 'editor mode
+		
+			ebrush.dont_repeat_spawning = 1
 			
+			for i = 0 to 100: a = _mouseinput: next i
+			mx = int((_mousex) / gset.tile_size) + camera.x
+			my = int((_mousey) / gset.tile_size) + camera.y
+			
+			_source 0
+			_dest 0
+			cls
+			draw_screen_editor mx, my
+			locate 34, 1
+			'print mx, my
+			'print camera.x, camera.y
+			print "selected: (e)id="; ebrush.tile_type; "   (r)(A="; ebrush.var_A; " B="; ebrush.var_B; " C="; ebrush.var_C; ") (t)ei="; ebrush.event_index_interact; " (y)ez="; ebrush.event_index_zone
+			print "          (u)se="; ebrush.spawn_entity; " (i)eid="; ebrush.entity_id; " (o)eq="; ebrush.entity_quantity; " (p)edrs="; ebrush.dont_repeat_spawning
+			locate 36, 8
+			
+			i$ = inkey$
+			select case lcase$(i$)
+				case "\":
+					gset.interaction_mode = 0
+				case "'":
+					input amount, file$
+					load_chats amount, file$
+				case ".":
+					input file$
+					save_map file$
+				case ",":
+					input file$
+					load_map file$
+				case "w":
+					camera.y = camera.y - 15
+				case "s":
+					camera.y = camera.y + 15
+				case "a":
+					camera.x = camera.x - 20
+				case "d":
+					camera.x = camera.x + 20
+				case "e":
+					input ebrush.tile_type
+				case "r":
+					input ebrush.var_A, ebrush.var_B, ebrush.var_C
+				case "t":
+					input ebrush.event_index_interact
+				case "y":
+					input ebrush.event_index_zone
+				case "u":
+					select case ebrush.spawn_entity
+						case 0:
+							ebrush.spawn_entity = 1
+						case 1:
+							ebrush.spawn_entity = 0
+					end select
+				case "i":
+					input ebrush.entity_id
+				case "o":
+					input ebrush.entity_quantity
+				case "p":
+					input ebrush.dont_repeat_spawning
+			end select
+			
+			if _mousebutton(1) then
+				if checkInBounds(mx, my) = 1 then
+					map(mx, my) = ebrush
+				end if
+			end if
 	end select
 	
 	'l = entity_test_zone(entities(0), 300, 300, 600, 600)
@@ -404,9 +517,6 @@ sub ui_input
 		case chr$(32):
 			print #1, "sword attack!"
 			player_sword_attack
-		
-		case "g":
-			generate_map
 			
 		case "p":
 			if gset.isPlatformer = 0 then
@@ -425,6 +535,16 @@ sub ui_input
 		case "e":
 			x = int(entities(0).actionPoint.x / 32)
 			y = int(entities(0).actionPoint.y / 32)
+			
+			for i = 1 to 128
+				if entity_test_zone(entities(i), player_data.meleeboxtl.x, player_data.meleeboxtl.y, player_data.meleeboxbr.x, player_data.meleeboxbr.y) = 1 then
+					if entities(i).can_chat = 1 then
+						chat_system.active_chat = entities(i).chat
+						gset.interaction_mode = 1
+					end if
+				end if
+			next i
+			
 			if checkInBounds(x, y) = 1 then
 				doEvent map(x, y).event_index_interact
 				select case map_tileset(map(x, y).tile_type).class
@@ -461,9 +581,10 @@ sub ui_input
 			else
 				gdata.show_hotpoints = 0
 			end if
-			
 		case "c":
 			gset.interaction_mode = 1
+		case "\":
+			gset.interaction_mode = 50
 	end select
 end sub
 
@@ -472,6 +593,10 @@ sub doEvent(event as integer)
 		case 1:
 			
 		case 2:
+			
+		case 5113:
+			gset.interaction_mode = 0
+		case else:
 			
 	end select
 end sub
@@ -485,3 +610,4 @@ end function
 '$include: 'graphics_subroutines.bm'
 '$include: 'entity_programming.bm'
 '$include: 'inventory_subroutines.bm'
+'$include: 'chatsystem.bm'

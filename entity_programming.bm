@@ -1,6 +1,14 @@
 sub create_entity(id as integer, spawner as string * 4, x as double, y as double, drop as _unsigned _byte, drop_id as _unsigned integer)
 	i = 0
 	print #1, ">>>order recieved to create entity with an id of"; id
+	
+	if spawner = "grid" then
+		existing = 0
+		for i = 0 to 128
+			if entities(i).state = 1 and entities(i).grid_home.x = x and entities(i).grid_home.y = y then existing = existing + 1
+		next i
+	end if
+	
 	for i = 0 to 128
 		if entities(i).state = 0 then
 			print "   unused location in entity array found at"; i; "-- creating entity..."
@@ -9,11 +17,13 @@ sub create_entity(id as integer, spawner as string * 4, x as double, y as double
 			gset.numberOfEntities = gset.numberOfEntities + 1
 			entities(i).state = 1
 			if spawner = "grid" then
-				entities(i).grid_home.x = x
-				entities(i).grid_home.y = y
-				entities(i).p.x = x * 32
-				entities(i).p.y = y * 32
-				map(x, y).entity_spawned = 1
+				if existing = 0 then
+					entities(i).persistent = 1
+					entities(i).grid_home.x = x
+					entities(i).grid_home.y = y
+					entities(i).p.x = x * 32
+					entities(i).p.y = y * 32
+				end if
 			else
 				entities(i).p.x = x
 				entities(i).p.y = y
@@ -30,6 +40,7 @@ sub create_entity(id as integer, spawner as string * 4, x as double, y as double
 					case 0: 'key
 						'entities(i).w = int(rnd * 64)
 						'entities(i).h = int(rnd * 64)
+						entities(i).persistent = 1
 						entities(i).w = 16
 						entities(i).h = 16
 						entities(i).wm = 1
@@ -101,6 +112,26 @@ sub create_entity(id as integer, spawner as string * 4, x as double, y as double
 						entities(i).index_start = 3
 						entities(i).index_end = 3
 						entities(i).var_A = 1
+					case 5: 'old man NPC
+						entities(i).persistent = 1
+						entities(i).w = 24
+						entities(i).h = 24
+						entities(i).wm = 1
+						entities(i).hm = 1
+						entities(i).is_image = 1
+						entities(i).index_start = 4
+						entities(i).index_end = 4
+						entities(i).can_chat = 1
+						entities(i).chat = 0
+					case 7: 'coin
+						entities(i).persistent = 0
+						entities(i).w = 16
+						entities(i).h = 16
+						entities(i).wm = 1
+						entities(i).hm = 1
+						entities(i).is_image = 1
+						entities(i).index_start = 5
+						entities(i).index_end = 5
 					case else:
 						entities(i).w = int(rnd * 64)
 						entities(i).h = int(rnd * 64)
@@ -126,11 +157,10 @@ end sub
 sub destroy_entity(e as _unsigned _byte, reason as _unsigned _byte)
 	print #1, ">>>destroyed entity "; e; " at "; entities(e).p.x;"x";entities(e).p.y; " with an id of "; entities(e).id; " and a state of "; entities(e).state
 	
-	if entities(e).drop_entity = 1 then
-		create_entity entities(e).drop_entity_id, "free", entities(e).p.x, entities(e).p.y, 0, 0
-	end if
-	
 	if reason = 0 then 'If the entity is destroyed for normal reasons.
+		if entities(e).drop_entity = 1 then
+			create_entity entities(e).drop_entity_id, "free", entities(e).p.x, entities(e).p.y, 0, 0
+		end if
 		if entities(e).grid_home.x <> 0 and entities(e).grid_home.y <> 0 then
 			if map(entities(e).grid_home.x, entities(e).grid_home.y).spawn_entity = 1 and map(entities(e).grid_home.x, entities(e).grid_home.y).entity_id = entities(e).id then
 				if map(entities(e).grid_home.x, entities(e).grid_home.y).dont_repeat_spawning = 0 then
@@ -556,4 +586,14 @@ function entity_test_zone (a as entity, x1 as double, y1 as double, x2 as double
 		if collision_a = 1 then entity_test_zone = 1
 		
 	end if
+end function
+
+function is_on_screen(e as entity)
+	i = 0
+	if e.home.x >= camera.x and e.home.x <= camera.x + 20 then
+		if e.home.y >= camera.y and e.home.y <= camera.y + 15 then
+			i = 1
+		end if
+	end if
+	is_on_screen = i
 end function

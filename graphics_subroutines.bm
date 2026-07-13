@@ -291,13 +291,120 @@ sub draw_screen_chat
 	x2 = gset.screen_resolution.x * 0.75
 	y1 = gset.screen_resolution.y * 0.25
 	y2 = gset.screen_resolution.y * 0.5
-	line (x1, y1)-(x2, y2), _rgba(0, 0, 255, 127), bf
+	line (x1, y1)-(x2, y2), _rgba(0, 0, 0, 127), bf
+	row = 1
+	col = 1
+	for i = 0 to 255
+		if mid$(chats(chat_system.active_chat).msg, i, 1) = "`" then 
+			row = row + 1
+			col = 1
+		else
+			_printstring (x1 + 8 * col, y1 + row * 16), mid$(chats(chat_system.active_chat).msg, i, 1)
+			col = col + 1
+		end if
+	next i
 	for i = 1 to 3
 		'if _trim$(chats(chat_system.active_chat).reply.text) <> "" then
-			line (x1, y2 + 8 + ((i - 1) * 64))-(x2, y2 + 64 + ((i - 1) * 64)), _rgba(0, 0, 255, 127), bf
+			line (x1, y2 + 8 + ((i - 1) * 64))-(x2, y2 + 64 + ((i - 1) * 64)), _rgba(0, 0, 0, 127), bf
 			if i = 1 then _printstring (x1 + 1, y2 + 8 + ((i - 1) * 64) + 1), str$(i) + ". " + _trim$(chats(chat_system.active_chat).reply1.text)
 			if i = 2 then _printstring (x1 + 1, y2 + 8 + ((i - 1) * 64) + 1), str$(i) + ". " + _trim$(chats(chat_system.active_chat).reply2.text)
 			if i = 3 then _printstring (x1 + 1, y2 + 8 + ((i - 1) * 64) + 1), str$(i) + ". " + _trim$(chats(chat_system.active_chat).reply3.text)
 		'end if
 	next i
+end sub
+
+sub draw_screen_editor(mx as double, my as double)
+
+	cx = int(mx) - camera.x
+	cy = int(my) - camera.y
+	
+	color _rgba(255, 255, 255, 255)
+	
+	for y = 0 to 14
+		for x = 0 to 19
+			
+			newx = camera.x + x
+			newy = camera.y + y
+			
+			'Check if the x and y values are within the array boundaries.
+			if newx >= 0 and newx <= gset.world_size.x then
+				if newy >= 0 and newy <= gset.world_size.y then
+					
+					tile_map(x, y).tile_start.x = x * gset.tile_size
+					tile_map(x, y).tile_start.y = y * gset.tile_size
+					tile_map(x, y).tile_end.x = x * gset.tile_size + gset.tile_size
+					tile_map(x, y).tile_end.y = y * gset.tile_size + gset.tile_size
+					tile_map(x, y).tile_index = map(newx, newy).tile_type
+
+					draw_tile tile_map(x, y)
+					if checkInBounds(newx, newy) = 1 then
+						if map(newx, newy).spawn_entity <> 0 then
+							line (tile_map(x, y).tile_start.x, tile_map(x, y).tile_start.y)-(tile_map(x, y).tile_end.x, tile_map(x, y).tile_end.y), _rgba(0, 0, 0, 127), bf
+							color _rgba(0, 0, 0, 127)
+							_printstring (tile_map(x, y).tile_start.x + 1, tile_map(x, y).tile_start.y + 1), str$(map(newx, newy).entity_id)
+							color _rgba(255, 0, 0, 255)
+							_printstring (tile_map(x, y).tile_start.x + 1, tile_map(x, y).tile_start.y + 1), str$(map(newx, newy).entity_id)
+						end if
+					end if
+				end if
+			end if
+			
+		next x
+	next y
+	for y = 0 to 14
+		for x = 0 to 19
+			newx = camera.x + x
+			newy = camera.y + y
+			
+			'Check if the x and y values are within the array boundaries.
+			if newx >= 0 and newx <= gset.world_size.x then
+				if newy >= 0 and newy <= gset.world_size.y then
+					
+					tile_map(x, y).tile_start.x = x * gset.tile_size
+					tile_map(x, y).tile_start.y = y * gset.tile_size
+					tile_map(x, y).tile_end.x = x * gset.tile_size + gset.tile_size
+					tile_map(x, y).tile_end.y = y * gset.tile_size + gset.tile_size
+					tile_map(x, y).tile_index = map(newx, newy).tile_type
+
+					if cx = x and cy = y and checkInBounds(newx, newy) = 1 then
+						if ebrush.spawn_entity = 0 then
+							line (tile_map(x, y).tile_start.x, tile_map(x, y).tile_start.y)-(tile_map(x, y).tile_end.x, tile_map(x, y).tile_end.y), _rgba(255, 255, 255, 127), bf
+						else
+							line (tile_map(x, y).tile_start.x, tile_map(x, y).tile_start.y)-(tile_map(x, y).tile_end.x, tile_map(x, y).tile_end.y), _rgba(255, 255, 0, 127), bf
+						end if
+						
+						
+						datastring$ = "id:" + str$(map(newx, newy).tile_type) + " ei:" + str$(map(newx, newy).event_index_interact) + " ez:" + str$(map(newx, newy).event_index_zone)
+						color _rgba(0, 0, 0, 127)
+						_printstring (tile_map(x, y).tile_end.x + 3, tile_map(x, y).tile_start.y + 1), datastring$
+						color _rgba(255, 255, 255, 255)
+						_printstring (tile_map(x, y).tile_end.x + 2, tile_map(x, y).tile_start.y), datastring$
+						
+						
+						datastring$ = "A:" + str$(map(newx, newy).var_A) + " B:" + str$(map(newx, newy).var_B) + " C:" + str$(map(newx, newy).var_C)
+						color _rgba(0, 0, 0, 127)
+						_printstring (tile_map(x, y).tile_end.x + 3, tile_map(x, y).tile_start.y + 17), datastring$
+						color _rgba(255, 255, 255, 255)
+						_printstring (tile_map(x, y).tile_end.x + 2, tile_map(x, y).tile_start.y + 16), datastring$
+						
+						datastring$ = "se:" + str$(map(newx, newy).spawn_entity) + " eid:" + str$(map(newx, newy).entity_id) + " eq:" + str$(map(newx, newy).entity_quantity) + " drs:" + str$(map(newx, newy).dont_repeat_spawning) + " esp:" + str$(map(newx, newy).entity_spawned)
+						color _rgba(0, 0, 0, 127)
+						_printstring (tile_map(x, y).tile_end.x + 3, tile_map(x, y).tile_start.y + 33), datastring$
+						color _rgba(255, 255, 255, 255)
+						_printstring (tile_map(x, y).tile_end.x + 2, tile_map(x, y).tile_start.y + 32), datastring$
+					end if
+					
+				end if
+			end if
+		next x
+	next y
+	color _rgba(255, 255, 255, 255)
+	
+	dim selected_tile as screen_tile
+	selected_tile.tile_start.x = 8
+	selected_tile.tile_start.y = 600 - 48
+	selected_tile.tile_end.x = 40
+	selected_tile.tile_end.y = 600 - 16
+	selected_tile.tile_index = ebrush.tile_type
+	draw_tile selected_tile
 end sub

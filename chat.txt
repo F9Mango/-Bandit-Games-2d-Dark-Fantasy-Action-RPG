@@ -1,0 +1,4 @@
+0,”Greetings adventurer!`My name is Zathras. I am an old wizard.`and I am here in my creep shack.`Would you like magical advice?”,”Yes! Tell me more!!”,”No thank you.”,”Piss off old fart!”,1,2,3,0,0,0
+1,"Hoho! Too bad!`I don't remember ANYTHING hah!`Sucker!","wtf?"," "," ",0,0,0,5113,5113,5113
+2,"That's too bad.`You would regret not hearing my wisdom young person.","See ya!"," "," ",0,0,0,5113,5113,5113
+3,"How rude!`Hear this you little shit!`You're nothing without me! NOTHING!`Go eat shit!","Goodbye!"," "," ",0,0,0,5113,5113,5113
