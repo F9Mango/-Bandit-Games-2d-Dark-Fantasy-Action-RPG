@@ -31,6 +31,8 @@ sub draw_screen_gameplay
 	_dest 0
 	cls
 	
+	line (5, 5)-(55, 55), _rgb(100, 100, 100), bf
+	
 	draw_map
 	
 	_clearcolor _rgb(255, 64, 255), gdata.bg_tiles
@@ -40,7 +42,7 @@ sub draw_screen_gameplay
 	_clearcolor _rgb(255, 64, 255), gdata.ui_bg
 	_clearcolor _rgb(255, 64, 255), gdata.ui
 
-	
+	_putimage (gset.window_offset.x, gset.window_offset.y), gdata.bg_image
 	_putimage (gset.window_offset.x, gset.window_offset.y), gdata.bg_tiles
 	_putimage (gset.window_offset.x, gset.window_offset.y), gdata.entity_layer
 	_putimage (gset.window_offset.x, gset.window_offset.y), gdata.fg_tiles

@@ -21,6 +21,7 @@ gset.window_offset.y = 16' (gset.screen_resolution.y * (1 - gset.window_size))
 gset.tile_size = (gset.screen_resolution.x / 20) * gset.window_size
 gset.scale_multiplier = gset.tile_size / 32
 
+gdata.bg_image = _loadimage("gfx/bg.png", 32)'_newimage(gwindowx, gwindowy, 32)
 gdata.bg_tiles = _newimage(gwindowx, gwindowy, 32)
 gdata.entity_layer = _newimage(gwindowx, gwindowy, 32)
 gdata.entity_fg_layer = _newimage(gwindowx, gwindowy, 32)
@@ -56,6 +57,9 @@ map_tileset_gfx(12) = _loadimage("gfx/door_closed_r.png", 32)
 map_tileset_gfx(13) = _loadimage("gfx/door_open_r.png", 32)
 map_tileset_gfx(14) = _loadimage("gfx/shrubbery.png", 32)
 map_tileset_gfx(15) = _loadimage("gfx/water.png", 32)
+map_tileset_gfx(16) = _loadimage("gfx/1_top.png", 32)
+map_tileset_gfx(17) = _loadimage("gfx/brick.png", 32)
+map_tileset_gfx(18) = _loadimage("gfx/brick_bg.png", 32)
 
 dim shared entity_sprites(255) as long
 entity_sprites(0) = _loadimage("gfx/key.png", 32)
@@ -164,6 +168,31 @@ map_tileset(11).is_image = 1
 map_tileset(11).index_start = 15
 map_tileset(11).index_end = 15
 map_tileset(11).has_collision = 1
+
+map_tileset(12).is_image = 1
+map_tileset(12).index_start = 16
+map_tileset(12).index_end = 16
+map_tileset(12).has_collision = 1
+map_tileset(12).layer = 1
+
+map_tileset(13).is_image = 1
+map_tileset(13).index_start = 17
+map_tileset(13).index_end = 17
+map_tileset(13).has_collision = 1
+map_tileset(13).layer = 1
+
+map_tileset(14).is_image = 1
+map_tileset(14).index_start = 18
+map_tileset(14).index_end = 18
+map_tileset(14).has_collision = 0
+map_tileset(14).layer = 0
+
+map_tileset(127).is_image = 0
+map_tileset(127).solid_color.r = 255
+map_tileset(127).solid_color.g = 64
+map_tileset(127).solid_color.b = 255
+map_tileset(14).has_collision = 0
+map_tileset(14).layer = 0
 
 map_tileset(128).is_image = 1
 map_tileset(128).index_start = 5
