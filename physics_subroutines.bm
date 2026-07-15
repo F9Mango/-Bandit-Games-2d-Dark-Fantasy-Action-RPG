@@ -10,6 +10,11 @@ sub entity_physics (j as _unsigned long)
 		end if
 	end if
 	
+	entities(j).v.x = entities(j).v.x + entities(j).knock_v.x
+	entities(j).v.y = entities(j).v.y + entities(j).knock_v.y
+	entities(j).knock_v.x = entities(j).knock_v.x * 0.9
+	entities(j).knock_v.y = entities(j).knock_v.y * 0.9
+	
 	if entities(j).v.x > 0.5 then entities(j).v.x = 0.5
 	if entities(j).v.y > 0.5 then entities(j).v.y = 0.5
 	if entities(j).v.x < -0.5 then entities(j).v.x = -0.5

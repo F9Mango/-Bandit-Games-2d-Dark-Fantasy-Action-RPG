@@ -1,1 +1,85 @@
-!
+!!!adding itemkeyto player's inventory! Searching for a suitable inventory slot...
+   first, we look for a slot already containing this item.
+>>>order recieved to create entity with an id of 2 
+   created entity  1  at  81 x 145  with an id of  2  and a state of  1 
+>>>order recieved to create entity with an id of 2 
+   created entity  2  at  113 x 145  with an id of  2  and a state of  1 
+>>>order recieved to create entity with an id of 2 
+   created entity  3  at  145 x 145  with an id of  2  and a state of  1 
+>>>order recieved to create entity with an id of 2 
+   created entity  4  at  177 x 145  with an id of  2  and a state of  1 
+>>>order recieved to create entity with an id of 2 
+   created entity  5  at  209 x 145  with an id of  2  and a state of  1 
+>>>order recieved to create entity with an id of 2 
+   created entity  6  at  273 x 145  with an id of  2  and a state of  1 
+>>>order recieved to create entity with an id of 2 
+   created entity  7  at  305 x 145  with an id of  2  and a state of  1 
+>>>order recieved to create entity with an id of 2 
+   created entity  8  at  337 x 145  with an id of  2  and a state of  1 
+>>>order recieved to create entity with an id of 2 
+   created entity  9  at  369 x 145  with an id of  2  and a state of  1 
+>>>order recieved to create entity with an id of 2 
+   created entity  10  at  401 x 145  with an id of  2  and a state of  1 
+>>>order recieved to create entity with an id of 2 
+   created entity  11  at  433 x 209  with an id of  2  and a state of  1 
+>>>order recieved to create entity with an id of 2 
+   created entity  12  at  593 x 209  with an id of  2  and a state of  1 
+>>>order recieved to create entity with an id of 2 
+   created entity  13  at  593 x 241  with an id of  2  and a state of  1 
+>>>order recieved to create entity with an id of 2 
+   created entity  14  at  337 x 273  with an id of  2  and a state of  1 
+>>>order recieved to create entity with an id of 2 
+   created entity  15  at  529 x 273  with an id of  2  and a state of  1 
+>>>order recieved to create entity with an id of 2 
+   created entity  16  at  593 x 305  with an id of  2  and a state of  1 
+>>>order recieved to create entity with an id of 2 
+   created entity  17  at  209 x 337  with an id of  2  and a state of  1 
+>>>order recieved to create entity with an id of 2 
+   created entity  18  at  593 x 337  with an id of  2  and a state of  1 
+>>>order recieved to create entity with an id of 2 
+   created entity  19  at  433 x 369  with an id of  2  and a state of  1 
+>>>order recieved to create entity with an id of 2 
+   created entity  20  at  593 x 369  with an id of  2  and a state of  1 
+>>>order recieved to create entity with an id of 2 
+   created entity  21  at  593 x 401  with an id of  2  and a state of  1 
+sword attack!
+sword struck enemy 1 !
+sword struck enemy 2 !
+sword struck enemy 3 !
+Player has collided with a husk! decrementing health by 2 and setting i-frames...
+sword attack!
+sword struck enemy 1 !
+sword struck enemy 2 !
+sword struck enemy 3 !
+sword attack!
+sword struck enemy 1 !
+sword struck enemy 2 !
+sword struck enemy 3 !
+sword struck enemy 4 !
+sword attack!
+sword struck enemy 1 !
+>>>destroyed entity  1  at  58.01116 x 139.5223  with an id of  2  and a state of  1 
+   entity 1 state post-deletion: 0 
+   reducing entity count by 1
+   Entity count now at 20 
+sword struck enemy 2 !
+>>>destroyed entity  2  at  58.55887 x 139.552  with an id of  2  and a state of  1 
+   entity 2 state post-deletion: 0 
+   reducing entity count by 1
+   Entity count now at 19 
+sword struck enemy 3 !
+>>>destroyed entity  3  at  58.31568 x 139.5856  with an id of  2  and a state of  1 
+   entity 3 state post-deletion: 0 
+   reducing entity count by 1
+   Entity count now at 18 
+sword struck enemy 4 !
+sword attack!
+sword struck enemy 5 !
+sword attack!
+sword attack!
+sword struck enemy 4 !
+sword attack!
+sword struck enemy 5 !
+sword attack!
+sword struck enemy 4 !
+>>>destroyed entity  4  at  57.58503 x 139.5393  with an

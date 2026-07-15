@@ -150,4 +150,7 @@ function isColWMap(x1 as double, y1 as double)
 	else
 		isColWMap = 0
 	end if
+	'if map_tileset(map(x, y).tile_type).class = 4 then
+	'	isColWMap = 2
+	'end if
 end function

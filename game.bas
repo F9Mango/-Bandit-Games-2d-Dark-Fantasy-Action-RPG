@@ -21,7 +21,7 @@ gset.window_offset.y = 16' (gset.screen_resolution.y * (1 - gset.window_size))
 gset.tile_size = (gset.screen_resolution.x / 20) * gset.window_size
 gset.scale_multiplier = gset.tile_size / 32
 
-gdata.bg_image = _loadimage("gfx/bg.png", 32)'_newimage(gwindowx, gwindowy, 32)
+gdata.bg_image = _loadimage("gfx/bg2.png", 32)'_newimage(gwindowx, gwindowy, 32)
 gdata.bg_tiles = _newimage(gwindowx, gwindowy, 32)
 gdata.entity_layer = _newimage(gwindowx, gwindowy, 32)
 gdata.entity_fg_layer = _newimage(gwindowx, gwindowy, 32)
@@ -61,6 +61,8 @@ map_tileset_gfx(16) = _loadimage("gfx/1_top.png", 32)
 map_tileset_gfx(17) = _loadimage("gfx/brick.png", 32)
 map_tileset_gfx(18) = _loadimage("gfx/brick_bg.png", 32)
 map_tileset_gfx(19) = _loadimage("gfx/tree.png", 32)
+map_tileset_gfx(20) = _loadimage("gfx/brick_bg_window.png", 32)
+map_tileset_gfx(21) = _loadimage("gfx/ladder.png", 32)
 
 dim shared entity_sprites(255) as long
 entity_sprites(0) = _loadimage("gfx/key.png", 32)
@@ -194,12 +196,25 @@ map_tileset(15).index_end = 19
 map_tileset(15).has_collision = 0
 map_tileset(15).layer = 0
 
+map_tileset(16).is_image = 1
+map_tileset(16).index_start = 20
+map_tileset(16).index_end = 20
+map_tileset(16).has_collision = 0
+map_tileset(16).layer = 0
+
+map_tileset(17).is_image = 1
+map_tileset(17).index_start = 21
+map_tileset(17).index_end = 21
+map_tileset(17).has_collision = 0
+map_tileset(17).layer = 0
+map_tileset(17).class = 4
+
 map_tileset(127).is_image = 0
 map_tileset(127).solid_color.r = 255
 map_tileset(127).solid_color.g = 64
 map_tileset(127).solid_color.b = 255
-map_tileset(14).has_collision = 0
-map_tileset(14).layer = 0
+map_tileset(127).has_collision = 0
+map_tileset(127).layer = 0
 
 map_tileset(128).is_image = 1
 map_tileset(128).index_start = 5
@@ -239,16 +254,6 @@ add_to_inventory "key", 4, 0
 
 dim shared chat_system as chat_system_vars
 dim shared chats(65535) as conversation
-chats(0).msg = "123`456`Hello there!"
-chats(0).reply1.text = "General Kenobi!": chats(0).reply1.destination = 1
-chats(0).reply2.text = "You *are* a bold one!": chats(0).reply2.destination = 2
-chats(0).reply3.text = "keeellll himmmmmm!": chats(0).reply3.destination = 3
-chats(1).msg = "trololollooooo"
-chats(1).reply1.text = "Hah! Gaayyyyyyy!"
-chats(1).reply2.text = "lulzzz"
-chats(1).reply3.text = "rofl"
-chats(2).msg = "bob's you're uncle!"
-chats(3).msg = "henry fitzpatrick!"
 
 entities(0).state = 1
 entities(0).w = 16
@@ -263,29 +268,9 @@ entities(0).p.y = 64
 entities(0).look.r = 255
 entities(0).look.b = 255
 
-
 gset.world_size.x = 200
 gset.world_size.y = 150
 redim map(gset.world_size.x, gset.world_size.y) as map_tile
-
-'generate_map
-'load_map "map2.bmp"
-
-'map(10, 10).tile_type = 128
-'map(10, 10).var_A = 50*32
-'map(10, 10).var_B = 7*32
-'map(10, 10).var_C = 0
-
-'map(11, 10).tile_type = 128
-'map(11, 10).var_A = 50*32
-'map(11, 10).var_B = 7*32
-'map(11, 10).var_C = 0
-
-'map(10, 11).spawn_entity = 1
-'map(10, 11).entity_id = 2
-'map(10, 11).entity_quantity = 1
-'map(10, 11).dont_repeat_spawning = 1
-
 
 screen _newimage(gset.screen_resolution.x, gset.screen_resolution.y, 32)
 _printmode _keepbackground
@@ -534,6 +519,8 @@ sub player_sword_attack
 						print #1, "sword struck enemy"; i; "!"
 						if entities(i).var_H > 0 then
 							entities(i).var_H = entities(i).var_H - damage
+							entities(i).knock_v.x = entities(i).knock_v.x + entities(0).direction.x * 10 + rnd
+							entities(i).knock_v.y = entities(i).knock_v.y + entities(0).direction.y * 10 + rnd
 						end if
 						if entities(i).var_H <= 0 then destroy_entity i, 0
 					end if

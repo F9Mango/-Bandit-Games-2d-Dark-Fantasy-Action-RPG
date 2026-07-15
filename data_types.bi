@@ -56,7 +56,7 @@ type tile_attributes
 	
 	has_collision as _unsigned _byte
 	layer as _unsigned _byte
-	class as _unsigned _byte '0 = inert tile, 1 = door, 2 = teleport zone, 3 = event trigger
+	class as _unsigned _byte '0 = inert tile, 1 = door, 2 = teleport zone, 3 = event trigger, 4 = ladder
 end type
 type map_tile
 	tile_type as _unsigned integer

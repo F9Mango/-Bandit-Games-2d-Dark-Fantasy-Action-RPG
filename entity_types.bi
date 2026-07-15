@@ -26,6 +26,7 @@ type entity
 	'Determines if the entity is on the ground.
 	onGround as _unsigned _byte
 	isFlying as _unsigned _byte
+	onLadder as _unsigned _byte
 	'Graphics values
 	layer as _unsigned _byte
 	is_image as _byte

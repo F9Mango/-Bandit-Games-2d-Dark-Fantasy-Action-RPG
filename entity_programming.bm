@@ -441,7 +441,10 @@ sub entity_ai(e as _unsigned _byte)
 						randomize timer 'prime the random number generator using system time as a seed.
 						random_value = int(rnd * 2048)
 						if entities(e).onGround = 1 then
-							if random_value >= 4 and random_value <= 14 then entities(e).v.y = entities(e).v.y - (10 + int(rnd * 10))
+							if random_value >= 4 and random_value <= 14 then
+								entities(e).v.y = entities(e).v.y - (10 + int(rnd * 10))
+								entities(e).knock_v.y = entities(e).knock_v.y - 1
+							end if
 							xdir = (xdiff / abs(xdiff)) * 0.01
 						else
 							xdir = 0 '(xdiff / abs(xdiff)) * 0.001
