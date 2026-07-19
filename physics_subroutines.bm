@@ -163,6 +163,16 @@ sub player_specific_physics
 		end if
 	end if
 	
+	x = int(entities(0).p.x / 32): y = int((entities(0).p.y + 4) / 32)
+	
+	if checkInBounds(x, y) = 1 then
+		if map(x, y).tile_type = 29 and player_data.dmg_cooldown = 0 then
+			player_data.health = player_data.health - 2
+			player_data.dmg_cooldown = 25
+			update_ui
+		end if
+	end if
+	
 	dx = entities(0).direction.x * entities(0).w
 	dy = entities(0).direction.y * entities(0).h
 	player_data.meleeboxtl.x = entities(0).actionPoint.x - 15 + dx

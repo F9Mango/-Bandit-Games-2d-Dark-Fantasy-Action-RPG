@@ -21,7 +21,7 @@ gset.window_offset.y = 16' (gset.screen_resolution.y * (1 - gset.window_size))
 gset.tile_size = (gset.screen_resolution.x / 20) * gset.window_size
 gset.scale_multiplier = gset.tile_size / 32
 
-gdata.bg_image = _loadimage("gfx/bg2.png", 32)'_newimage(gwindowx, gwindowy, 32)
+'gdata.bg_image = _loadimage("gfx/bg2.png", 32)'_newimage(gwindowx, gwindowy, 32)
 gdata.bg_tiles = _newimage(gwindowx, gwindowy, 32)
 gdata.entity_layer = _newimage(gwindowx, gwindowy, 32)
 gdata.entity_fg_layer = _newimage(gwindowx, gwindowy, 32)
@@ -40,9 +40,14 @@ _clearcolor _rgb(255, 64, 255), overlay_img
 dim shared heart_img as long: heart_img = _loadimage("gfx/heart.png", 32)
 _clearcolor _rgb(255, 64, 255), heart_img
 
+dim shared map_backgrounds(255) as long
+map_backgrounds(0) = _loadimage("gfx/bg.png", 32)
+map_backgrounds(1) = _loadimage("gfx/bg2.png", 32)
+map_backgrounds(2) = _loadimage("gfx/bg3.png", 32)
+
 dim shared map_tileset_gfx(255) as long
 map_tileset_gfx(0) = _loadimage("gfx/0.png", 32)
-map_tileset_gfx(1) = _loadimage("gfx/1.png", 32)
+map_tileset_gfx(1) = _loadimage("gfx/stone_wall.png", 32)
 map_tileset_gfx(2) = _loadimage("gfx/door_closed.png", 32)
 map_tileset_gfx(3) = _loadimage("gfx/door_open.png", 32)
 map_tileset_gfx(4) = _loadimage("gfx/black.png", 32)
@@ -63,6 +68,18 @@ map_tileset_gfx(18) = _loadimage("gfx/brick_bg.png", 32)
 map_tileset_gfx(19) = _loadimage("gfx/tree.png", 32)
 map_tileset_gfx(20) = _loadimage("gfx/brick_bg_window.png", 32)
 map_tileset_gfx(21) = _loadimage("gfx/ladder.png", 32)
+map_tileset_gfx(22) = _loadimage("gfx/bridge.png", 32)
+map_tileset_gfx(23) = _loadimage("gfx/dirt.png", 32)
+map_tileset_gfx(24) = _loadimage("gfx/grass.png", 32)
+map_tileset_gfx(25) = _loadimage("gfx/button.bmp", 32)
+map_tileset_gfx(26) = _loadimage("gfx/button_pressed.bmp", 32)
+map_tileset_gfx(27) = _loadimage("gfx/hut.png", 32)
+map_tileset_gfx(28) = _loadimage("gfx/stone_wall_door.png", 32)
+map_tileset_gfx(29) = _loadimage("gfx/stone.png", 32)
+map_tileset_gfx(30) = _loadimage("gfx/wizard_seated.png", 32)
+map_tileset_gfx(31) = _loadimage("gfx/shopfront.png", 32)
+map_tileset_gfx(32) = _loadimage("gfx/lava.png", 32)
+map_tileset_gfx(33) = _loadimage("gfx/startile.png", 32)
 
 dim shared entity_sprites(255) as long
 entity_sprites(0) = _loadimage("gfx/key.png", 32)
@@ -209,6 +226,93 @@ map_tileset(17).has_collision = 0
 map_tileset(17).layer = 0
 map_tileset(17).class = 4
 
+map_tileset(18).is_image = 1
+map_tileset(18).index_start = 22
+map_tileset(18).index_end = 22
+map_tileset(18).has_collision = 0
+map_tileset(18).layer = 0
+
+map_tileset(19).is_image = 1
+map_tileset(19).index_start = 23
+map_tileset(19).index_end = 23
+map_tileset(19).has_collision = 0
+map_tileset(19).layer = 0
+
+map_tileset(20).is_image = 1
+map_tileset(20).index_start = 24
+map_tileset(20).index_end = 24
+map_tileset(20).has_collision = 0
+map_tileset(20).layer = 0
+
+map_tileset(21).is_image = 1
+map_tileset(21).index_start = 25
+map_tileset(21).index_end = 25
+map_tileset(21).has_collision = 1
+map_tileset(21).layer = 1
+
+map_tileset(22).is_image = 1
+map_tileset(22).index_start = 26
+map_tileset(22).index_end = 26
+map_tileset(22).has_collision = 1
+map_tileset(22).layer = 1
+
+map_tileset(23).is_image = 1
+map_tileset(23).index_start = 27
+map_tileset(23).index_end = 27
+map_tileset(23).bg_index = 4
+map_tileset(23).has_collision = 1
+map_tileset(23).layer = 1
+
+map_tileset(24).is_image = 1
+map_tileset(24).index_start = 28
+map_tileset(24).index_end = 28
+map_tileset(24).class = 2
+map_tileset(24).layer = 1
+
+map_tileset(25).is_image = 1
+map_tileset(25).index_start = 29
+map_tileset(25).index_end = 29
+map_tileset(25).has_collision = 1
+map_tileset(25).layer = 1
+
+map_tileset(26).is_image = 1
+map_tileset(26).bg_index = 4
+map_tileset(26).index_start = 3
+map_tileset(26).index_end = 3
+map_tileset(26).class = 2
+map_tileset(26).layer = 1
+
+map_tileset(27).is_image = 1
+map_tileset(27).index_start = 30
+map_tileset(27).index_end = 30
+map_tileset(27).has_collision = 0
+map_tileset(27).layer = 0
+
+map_tileset(28).is_image = 1
+map_tileset(28).index_start = 31
+map_tileset(28).index_end = 31
+map_tileset(28).has_collision = 1
+map_tileset(28).layer = 1
+
+map_tileset(29).is_image = 1
+map_tileset(29).index_start = 32
+map_tileset(29).index_end = 32
+map_tileset(29).has_collision = 1
+map_tileset(29).layer = 0
+
+map_tileset(30).is_image = 1
+map_tileset(30).index_start = 33
+map_tileset(30).index_end = 33
+map_tileset(30).has_collision = 0
+map_tileset(30).layer = 0
+
+map_tileset(126).is_image = 0
+map_tileset(126).solid_color.r = 255
+map_tileset(126).solid_color.g = 64
+map_tileset(126).solid_color.b = 255
+map_tileset(126).has_collision = 1
+map_tileset(126).layer = 0
+
 map_tileset(127).is_image = 0
 map_tileset(127).solid_color.r = 255
 map_tileset(127).solid_color.g = 64
@@ -243,7 +347,7 @@ dim shared playerHoldingJump as _unsigned _byte
 dim shared player_data as player_variables
 player_data.maxHealth = 10
 player_data.health = player_data.maxHealth
-player_data.sword_level = 1
+player_data.sword_level = 0
 
 'player_data.dmg_cooldown = 10000
 
@@ -263,14 +367,26 @@ entities(0).o.y = -16
 
 entities(0).wm = 1
 entities(0).hm = 1.5
-entities(0).p.x = 64
-entities(0).p.y = 64
+entities(0).p.x = 50*32
+entities(0).p.y = 83*32
 entities(0).look.r = 255
 entities(0).look.b = 255
 
 gset.world_size.x = 200
 gset.world_size.y = 150
 redim map(gset.world_size.x, gset.world_size.y) as map_tile
+
+load_map_old "map3.bmp"
+load_chats 10, "chat.txt"
+map(49, 97).tile_type = 24
+map(49, 97).var_A = 2*32 + 16
+map(49, 97).var_B = 118*32 + 16
+map(49, 97).var_C = 1
+
+map(0, 118).tile_type = 26
+map(0, 118).var_A = 49*32 + 16
+map(0, 118).var_B = 98*32 + 16
+map(0, 118).var_C = 0
 
 screen _newimage(gset.screen_resolution.x, gset.screen_resolution.y, 32)
 _printmode _keepbackground
@@ -311,15 +427,31 @@ dim pgridy as integer
 do
 	_limit 60
 	
+	update_ui
+	
 	for i = 0 to 128
 		animate_tileset i
 	next i
+	
+	select case int(entities(0).p.y / 32)
+	
+		case 105 to 120:
+			gdata.bg_image = 0
+		case else:
+			gdata.bg_image = 1
+	end select
+	if camera.x = 60 and camera.y = 0 then
+		gdata.bg_image = 2
+	end if
 	
 	select case gset.interaction_mode
 		case 0: 'Gameplay.
 		
 			if player_data.dmg_cooldown <> 0 then player_data.dmg_cooldown = (player_data.dmg_cooldown - 1)
-			if player_data.health = 0 then gset.interaction_mode = 2
+			if player_data.sword_cooldown <> 0 then player_data.sword_cooldown = (player_data.sword_cooldown - 1)
+			if player_data.health <= 0 then gset.interaction_mode = 2
+			
+			if player_data.health > player_data.maxHealth then player_data.health = player_data.maxHealth
 			
 			ui_input
 			
@@ -328,44 +460,78 @@ do
 				
 				for j = 0 to 128 'gset.numberOfEntities
 					if entities(j).state <> 0 then
-						entity_ai j
-						entity_physics j
+						entities(j).screenpos.x = int((entities(j).p.x / (32)) / 20) * 20
+						entities(j).screenpos.y = int((entities(j).p.y / (32)) / 15) * 15
+						
 						if j <> 0 then
-							'if is_on_screen(entities(i)) = 0 then destroy_entity i, 1
-							if distance2d(entities(0).p, entities(j).p) > 768 and entities(j).persistent = 0 then
-								print #1, "!!!Entity"; j; "has exceeded maximum distance from the player and is not persistent. Destroying entity..."
-								destroy_entity j, 1
+							
+							if entities(j).screenpos.x = camera.x and entities(j).screenpos.y = camera.y then
+							
+							
+								if entities(i).state = 1 then entity_ai j: entity_physics j
+								
+								
+								if entity_is_colliding(entities(0), entities(j)) = 1 then
+									select case entities(j).id
+										case 0:
+											destroy_entity j, 0
+											add_to_inventory "key", 1, 0
+										case 1:
+											if player_data.dmg_cooldown = 0 then
+												print #1, "Player has collided with a bat! decrementing health by 1 and setting i-frames..."
+												player_data.health = player_data.health - 1
+												player_data.dmg_cooldown = 25
+												update_ui
+											end if
+										case 2:
+											if player_data.dmg_cooldown = 0 then
+												print #1, "Player has collided with a husk! decrementing health by 2 and setting i-frames..."
+												player_data.health = player_data.health - 2
+												player_data.dmg_cooldown = 25
+												update_ui
+											end if
+										case 3:
+											destroy_entity j, 0
+											add_to_inventory "food", 1, 0
+										case 7:
+											destroy_entity j, 0
+											add_to_inventory "coin", 1, 0
+										case 4:
+											player_data.sword_level = entities(j).var_A
+											destroy_entity j, 0
+										case 8:
+											player_data.sword_level = entities(j).var_A
+											destroy_entity j, 0
+										case 9 to 10:
+											if player_data.dmg_cooldown = 0 then
+												player_data.health = player_data.health - 2
+												player_data.dmg_cooldown = 25
+												update_ui
+											end if
+										case 11:
+											if player_data.dmg_cooldown = 0 then
+												print #1, "Player has collided with a fireball! decrementing health by 1 and setting i-frames..."
+												player_data.health = player_data.health - 1
+												player_data.dmg_cooldown = 25
+												update_ui
+											end if
+										case 12:
+											destroy_entity j, 0
+											add_to_inventory "Moon Pearl", 1, 0
+										case 13:
+											destroy_entity j, 0
+											add_to_inventory "Sun Pearl", 1, 0
+									end select
+								end if
+							else
+								if entities(j).screenpos.x <> camera.x or entities(j).screenpos.y <> camera.y then
+									'print #1, "   Entity "; j; " is outside the screen. "; entities(j).screenpos.x; entities(j).screenpos.y; " is outside of camera:"; camera.x; camera.y
+									entities(j).p = entities(j).home
+								end if
 							end if
-							if entity_is_colliding(entities(0), entities(j)) = 1 then
-								select case entities(j).id
-									case 0:
-										destroy_entity j, 0
-										add_to_inventory "key", 1, 0
-									case 1:
-										if player_data.dmg_cooldown = 0 then
-											print #1, "Player has collided with a bat! decrementing health by 1 and setting i-frames..."
-											player_data.health = player_data.health - 1
-											player_data.dmg_cooldown = 25
-											update_ui
-										end if
-									case 2:
-										if player_data.dmg_cooldown = 0 then
-											print #1, "Player has collided with a husk! decrementing health by 2 and setting i-frames..."
-											player_data.health = player_data.health - 2
-											player_data.dmg_cooldown = 25
-											update_ui
-										end if
-									case 3:
-										destroy_entity j, 0
-										add_to_inventory "food", 1, 0
-									case 7:
-										destroy_entity j, 0
-										add_to_inventory "gold coins", 1, 0
-									case 4:
-										player_data.sword_level = entities(j).var_A
-										destroy_entity j, 0
-								end select
-							end if
+							
+						else
+							entity_physics j
 						end if
 					end if
 				next j
@@ -393,12 +559,12 @@ do
 								if map(x, y).entity_spawned = 0 then
 								
 									if map(x, y).entity_quantity <= 1 then
-										create_entity map(x, y).entity_id, "grid", x + ((gset.tile_size / 32) / 2), y + ((gset.tile_size / 32) / 2), 0, 0
+										create_entity map(x, y).entity_id, "grid", x + ((gset.tile_size / 32) / 2), y + ((gset.tile_size / 32) / 2), 1, 7
 										if map(x, y).dont_repeat_spawning = 1 then map(x, y).entity_spawned = 1
 									end if
 									if map(x, y).entity_quantity > 1 then
 										for i = 1 to map(x, y).entity_quantity
-											create_entity map(x, y).entity_id, "grid", x + ((gset.tile_size / 32) / 2), y + ((gset.tile_size / 32) / 2), 0, 0
+											create_entity map(x, y).entity_id, "grid", x + ((gset.tile_size / 32) / 2), y + ((gset.tile_size / 32) / 2), 1, 7
 											if map(x, y).dont_repeat_spawning = 1 then map(x, y).entity_spawned = 1
 										next i
 									end if
@@ -416,6 +582,8 @@ do
 			
 			draw_screen_gameplay
 			print gdata.show_hotpoints
+			print player_data.sword_cooldown
+			print entities(0).p.x, entities(0).p.y
 			
 		case 1: 'NPC chat menu
 			draw_screen_gameplay
@@ -461,6 +629,11 @@ do
 				case ",":
 					input file$
 					load_map file$
+				case "-":
+					if ebrush.tile_type - 1 < 0 then ebrush.tile_type = 127 else ebrush.tile_type = ebrush.tile_type - 1
+				case "=":
+					ebrush.tile_type = ebrush.tile_type + 1
+					if ebrush.tile_type > 127 then ebrush.tile_type = 0
 				case "w":
 					camera.y = camera.y - 15
 				case "s":
@@ -497,6 +670,11 @@ do
 					map(mx, my) = ebrush
 				end if
 			end if
+			
+			if _mousebutton(2) then
+				entities(0).p.x = _mousex + camera.x*32
+				entities(0).p.y = _mousey + camera.y*32
+			end if
 	end select
 	
 	'l = entity_test_zone(entities(0), 300, 300, 600, 600)
@@ -510,23 +688,36 @@ close #1
 system
 
 sub player_sword_attack
-	damage = player_data.sword_level ^ 2
-	for i = 0 to 128
-		if entities(i).state = 1 then
-			select case entities(i).id
-				case 1 to 2:
-					if entity_test_zone(entities(i), player_data.meleeboxtl.x, player_data.meleeboxtl.y, player_data.meleeboxbr.x, player_data.meleeboxbr.y) = 1 then
-						print #1, "sword struck enemy"; i; "!"
-						if entities(i).var_H > 0 then
-							entities(i).var_H = entities(i).var_H - damage
-							entities(i).knock_v.x = entities(i).knock_v.x + entities(0).direction.x * 10 + rnd
-							entities(i).knock_v.y = entities(i).knock_v.y + entities(0).direction.y * 10 + rnd
+	if player_data.sword_level > 0 and player_data.sword_cooldown = 0 then
+		damage = 2 ^ player_data.sword_level
+		player_data.sword_cooldown = 25
+		for i = 0 to 128
+			if entities(i).state = 1 then
+				select case entities(i).id
+					case 1 to 2:
+						if entity_test_zone(entities(i), player_data.meleeboxtl.x, player_data.meleeboxtl.y, player_data.meleeboxbr.x, player_data.meleeboxbr.y) = 1 then
+							print #1, "sword struck enemy"; i; "!"
+							if entities(i).var_H > 0 then
+								entities(i).var_H = entities(i).var_H - damage
+								entities(i).knock_v.x = entities(i).knock_v.x + entities(0).direction.x * 10 + rnd
+								entities(i).knock_v.y = entities(i).knock_v.y + entities(0).direction.y * 10 + rnd
+							end if
+							if entities(i).var_H <= 0 then destroy_entity i, 0
 						end if
-						if entities(i).var_H <= 0 then destroy_entity i, 0
-					end if
-			end select
-		end if
-	next i
+					case 9 to 10:
+						if entity_test_zone(entities(i), player_data.meleeboxtl.x, player_data.meleeboxtl.y, player_data.meleeboxbr.x, player_data.meleeboxbr.y) = 1 then
+							print #1, "sword struck enemy"; i; "!"
+							if entities(i).var_H > 0 then
+								entities(i).var_H = entities(i).var_H - damage
+								entities(i).knock_v.x = entities(i).knock_v.x + entities(0).direction.x * 10 + rnd
+								entities(i).knock_v.y = entities(i).knock_v.y + entities(0).direction.y * 10 + rnd
+							end if
+							if entities(i).var_H <= 0 then destroy_entity i, 0
+						end if
+				end select
+			end if
+		next i
+	end if
 end sub
 
 sub ui_input
@@ -540,7 +731,11 @@ sub ui_input
 		case chr$(32):
 			print #1, "sword attack!"
 			player_sword_attack
-			
+		case "]":
+			print #1, "Printing entity table (camera values:"; camera.x; "x"; camera.y; ")"
+			for i = 0 to 128
+				if entities(i).state = 1 then print #1, "   Entity"; str$(i); " with id"; str$(entities(i).id); " at XY"; str$(entities(i).p.x); " x"; str$(entities(i).p.y); " screenXY:"; entities(i).screenpos.x; "x"; entities(i).screenpos.y
+			next i
 		case "p":
 			if gset.isPlatformer = 0 then
 				gset.isPlatformer = 1
@@ -617,6 +812,49 @@ sub doEvent(event as integer)
 			
 		case 2:
 			
+		case 10:
+			player_data.sword_level = 1: update_ui
+			map(93, 110).event_index_interact = 12
+		case 11:
+			chat_system.active_chat = 4
+			gset.interaction_mode = 1
+		case 12:
+			chat_system.active_chat = 6
+			gset.interaction_mode = 1
+		case 15:
+			chat_system.active_chat = 7
+			gset.interaction_mode = 1
+		case 20:
+			if check_inventory("coin") >= 1 then
+				remove_from_inventory "coin", 1
+				add_to_inventory "food", 1, 0
+			else
+				chat_system.active_chat = 8
+				gset.interaction_mode = 1
+			end if
+		case 25:
+			if check_inventory("coin") >= 2 then
+				remove_from_inventory "coin", 2
+				add_to_inventory "arrow", 5, 0
+			else
+				chat_system.active_chat = 8
+				gset.interaction_mode = 1
+			end if
+		case 30:
+			if check_inventory("coin") >= 10 then
+				remove_from_inventory "coin", 10
+				player_data.maxHealth = player_data.maxHealth + 2
+				player_data.health = player_data.maxHealth
+			else
+				chat_system.active_chat = 8
+				gset.interaction_mode = 1
+			end if
+		case 1111:
+			for y = 51 to 53
+				map(50, y).tile_type = 11
+				map(52, 48).tile_type = 22
+				map(52, 48).event_index_interact = 0
+			next y
 		case 5113:
 			gset.interaction_mode = 0
 		case else:

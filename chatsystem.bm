@@ -2,14 +2,20 @@ sub chatsystem
 	key$ = inkey$
 	select case key$
 		case "1":
-			doEvent chats(chat_system.active_chat).reply1.eventCall
-			chat_system.active_chat = chats(chat_system.active_chat).reply1.destination
+			dest = chats(chat_system.active_chat).reply1.destination
+			event = chats(chat_system.active_chat).reply1.eventCall
+			chat_system.active_chat = dest
+			doEvent event
 		case "2":
-			doEvent chats(chat_system.active_chat).reply2.eventCall
-			chat_system.active_chat = chats(chat_system.active_chat).reply2.destination
+			dest = chats(chat_system.active_chat).reply2.destination
+			event = chats(chat_system.active_chat).reply2.eventCall
+			chat_system.active_chat = dest
+			doEvent event
 		case "3":
-			doEvent chats(chat_system.active_chat).reply3.eventCall
-			chat_system.active_chat = chats(chat_system.active_chat).reply3.destination
+			dest = chats(chat_system.active_chat).reply3.destination
+			event = chats(chat_system.active_chat).reply3.eventCall
+			chat_system.active_chat = dest
+			doEvent event
 	end select
 end sub
 

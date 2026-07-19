@@ -9,13 +9,14 @@ sub load_map_old(mapName as string * 50)
 	gset.world_size.y = h
 	redim map(gset.world_size.x, gset.world_size.y) as map_tile
 
-	for y = 0 to w
-		for x = 0 to h
+	for y = 0 to h
+		for x = 0 to w
 			clr = point(x, y)
 			r = _red32(clr)
 			g = _green32(clr)
 			b = _blue32(clr)
-			if r = 0   and g = 0   and b = 0   then map(x, y).tile_type = 0
+			if r = 0   and g = 0   and b = 0   then map(x, y).tile_type = 127
+			if r = 128 and g = 128 and b = 0   then map(x, y).tile_type = 0
 			if r = 255 and g = 0   and b = 0   then map(x, y).tile_type = 1
 			if r = 255 and g = 255 and b = 0   then map(x, y).tile_type = 2
 			if r = 0   and g = 255 and b = 0   then map(x, y).tile_type = 4
@@ -23,6 +24,9 @@ sub load_map_old(mapName as string * 50)
 			if r = 0   and g = 0   and b = 255 then map(x, y).tile_type = 8
 			if r = 255 and g = 64  and b = 255 then map(x, y).tile_type = 10
 			if r = 0   and g = 64  and b = 255 then map(x, y).tile_type = 11
+			if r = 128 and g = 64  and b = 0   then map(x, y).tile_type = 19
+			if r = 0   and g = 128 and b = 0   then map(x, y).tile_type = 20
+			if r = 64  and g = 64  and b = 64  then map(x, y).tile_type = 25
 			
 			'if r = 255 and g = 255 and b = 255 then map(x, y).tile_type = 128
 			

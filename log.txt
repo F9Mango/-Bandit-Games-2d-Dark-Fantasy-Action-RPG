@@ -1,85 +1,1972 @@
 !!!adding itemkeyto player's inventory! Searching for a suitable inventory slot...
    first, we look for a slot already containing this item.
+Loaded chat entry: 0 ”Greetings adventurer!`My name is Zathras. I am an old wizard.`and I am here in my creep shack.`Would you like magical advice?””Yes! Tell me more!!””No thank you.””Piss off old fart!” 1  2  3  0  0  0 
+Loaded chat entry: 1 Hoho! Too bad!`I don't remember ANYTHING hah!`Sucker!wtf?   0  0  0  5113  5113  5113 
+Loaded chat entry: 2 That's too bad.`You would regret not hearing my wisdom young person.See ya!   0  0  0  5113  5113  5113 
+Loaded chat entry: 3 How rude!`Hear this you little shit!`You're nothing without me! NOTHING!`Go eat shit!Goodbye!   0  0  0  5113  5113  5113 
+Loaded chat entry: 4 Why how strange! Do you not know how`dangerous it is go`alone young one? Here you go! Take this sword for protection.Gee thanks! 5  4  4  10  0  0 
+Loaded chat entry: 5 THE OLD MAN GIVES YOU A WOOD SWORDNeat! 0  5  5  5113  0  0 
+Loaded chat entry: 6 Good luck stranger!Thanks! 0  6  6  5113  5113  5113 
+Loaded chat entry: 7 Welcome to my shop traveler!`What would you like to buy?Food (1 coin)5x Arrows (2 coins)Health Expansion(10 coins) 9  9  9  20  25  30 
+Loaded chat entry: 8 Sorry! You can't afford that!`Come back when you're a little mmmm richer!Damn! 0  0  0  5113  5113  5113 
+Loaded chat entry: 9 Thank you for your purchase! 0  0  0  5113  5113  5113 
+>>>order recieved to create entity with an id of 10 
+   unused location in entity array found at 1 -- creating entity...
+   created entity  1  at  2897 x 209  with an id of  10  and a state of  1 
+>>>order recieved to create entity with an id of 11 
+   unused location in entity array found at 2 -- creating entity...
+   created entity  2  at  2897 x 209  with an id of  11  and a state of  1 
+>>>order recieved to create entity with an id of 11 
+   unused location in entity array found at 3 -- creating entity...
+   created entity  3  at  2897 x 209  with an id of  11  and a state of  1 
+>>>order recieved to create entity with an id of 11 
+   unused location in entity array found at 4 -- creating entity...
+   created entity  4  at  2897 x 209  with an id of  11  and a state of  1 
+>>>order recieved to create entity with an id of 11 
+   unused location in entity array found at 5 -- creating entity...
+   created entity  5  at  2897 x 209  with an id of  11  and a state of  1 
+>>>order recieved to create entity with an id of 11 
+   unused location in entity array found at 6 -- creating entity...
+   created entity  6  at  2897 x 209  with an id of  11  and a state of  1 
+>>>order recieved to create entity with an id of 11 
+   unused location in entity array found at 7 -- creating entity...
+   created entity  7  at  2897 x 209  with an id of  11  and a state of  1 
+>>>order recieved to create entity with an id of 11 
+   unused location in entity array found at 8 -- creating entity...
+   created entity  8  at  2897 x 209  with an id of  11  and a state of  1 
+>>>order recieved to create entity with an id of 11 
+   unused location in entity array found at 9 -- creating entity...
+   created entity  9  at  2897 x 209  with an id of  11  and a state of  1 
+>>>order recieved to create entity with an id of 11 
+   unused location in entity array found at 10 -- creating entity...
+   created entity  10  at  2897 x 209  with an id of  11  and a state of  1 
 >>>order recieved to create entity with an id of 2 
-   created entity  1  at  81 x 145  with an id of  2  and a state of  1 
+   unused location in entity array found at 11 -- creating entity...
+   created entity  11  at  2673 x 1073  with an id of  2  and a state of  1 
 >>>order recieved to create entity with an id of 2 
-   created entity  2  at  113 x 145  with an id of  2  and a state of  1 
+   unused location in entity array found at 12 -- creating entity...
+   created entity  12  at  2769 x 1105  with an id of  2  and a state of  1 
 >>>order recieved to create entity with an id of 2 
-   created entity  3  at  145 x 145  with an id of  2  and a state of  1 
+   unused location in entity array found at 13 -- creating entity...
+   created entity  13  at  2705 x 1169  with an id of  2  and a state of  1 
 >>>order recieved to create entity with an id of 2 
-   created entity  4  at  177 x 145  with an id of  2  and a state of  1 
+   unused location in entity array found at 14 -- creating entity...
+   created entity  14  at  2801 x 1169  with an id of  2  and a state of  1 
 >>>order recieved to create entity with an id of 2 
-   created entity  5  at  209 x 145  with an id of  2  and a state of  1 
+   unused location in entity array found at 15 -- creating entity...
+   created entity  15  at  2673 x 1233  with an id of  2  and a state of  1 
 >>>order recieved to create entity with an id of 2 
-   created entity  6  at  273 x 145  with an id of  2  and a state of  1 
+   unused location in entity array found at 16 -- creating entity...
+   created entity  16  at  2737 x 1265  with an id of  2  and a state of  1 
 >>>order recieved to create entity with an id of 2 
-   created entity  7  at  305 x 145  with an id of  2  and a state of  1 
->>>order recieved to create entity with an id of 2 
-   created entity  8  at  337 x 145  with an id of  2  and a state of  1 
->>>order recieved to create entity with an id of 2 
-   created entity  9  at  369 x 145  with an id of  2  and a state of  1 
->>>order recieved to create entity with an id of 2 
-   created entity  10  at  401 x 145  with an id of  2  and a state of  1 
->>>order recieved to create entity with an id of 2 
-   created entity  11  at  433 x 209  with an id of  2  and a state of  1 
->>>order recieved to create entity with an id of 2 
-   created entity  12  at  593 x 209  with an id of  2  and a state of  1 
->>>order recieved to create entity with an id of 2 
-   created entity  13  at  593 x 241  with an id of  2  and a state of  1 
->>>order recieved to create entity with an id of 2 
-   created entity  14  at  337 x 273  with an id of  2  and a state of  1 
->>>order recieved to create entity with an id of 2 
-   created entity  15  at  529 x 273  with an id of  2  and a state of  1 
->>>order recieved to create entity with an id of 2 
-   created entity  16  at  593 x 305  with an id of  2  and a state of  1 
->>>order recieved to create entity with an id of 2 
-   created entity  17  at  209 x 337  with an id of  2  and a state of  1 
->>>order recieved to create entity with an id of 2 
-   created entity  18  at  593 x 337  with an id of  2  and a state of  1 
->>>order recieved to create entity with an id of 2 
-   created entity  19  at  433 x 369  with an id of  2  and a state of  1 
->>>order recieved to create entity with an id of 2 
-   created entity  20  at  593 x 369  with an id of  2  and a state of  1 
->>>order recieved to create entity with an id of 2 
-   created entity  21  at  593 x 401  with an id of  2  and a state of  1 
-sword attack!
-sword struck enemy 1 !
-sword struck enemy 2 !
-sword struck enemy 3 !
-Player has collided with a husk! decrementing health by 2 and setting i-frames...
-sword attack!
-sword struck enemy 1 !
-sword struck enemy 2 !
-sword struck enemy 3 !
-sword attack!
-sword struck enemy 1 !
-sword struck enemy 2 !
-sword struck enemy 3 !
-sword struck enemy 4 !
-sword attack!
-sword struck enemy 1 !
->>>destroyed entity  1  at  58.01116 x 139.5223  with an id of  2  and a state of  1 
-   entity 1 state post-deletion: 0 
-   reducing entity count by 1
-   Entity count now at 20 
-sword struck enemy 2 !
->>>destroyed entity  2  at  58.55887 x 139.552  with an id of  2  and a state of  1 
+   unused location in entity array found at 17 -- creating entity...
+   created entity  17  at  2673 x 1329  with an id of  2  and a state of  1 
+>>>order recieved to create entity with an id of 11 
+   unused location in entity array found at 18 -- creating entity...
+   created entity  18  at  2897 x 209  with an id of  11  and a state of  1 
+>>>order recieved to create entity with an id of 11 
+   unused location in entity array found at 19 -- creating entity...
+   created entity  19  at  2897 x 209  with an id of  11  and a state of  1 
+>>>order recieved to create entity with an id of 11 
+   unused location in entity array found at 20 -- creating entity...
+   created entity  20  at  2897 x 209  with an id of  11  and a state of  1 
+>>>order recieved to create entity with an id of 11 
+   unused location in entity array found at 21 -- creating entity...
+   created entity  21  at  2897 x 209  with an id of  11  and a state of  1 
+>>>order recieved to create entity with an id of 11 
+   unused location in entity array found at 22 -- creating entity...
+   created entity  22  at  2897 x 209  with an id of  11  and a state of  1 
+>>>order recieved to create entity with an id of 11 
+   unused location in entity array found at 23 -- creating entity...
+   created entity  23  at  2897 x 209  with an id of  11  and a state of  1 
+>>>order recieved to create entity with an id of 11 
+   unused location in entity array found at 24 -- creating entity...
+   created entity  24  at  2897 x 209  with an id of  11  and a state of  1 
+>>>order recieved to create entity with an id of 11 
+   unused location in entity array found at 25 -- creating entity...
+   created entity  25  at  2897 x 209  with an id of  11  and a state of  1 
+>>>destroyed entity  2  at  2810.981 x 107.8452  with an id of  11  and a state of  1 
    entity 2 state post-deletion: 0 
    reducing entity count by 1
-   Entity count now at 19 
-sword struck enemy 3 !
->>>destroyed entity  3  at  58.31568 x 139.5856  with an id of  2  and a state of  1 
+   Entity count now at 24 
+>>>order recieved to create entity with an id of 11 
+   unused location in entity array found at 2 -- creating entity...
+   created entity  2  at  2897 x 209  with an id of  11  and a state of  1 
+>>>destroyed entity  3  at  2892.843 x 200.4415  with an id of  11  and a state of  1 
    entity 3 state post-deletion: 0 
    reducing entity count by 1
+   Entity count now at 24 
+>>>order recieved to create entity with an id of 11 
+   unused location in entity array found at 3 -- creating entity...
+   created entity  3  at  2897 x 209  with an id of  11  and a state of  1 
+>>>destroyed entity  4  at  2949.039 x 114.9721  with an id of  11  and a state of  1 
+   entity 4 state post-deletion: 0 
+   reducing entity count by 1
+   Entity count now at 24 
+>>>order recieved to create entity with an id of 11 
+   unused location in entity array found at 4 -- creating entity...
+   created entity  4  at  2897 x 209  with an id of  11  and a state of  1 
+>>>destroyed entity  5  at  2841.499 x 215.2203  with an id of  11  and a state of  1 
+   entity 5 state post-deletion: 0 
+   reducing entity count by 1
+   Entity count now at 24 
+>>>order recieved to create entity with an id of 11 
+   unused location in entity array found at 5 -- creating entity...
+   created entity  5  at  2897 x 209  with an id of  11  and a state of  1 
+>>>destroyed entity  6  at  2789.486 x 77.43731  with an id of  11  and a state of  1 
+   entity 6 state post-deletion: 0 
+   reducing entity count by 1
+   Entity count now at 24 
+>>>order recieved to create entity with an id of 11 
+   unused location in entity array found at 6 -- creating entity...
+   created entity  6  at  2897 x 209  with an id of  11  and a state of  1 
+>>>destroyed entity  7  at  2969.281 x 330.0939  with an id of  11  and a state of  1 
+   entity 7 state post-deletion: 0 
+   reducing entity count by 1
+   Entity count now at 24 
+>>>order recieved to create entity with an id of 11 
+   unused location in entity array found at 7 -- creating entity...
+   created entity  7  at  2897 x 209  with an id of  11  and a state of  1 
+>>>destroyed entity  8  at  3030.278 x 112.0836  with an id of  11  and a state of  1 
+   entity 8 state post-deletion: 0 
+   reducing entity count by 1
+   Entity count now at 24 
+>>>order recieved to create entity with an id of 11 
+   unused location in entity array found at 8 -- creating entity...
+   created entity  8  at  2897 x 209  with an id of  11  and a state of  1 
+>>>destroyed entity  9  at  3018.399 x 66.97963  with an id of  11  and a state of  1 
+   entity 9 state post-deletion: 0 
+   reducing entity count by 1
+   Entity count now at 24 
+>>>destroyed entity  10  at  2885.583 x 31.80887  with an id of  11  and a state of  1 
+   entity 10 state post-deletion: 0 
+   reducing entity count by 1
+   Entity count now at 23 
+>>>order recieved to create entity with an id of 11 
+   unused location in entity array found at 9 -- creating entity...
+   created entity  9  at  2897 x 209  with an id of  11  and a state of  1 
+>>>destroyed entity  18  at  2768.616 x 31.96829  with an id of  11  and a state of  1 
+   entity 18 state post-deletion: 0 
+   reducing entity count by 1
+   Entity count now at 23 
+>>>order recieved to create entity with an id of 11 
+   unused location in entity array found at 10 -- creating entity...
+   created entity  10  at  2897 x 209  with an id of  11  and a state of  1 
+>>>order recieved to create entity with an id of 11 
+   unused location in entity array found at 18 -- creating entity...
+   created entity  18  at  2897 x 209  with an id of  11  and a state of  1 
+>>>destroyed entity  19  at  2706.375 x 366.6227  with an id of  11  and a state of  1 
+   entity 19 state post-deletion: 0 
+   reducing entity count by 1
+   Entity count now at 24 
+>>>order recieved to create entity with an id of 11 
+   unused location in entity array found at 19 -- creating entity...
+   created entity  19  at  2897 x 209  with an id of  11  and a state of  1 
+>>>destroyed entity  20  at  2833.625 x 267.4844  with an id of  11  and a state of  1 
+   entity 20 state post-deletion: 0 
+   reducing entity count by 1
+   Entity count now at 24 
+>>>destroyed entity  21  at  3026.678 x 31.77895  with an id of  11  and a state of  1 
+   entity 21 state post-deletion: 0 
+   reducing entity count by 1
+   Entity count now at 23 
+>>>order recieved to create entity with an id of 11 
+   unused location in entity array found at 20 -- creating entity...
+   created entity  20  at  2897 x 209  with an id of  11  and a state of  1 
+>>>order recieved to create entity with an id of 11 
+   unused location in entity array found at 21 -- creating entity...
+   created entity  21  at  2897 x 209  with an id of  11  and a state of  1 
+>>>destroyed entity  22  at  2992.25 x 211.9531  with an id of  11  and a state of  1 
+   entity 22 state post-deletion: 0 
+   reducing entity count by 1
+   Entity count now at 24 
+>>>order recieved to create entity with an id of 11 
+   unused location in entity array found at 22 -- creating entity...
+   created entity  22  at  2897 x 209  with an id of  11  and a state of  1 
+>>>destroyed entity  23  at  2974.625 x 64.28906  with an id of  11  and a state of  1 
+   entity 23 state post-deletion: 0 
+   reducing entity count by 1
+   Entity count now at 24 
+>>>order recieved to create entity with an id of 11 
+   unused location in entity array found at 23 -- creating entity...
+   created entity  23  at  2897 x 209  with an id of  11  and a state of  1 
+>>>destroyed entity  24  at  2924.5 x 369.375  with an id of  11  and a state of  1 
+   entity 24 state post-deletion: 0 
+   reducing entity count by 1
+   Entity count now at 24 
+>>>order recieved to create entity with an id of 11 
+   unused location in entity array found at 24 -- creating entity...
+   created entity  24  at  2897 x 209  with an id of  11  and a state of  1 
+>>>destroyed entity  25  at  2755 x 80.90625  with an id of  11  and a state of  1 
+   entity 25 state post-deletion: 0 
+   reducing entity count by 1
+   Entity count now at 24 
+>>>order recieved to create entity with an id of 11 
+   unused location in entity array found at 25 -- creating entity...
+   created entity  25  at  2897 x 209  with an id of  11  and a state of  1 
+>>>destroyed entity  2  at  3074.125 x 358.9663  with an id of  11  and a state of  1 
+   entity 2 state post-deletion: 0 
+   reducing entity count by 1
+   Entity count now at 24 
+>>>order recieved to create entity with an id of 11 
+   unused location in entity array found at 2 -- creating entity...
+   created entity  2  at  2897 x 209  with an id of  11  and a state of  1 
+>>>destroyed entity  3  at  2968.625 x 390.623  with an id of  11  and a state of  1 
+   entity 3 state post-deletion: 0 
+   reducing entity count by 1
+   Entity count now at 24 
+sword attack!
+>>>order recieved to create entity with an id of 11 
+   unused location in entity array found at 3 -- creating entity...
+   created entity  3  at  2897 x 209  with an id of  11  and a state of  1 
+>>>destroyed entity  4  at  3095 x 325.9844  with an id of  11  and a state of  1 
+   entity 4 state post-deletion: 0 
+   reducing entity count by 1
+   Entity count now at 24 
+Player has collided with a fireball! decrementing health by 1 and setting i-frames...
+>>>order recieved to create entity with an id of 11 
+   unused location in entity array found at 4 -- creating entity...
+   created entity  4  at  2897 x 209  with an id of  11  and a state of  1 
+>>>destroyed entity  5  at  3093.25 x 54.41232  with an id of  11  and a state of  1 
+   entity 5 state post-deletion: 0 
+   reducing entity count by 1
+   Entity count now at 24 
+>>>order recieved to create entity with an id of 11 
+   unused location in entity array found at 5 -- creating entity...
+   created entity  5  at  2897 x 209  with an id of  11  and a state of  1 
+>>>destroyed entity  6  at  2722.75 x 171.3438  with an id of  11  and a state of  1 
+   entity 6 state post-deletion: 0 
+   reducing entity count by 1
+   Entity count now at 24 
+>>>order recieved to create entity with an id of 11 
+   unused location in entity array found at 6 -- creating entity...
+   created entity  6  at  2897 x 209  with an id of  11  and a state of  1 
+>>>destroyed entity  7  at  2879.125 x 81.32812  with an id of  11  and a state of  1 
+   entity 7 state post-deletion: 0 
+   reducing entity count by 1
+   Entity count now at 24 
+>>>order recieved to create entity with an id of 11 
+   unused location in entity array found at 7 -- creating entity...
+   created entity  7  at  2897 x 209  with an id of  11  and a state of  1 
+>>>destroyed entity  8  at  2760.5 x 278.8281  with an id of  11  and a state of  1 
+   entity 8 state post-deletion: 0 
+   reducing entity count by 1
+   Entity count now at 24 
+>>>order recieved to create entity with an id of 11 
+   unused location in entity array found at 8 -- creating entity...
+   created entity  8  at  2897 x 209  with an id of  11  and a state of  1 
+>>>destroyed entity  9  at  2931.625 x 296.4573  with an id of  11  and a state of  1 
+   entity 9 state post-deletion: 0 
+   reducing entity count by 1
+   Entity count now at 24 
+>>>destroyed entity  18  at  3083.772 x 31.86477  with an id of  11  and a state of  1 
+   entity 18 state post-deletion: 0 
+   reducing entity count by 1
+   Entity count now at 23 
+>>>order recieved to create entity with an id of 11 
+   unused location in entity array found at 9 -- creating entity...
+   created entity  9  at  2897 x 209  with an id of  11  and a state of  1 
+>>>destroyed entity  10  at  2955.375 x 53.43143  with an id of  11  and a state of  1 
+   entity 10 state post-deletion: 0 
+   reducing entity count by 1
+   Entity count now at 23 
+sword attack!
+>>>order recieved to create entity with an id of 11 
+   unused location in entity array found at 10 -- creating entity...
+   created entity  10  at  2897 x 209  with an id of  11  and a state of  1 
+>>>order recieved to create entity with an id of 11 
+   unused location in entity array found at 18 -- creating entity...
+   created entity  18  at  2897 x 209  with an id of  11  and a state of  1 
+>>>destroyed entity  19  at  2754.375 x 261.4305  with an id of  11  and a state of  1 
+   entity 19 state post-deletion: 0 
+   reducing entity count by 1
+   Entity count now at 24 
+>>>order recieved to create entity with an id of 11 
+   unused location in entity array found at 19 -- creating entity...
+   created entity  19  at  2897 x 209  with an id of  11  and a state of  1 
+>>>destroyed entity  20  at  2860.75 x 187.1797  with an id of  11  and a state of  1 
+   entity 20 state post-deletion: 0 
+   reducing entity count by 1
+   Entity count now at 24 
+>>>order recieved to create entity with an id of 11 
+   unused location in entity array found at 20 -- creating entity...
+   created entity  20  at  2897 x 209  with an id of  11  and a state of  1 
+>>>destroyed entity  21  at  3097.125 x 416.7482  with an id of  11  and a state of  1 
+   entity 21 state post-deletion: 0 
+   reducing entity count by 1
+   Entity count now at 24 
+>>>order recieved to create entity with an id of 11 
+   unused location in entity array found at 21 -- creating entity...
+   created entity  21  at  2897 x 209  with an id of  11  and a state of  1 
+>>>destroyed entity  22  at  3106.375 x 195.5938  with an id of  11  and a state of  1 
+   entity 22 state post-deletion: 0 
+   reducing entity count by 1
+   Entity count now at 24 
+>>>order recieved to create entity with an id of 11 
+   unused location in entity array found at 22 -- creating entity...
+   created entity  22  at  2897 x 209  with an id of  11  and a state of  1 
+>>>destroyed entity  23  at  2794.25 x 429.7327  with an id of  11  and a state of  1 
+   entity 23 state post-deletion: 0 
+   reducing entity count by 1
+   Entity count now at 24 
+>>>order recieved to create entity with an id of 11 
+   unused location in entity array found at 23 -- creating entity...
+   created entity  23  at  2897 x 209  with an id of  11  and a state of  1 
+>>>destroyed entity  24  at  3104 x 208.2891  with an id of  11  and a state of  1 
+   entity 24 state post-deletion: 0 
+   reducing entity count by 1
+   Entity count now at 24 
+>>>order recieved to create entity with an id of 11 
+   unused location in entity array found at 24 -- creating entity...
+   created entity  24  at  2897 x 209  with an id of  11  and a state of  1 
+>>>destroyed entity  25  at  2854.875 x 67.20312  with an id of  11  and a state of  1 
+   entity 25 state post-deletion: 0 
+   reducing entity count by 1
+   Entity count now at 24 
+>>>destroyed entity  2  at  3003.445 x 31.6568  with an id of  11  and a state of  1 
+   entity 2 state post-deletion: 0 
+   reducing entity count by 1
+   Entity count now at 23 
+>>>order recieved to create entity with an id of 11 
+   unused location in entity array found at 2 -- creating entity...
+   created entity  2  at  2897 x 209  with an id of  11  and a state of  1 
+>>>order recieved to create entity with an id of 11 
+   unused location in entity array found at 25 -- creating entity...
+   created entity  25  at  2897 x 209  with an id of  11  and a state of  1 
+>>>destroyed entity  3  at  3094.75 x 370.8415  with an id of  11  and a state of  1 
+   entity 3 state post-deletion: 0 
+   reducing entity count by 1
+   Entity count now at 24 
+>>>order recieved to create entity with an id of 11 
+   unused location in entity array found at 3 -- creating entity...
+   created entity  3  at  2897 x 209  with an id of  11  and a state of  1 
+>>>destroyed entity  4  at  2826.375 x 330.3251  with an id of  11  and a state of  1 
+   entity 4 state post-deletion: 0 
+   reducing entity count by 1
+   Entity count now at 24 
+>>>order recieved to create entity with an id of 11 
+   unused location in entity array found at 4 -- creating entity...
+   created entity  4  at  2897 x 209  with an id of  11  and a state of  1 
+>>>destroyed entity  5  at  3008.25 x 121.945  with an id of  11  and a state of  1 
+   entity 5 state post-deletion: 0 
+   reducing entity count by 1
+   Entity count now at 24 
+>>>order recieved to create entity with an id of 11 
+   unused location in entity array found at 5 -- creating entity...
+   created entity  5  at  2897 x 209  with an id of  11  and a state of  1 
+>>>destroyed entity  6  at  2909.5 x 344.0938  with an id of  11  and a state of  1 
+   entity 6 state post-deletion: 0 
+   reducing entity count by 1
+   Entity count now at 24 
+Player has collided with a fireball! decrementing health by 1 and setting i-frames...
+>>>order recieved to create entity with an id of 11 
+   unused location in entity array found at 6 -- creating entity...
+   created entity  6  at  2897 x 209  with an id of  11  and a state of  1 
+>>>destroyed entity  7  at  2754.25 x 255.0859  with an id of  11  and a state of  1 
+   entity 7 state post-deletion: 0 
+   reducing entity count by 1
+   Entity count now at 24 
+>>>order recieved to create entity with an id of 11 
+   unused location in entity array found at 7 -- creating entity...
+   created entity  7  at  2897 x 209  with an id of  11  and a state of  1 
+>>>destroyed entity  8  at  2669 x 243  with an id of  11  and a state of  1 
+   entity 8 state post-deletion: 0 
+   reducing entity count by 1
+   Entity count now at 24 
+>>>order recieved to create entity with an id of 11 
+   unused location in entity array found at 8 -- creating entity...
+   created entity  8  at  2897 x 209  with an id of  11  and a state of  1 
+>>>destroyed entity  9  at  2875.375 x 92.48318  with an id of  11  and a state of  1 
+   entity 9 state post-deletion: 0 
+   reducing entity count by 1
+   Entity count now at 24 
+>>>order recieved to create entity with an id of 11 
+   unused location in entity array found at 9 -- creating entity...
+   created entity  9  at  2897 x 209  with an id of  11  and a state of  1 
+>>>destroyed entity  10  at  2669.625 x 435.7829  with an id of  11  and a state of  1 
+   entity 10 state post-deletion: 0 
+   reducing entity count by 1
+   Entity count now at 24 
+>>>order recieved to create entity with an id of 11 
+   unused location in entity array found at 10 -- creating entity...
+   created entity  10  at  2897 x 209  with an id of  11  and a state of  1 
+>>>destroyed entity  18  at  2750.25 x 144.7969  with an id of  11  and a state of  1 
+   entity 18 state post-deletion: 0 
+   reducing entity count by 1
+   Entity count now at 24 
+>>>order recieved to create entity with an id of 11 
+   unused location in entity array found at 18 -- creating entity...
+   created entity  18  at  2897 x 209  with an id of  11  and a state of  1 
+>>>destroyed entity  19  at  2675.125 x 46.44531  with an id of  11  and a state of  1 
+   entity 19 state post-deletion: 0 
+   reducing entity count by 1
+   Entity count now at 24 
+>>>order recieved to create entity with an id of 11 
+   unused location in entity array found at 19 -- creating entity...
+   created entity  19  at  2897 x 209  with an id of  11  and a state of  1 
+>>>destroyed entity  20  at  2847 x 419.1424  with an id of  11  and a state of  1 
+   entity 20 state post-deletion: 0 
+   reducing entity count by 1
+   Entity count now at 24 
+>>>order recieved to create entity with an id of 11 
+   unused location in entity array found at 20 -- creating entity...
+   created entity  20  at  2897 x 209  with an id of  11  and a state of  1 
+>>>destroyed entity  21  at  3038.875 x 118.2114  with an id of  11  and a state of  1 
+   entity 21 state post-deletion: 0 
+   reducing entity count by 1
+   Entity count now at 24 
+>>>order recieved to create entity with an id of 11 
+   unused location in entity array found at 21 -- creating entity...
+   created entity  21  at  2897 x 209  with an id of  11  and a state of  1 
+>>>destroyed entity  22  at  2944.5 x 224.6953  with an id of  11  and a state of  1 
+   entity 22 state post-deletion: 0 
+   reducing entity count by 1
+   Entity count now at 24 
+>>>destroyed entity  23  at  2977.02 x 31.81169  with an id of  11  and a state of  1 
+   entity 23 state post-deletion: 0 
+   reducing entity count by 1
+   Entity count now at 23 
+>>>order recieved to create entity with an id of 11 
+   unused location in entity array found at 22 -- creating entity...
+   created entity  22  at  2897 x 209  with an id of  11  and a state of  1 
+>>>order recieved to create entity with an id of 11 
+   unused location in entity array found at 23 -- creating entity...
+   created entity  23  at  2897 x 209  with an id of  11  and a state of  1 
+>>>destroyed entity  24  at  2773.875 x 397.4551  with an id of  11  and a state of  1 
+   entity 24 state post-deletion: 0 
+   reducing entity count by 1
+   Entity count now at 24 
+>>>order recieved to create entity with an id of 2 
+   unused location in entity array found at 24 -- creating entity...
+   created entity  24  at  2737 x 4529  with an id of  2  and a state of  1 
+>>>order recieved to create entity with an id of 2 
+   unused location in entity array found at 26 -- creating entity...
+   created entity  26  at  2833 x 4529  with an id of  2  and a state of  1 
+>>>order recieved to create entity with an id of 2 
+   unused location in entity array found at 27 -- creating entity...
+   created entity  27  at  2961 x 4529  with an id of  2  and a state of  1 
+>>>order recieved to create entity with an id of 8 
+   unused location in entity array found at 28 -- creating entity...
+   created entity  28  at  3057 x 4657  with an id of  8  and a state of  1 
+>>>order recieved to create entity with an id of 2 
+   unused location in entity array found at 29 -- creating entity...
+   created entity  29  at  3025 x 4689  with an id of  2  and a state of  1 
+>>>order recieved to create entity with an id of 2 
+   unused location in entity array found at 30 -- creating entity...
+   created entity  30  at  2769 x 4753  with an id of  2  and a state of  1 
+>>>order recieved to create entity with an id of 2 
+   unused location in entity array found at 31 -- creating entity...
+   created entity  31  at  2833 x 4753  with an id of  2  and a state of  1 
+>>>order recieved to create entity with an id of 2 
+   unused location in entity array found at 32 -- creating entity...
+   created entity  32  at  2897 x 4753  with an id of  2  and a state of  1 
+>>>destroyed entity  28  at  3057 x 4657  with an id of  8  and a state of  1 
+   entity 28 state post-deletion: 0 
+   reducing entity count by 1
+   Entity count now at 31 
+>>>order recieved to create entity with an id of 11 
+   unused location in entity array found at 28 -- creating entity...
+   created entity  28  at  2897 x 209  with an id of  11  and a state of  1 
+>>>destroyed entity  2  at  2888.757 x 216.9747  with an id of  11  and a state of  1 
+   entity 2 state post-deletion: 0 
+   reducing entity count by 1
+   Entity count now at 31 
+>>>order recieved to create entity with an id of 11 
+   unused location in entity array found at 2 -- creating entity...
+   created entity  2  at  2897 x 209  with an id of  11  and a state of  1 
+>>>destroyed entity  25  at  2884.736 x 199.2087  with an id of  11  and a state of  1 
+   entity 25 state post-deletion: 0 
+   reducing entity count by 1
+   Entity count now at 31 
+>>>order recieved to create entity with an id of 11 
+   unused location in entity array found at 25 -- creating entity...
+   created entity  25  at  2897 x 209  with an id of  11  and a state of  1 
+>>>destroyed entity  3  at  2859.897 x 239.2727  with an id of  11  and a state of  1 
+   entity 3 state post-deletion: 0 
+   reducing entity count by 1
+   Entity count now at 31 
+>>>order recieved to create entity with an id of 11 
+   unused location in entity array found at 3 -- creating entity...
+   created entity  3  at  2897 x 209  with an id of  11  and a state of  1 
+>>>destroyed entity  4  at  2946.863 x 218.6021  with an id of  11  and a state of  1 
+   entity 4 state post-deletion: 0 
+   reducing entity count by 1
+   Entity count now at 31 
+>>>order recieved to create entity with an id of 11 
+   unused location in entity array found at 4 -- creating entity...
+   created entity  4  at  2897 x 209  with an id of  11  and a state of  1 
+>>>destroyed entity  5  at  2920.292 x 190.9592  with an id of  11  and a state of  1 
+   entity 5 state post-deletion: 0 
+   reducing entity count by 1
+   Entity count now at 31 
+>>>order recieved to create entity with an id of 11 
+   unused location in entity array found at 5 -- creating entity...
+   created entity  5  at  2897 x 209  with an id of  11  and a state of  1 
+>>>destroyed entity  6  at  2885.113 x 136.6172  with an id of  11  and a state of  1 
+   entity 6 state post-deletion: 0 
+   reducing entity count by 1
+   Entity count now at 31 
+>>>order recieved to create entity with an id of 11 
+   unused location in entity array found at 6 -- creating entity...
+   created entity  6  at  2897 x 209  with an id of  11  and a state of  1 
+>>>destroyed entity  7  at  2835.956 x 204.734  with an id of  11  and a state of  1 
+   entity 7 state post-deletion: 0 
+   reducing entity count by 1
+   Entity count now at 31 
+>>>order recieved to create entity with an id of 11 
+   unused location in entity array found at 7 -- creating entity...
+   created entity  7  at  2897 x 209  with an id of  11  and a state of  1 
+>>>destroyed entity  8  at  2890.533 x 101.805  with an id of  11  and a state of  1 
+   entity 8 state post-deletion: 0 
+   reducing entity count by 1
+   Entity count now at 31 
+>>>order recieved to create entity with an id of 11 
+   unused location in entity array found at 8 -- creating entity...
+   created entity  8  at  2897 x 209  with an id of  11  and a state of  1 
+>>>destroyed entity  9  at  2841.275 x 213.1584  with an id of  11  and a state of  1 
+   entity 9 state post-deletion: 0 
+   reducing entity count by 1
+   Entity count now at 31 
+>>>order recieved to create entity with an id of 11 
+   unused location in entity array found at 9 -- creating entity...
+   created entity  9  at  2897 x 209  with an id of  11  and a state of  1 
+>>>destroyed entity  10  at  2929.454 x 77.4279  with an id of  11  and a state of  1 
+   entity 10 state post-deletion: 0 
+   reducing entity count by 1
+   Entity count now at 31 
+>>>order recieved to create entity with an id of 11 
+   unused location in entity array found at 10 -- creating entity...
+   created entity  10  at  2897 x 209  with an id of  11  and a state of  1 
+>>>destroyed entity  18  at  2780.138 x 235.8982  with an id of  11  and a state of  1 
+   entity 18 state post-deletion: 0 
+   reducing entity count by 1
+   Entity count now at 31 
+>>>order recieved to create entity with an id of 11 
+   unused location in entity array found at 18 -- creating entity...
+   created entity  18  at  2897 x 209  with an id of  11  and a state of  1 
+>>>destroyed entity  19  at  3017.104 x 101.5823  with an id of  11  and a state of  1 
+   entity 19 state post-deletion: 0 
+   reducing entity count by 1
+   Entity count now at 31 
+>>>order recieved to create entity with an id of 11 
+   unused location in entity array found at 19 -- creating entity...
+   created entity  19  at  2897 x 209  with an id of  11  and a state of  1 
+>>>destroyed entity  20  at  2810.024 x 241.0686  with an id of  11  and a state of  1 
+   entity 20 state post-deletion: 0 
+   reducing entity count by 1
+   Entity count now at 31 
+>>>destroyed entity  28  at  3052.564 x 31.95326  with an id of  11  and a state of  1 
+   entity 28 state post-deletion: 0 
+   reducing entity count by 1
+   Entity count now at 30 
+>>>order recieved to create entity with an id of 11 
+   unused location in entity array found at 20 -- creating entity...
+   created entity  20  at  2897 x 209  with an id of  11  and a state of  1 
+>>>destroyed entity  21  at  3021.893 x 275.3312  with an id of  11  and a state of  1 
+   entity 21 state post-deletion: 0 
+   reducing entity count by 1
+   Entity count now at 30 
+>>>order recieved to create entity with an id of 11 
+   unused location in entity array found at 21 -- creating entity...
+   created entity  21  at  2897 x 209  with an id of  11  and a state of  1 
+>>>destroyed entity  22  at  3077.256 x 170.1356  with an id of  11  and a state of  1 
+   entity 22 state post-deletion: 0 
+   reducing entity count by 1
+   Entity count now at 30 
+>>>order recieved to create entity with an id of 11 
+   unused location in entity array found at 22 -- creating entity...
+   created entity  22  at  2897 x 209  with an id of  11  and a state of  1 
+>>>destroyed entity  23  at  2734.606 x 268.1862  with an id of  11  and a state of  1 
+   entity 23 state post-deletion: 0 
+   reducing entity count by 1
+   Entity count now at 30 
+>>>order recieved to create entity with an id of 11 
+   unused location in entity array found at 23 -- creating entity...
+   created entity  23  at  2897 x 209  with an id of  11  and a state of  1 
+>>>order recieved to create entity with an id of 11 
+   unused location in entity array found at 28 -- creating entity...
+   created entity  28  at  2897 x 209  with an id of  11  and a state of  1 
+>>>destroyed entity  2  at  3072.75 x 269.6406  with an id of  11  and a state of  1 
+   entity 2 state post-deletion: 0 
+   reducing entity count by 1
+   Entity count now at 31 
+>>>order recieved to create entity with an id of 11 
+   unused location in entity array found at 2 -- creating entity...
+   created entity  2  at  2897 x 209  with an id of  11  and a state of  1 
+>>>destroyed entity  25  at  2768 x 36.16438  with an id of  11  and a state of  1 
+   entity 25 state post-deletion: 0 
+   reducing entity count by 1
+   Entity count now at 31 
+>>>destroyed entity  3  at  3049.824 x 31.66078  with an id of  11  and a state of  1 
+   entity 3 state post-deletion: 0 
+   reducing entity count by 1
+   Entity count now at 30 
+>>>order recieved to create entity with an id of 11 
+   unused location in entity array found at 3 -- creating entity...
+   created entity  3  at  2897 x 209  with an id of  11  and a state of  1 
+>>>order recieved to create entity with an id of 11 
+   unused location in entity array found at 25 -- creating entity...
+   created entity  25  at  2897 x 209  with an id of  11  and a state of  1 
+>>>destroyed entity  4  at  2669.25 x 146.2422  with an id of  11  and a state of  1 
+   entity 4 state post-deletion: 0 
+   reducing entity count by 1
+   Entity count now at 31 
+>>>order recieved to create entity with an id of 11 
+   unused location in entity array found at 4 -- creating entity...
+   created entity  4  at  2897 x 209  with an id of  11  and a state of  1 
+>>>destroyed entity  5  at  2935 x 317.7622  with an id of  11  and a state of  1 
+   entity 5 state post-deletion: 0 
+   reducing entity count by 1
+   Entity count now at 31 
+>>>order recieved to create entity with an id of 11 
+   unused location in entity array found at 5 -- creating entity...
+   created entity  5  at  2897 x 209  with an id of  11  and a state of  1 
+>>>destroyed entity  6  at  3028 x 116.8906  with an id of  11  and a state of  1 
+   entity 6 state post-deletion: 0 
+   reducing entity count by 1
+   Entity count now at 31 
+>>>order recieved to create entity with an id of 11 
+   unused location in entity array found at 6 -- creating entity...
+   created entity  6  at  2897 x 209  with an id of  11  and a state of  1 
+>>>destroyed entity  7  at  2762.625 x 349.0182  with an id of  11  and a state of  1 
+   entity 7 state post-deletion: 0 
+   reducing entity count by 1
+   Entity count now at 31 
+>>>order recieved to create entity with an id of 11 
+   unused location in entity array found at 7 -- creating entity...
+   created entity  7  at  2897 x 209  with an id of  11  and a state of  1 
+>>>destroyed entity  8  at  3124.625 x 292.2769  with an id of  11  and a state of  1 
+   entity 8 state post-deletion: 0 
+   reducing entity count by 1
+   Entity count now at 31 
+>>>order recieved to create entity with an id of 11 
+   unused location in entity array found at 8 -- creating entity...
+   created entity  8  at  2897 x 209  with an id of  11  and a state of  1 
+>>>destroyed entity  9  at  2798.625 x 52.125  with an id of  11  and a state of  1 
+   entity 9 state post-deletion: 0 
+   reducing entity count by 1
+   Entity count now at 31 
+>>>order recieved to create entity with an id of 11 
+   unused location in entity array found at 9 -- creating entity...
+   created entity  9  at  2897 x 209  with an id of  11  and a state of  1 
+>>>destroyed entity  10  at  2854 x 95.41518  with an id of  11  and a state of  1 
+   entity 10 state post-deletion: 0 
+   reducing entity count by 1
+   Entity count now at 31 
+>>>order recieved to create entity with an id of 11 
+   unused location in entity array found at 10 -- creating entity...
+   created entity  10  at  2897 x 209  with an id of  11  and a state of  1 
+>>>destroyed entity  18  at  2844.375 x 282.2031  with an id of  11  and a state of  1 
+   entity 18 state post-deletion: 0 
+   reducing entity count by 1
+   Entity count now at 31 
+>>>destroyed entity  22  at  2991.1 x 31.69198  with an id of  11  and a state of  1 
+   entity 22 state post-deletion: 0 
+   reducing entity count by 1
+   Entity count now at 30 
+>>>order recieved to create entity with an id of 11 
+   unused location in entity array found at 18 -- creating entity...
+   created entity  18  at  2897 x 209  with an id of  11  and a state of  1 
+>>>destroyed entity  19  at  3020.25 x 368.1719  with an id of  11  and a state of  1 
+   entity 19 state post-deletion: 0 
+   reducing entity count by 1
+   Entity count now at 30 
+>>>destroyed entity  23  at  2996.467 x 31.7316  with an id of  11  and a state of  1 
+   entity 23 state post-deletion: 0 
+   reducing entity count by 1
+   Entity count now at 29 
+>>>order recieved to create entity with an id of 11 
+   unused location in entity array found at 19 -- creating entity...
+   created entity  19  at  2897 x 209  with an id of  11  and a state of  1 
+>>>destroyed entity  20  at  3052.625 x 379.2635  with an id of  11  and a state of  1 
+   entity 20 state post-deletion: 0 
+   reducing entity count by 1
+   Entity count now at 29 
+>>>order recieved to create entity with an id of 11 
+   unused location in entity array found at 20 -- creating entity...
+   created entity  20  at  2897 x 209  with an id of  11  and a state of  1 
+>>>destroyed entity  21  at  2982.5 x 296.8708  with an id of  11  and a state of  1 
+   entity 21 state post-deletion: 0 
+   reducing entity count by 1
+   Entity count now at 29 
+>>>order recieved to create entity with an id of 11 
+   unused location in entity array found at 21 -- creating entity...
+   created entity  21  at  2897 x 209  with an id of  11  and a state of  1 
+>>>order recieved to create entity with an id of 11 
+   unused location in entity array found at 22 -- creating entity...
+   created entity  22  at  2897 x 209  with an id of  11  and a state of  1 
+>>>order recieved to create entity with an id of 11 
+   unused location in entity array found at 23 -- creating entity...
+   created entity  23  at  2897 x 209  with an id of  11  and a state of  1 
+>>>destroyed entity  28  at  2797.25 x 81.6875  with an id of  11  and a state of  1 
+   entity 28 state post-deletion: 0 
+   reducing entity count by 1
+   Entity count now at 31 
+>>>order recieved to create entity with an id of 11 
+   unused location in entity array found at 28 -- creating entity...
+   created entity  28  at  2897 x 209  with an id of  11  and a state of  1 
+>>>destroyed entity  2  at  2688.375 x 362.3726  with an id of  11  and a state of  1 
+   entity 2 state post-deletion: 0 
+   reducing entity count by 1
+   Entity count now at 31 
+>>>destroyed entity  25  at  2916.914 x 31.8576  with an id of  11  and a state of  1 
+   entity 25 state post-deletion: 0 
+   reducing entity count by 1
+   Entity count now at 30 
+>>>order recieved to create entity with an id of 11 
+   unused location in entity array found at 2 -- creating entity...
+   created entity  2  at  2897 x 209  with an id of  11  and a state of  1 
+>>>destroyed entity  3  at  2733.375 x 388.8906  with an id of  11  and a state of  1 
+   entity 3 state post-deletion: 0 
+   reducing entity count by 1
+   Entity count now at 30 
+>>>order recieved to create entity with an id of 11 
+   unused location in entity array found at 3 -- creating entity...
+   created entity  3  at  2897 x 209  with an id of  11  and a state of  1 
+>>>order recieved to create entity with an id of 11 
+   unused location in entity array found at 25 -- creating entity...
+   created entity  25  at  2897 x 209  with an id of  11  and a state of  1 
+>>>destroyed entity  4  at  2839.25 x 195.5312  with an id of  11  and a state of  1 
+   entity 4 state post-deletion: 0 
+   reducing entity count by 1
+   Entity count now at 31 
+sword attack!
+sword struck enemy 1 !
+>>>order recieved to create entity with an id of 11 
+   unused location in entity array found at 4 -- creating entity...
+   created entity  4  at  2904 x 202  with an id of  11  and a state of  1 
+>>>destroyed entity  5  at  2780 x 401.0469  with an id of  11  and a state of  1 
+   entity 5 state post-deletion: 0 
+   reducing entity count by 1
+   Entity count now at 31 
+>>>order recieved to create entity with an id of 11 
+   unused location in entity array found at 5 -- creating entity...
+   created entity  5  at  2917.798 x 186  with an id of  11  and a state of  1 
+>>>destroyed entity  6  at  2829 x 157.8438  with an id of  11  and a state of  1 
+   entity 6 state post-deletion: 0 
+   reducing entity count by 1
+   Entity count now at 31 
+>>>order recieved to create entity with an id of 11 
+   unused location in entity array found at 6 -- creating entity...
+   created entity  6  at  2920.454 x 176.0003  with an id of  11  and a state of  1 
+>>>destroyed entity  7  at  2752.25 x 99.89844  with an id of  11  and a state of  1 
+   entity 7 state post-deletion: 0 
+   reducing entity count by 1
+   Entity count now at 31 
+>>>order recieved to create entity with an id of 11 
+   unused location in entity array found at 7 -- creating entity...
+   created entity  7  at  2920.627 x 174.9044  with an id of  11  and a state of  1 
+>>>destroyed entity  8  at  2696.25 x 93.72656  with an id of  11  and a state of  1 
+   entity 8 state post-deletion: 0 
+   reducing entity count by 1
+   Entity count now at 31 
+>>>order recieved to create entity with an id of 11 
+   unused location in entity array found at 8 -- creating entity...
+   created entity  8  at  2920.636 x 174.8409  with an id of  11  and a state of  1 
+>>>destroyed entity  9  at  3064.875 x 298.8281  with an id of  11  and a state of  1 
+   entity 9 state post-deletion: 0 
+   reducing entity count by 1
+   Entity count now at 31 
+>>>order recieved to create entity with an id of 11 
+   unused location in entity array found at 9 -- creating entity...
+   created entity  9  at  2920.636 x 174.8378  with an id of  11  and a state of  1 
+>>>destroyed entity  10  at  2951.375 x 113.1094  with an id of  11  and a state of  1 
+   entity 10 state post-deletion: 0 
+   reducing entity count by 1
+   Entity count now at 31 
+>>>order recieved to create entity with an id of 11 
+   unused location in entity array found at 10 -- creating entity...
+   created entity  10  at  2920.636 x 174.8377  with an id of  11  and a state of  1 
+>>>destroyed entity  18  at  3071.25 x 201.7031  with an id of  11  and a state of  1 
+   entity 18 state post-deletion: 0 
+   reducing entity count by 1
+   Entity count now at 31 
+>>>destroyed entity  19  at  2684.684 x 31.80834  with an id of  11  and a state of  1 
+   entity 19 state post-deletion: 0 
+   reducing entity count by 1
+   Entity count now at 30 
+>>>order recieved to create entity with an id of 11 
+   unused location in entity array found at 18 -- creating entity...
+   created entity  18  at  2920.636 x 174.8377  with an id of  11  and a state of  1 
+>>>order recieved to create entity with an id of 11 
+   unused location in entity array found at 19 -- creating entity...
+   created entity  19  at  2920.636 x 174.8377  with an id of  11  and a state of  1 
+>>>destroyed entity  20  at  3041.25 x 409.6268  with an id of  11  and a state of  1 
+   entity 20 state post-deletion: 0 
+   reducing entity count by 1
+   Entity count now at 31 
+>>>order recieved to create entity with an id of 11 
+   unused location in entity array found at 20 -- creating entity...
+   created entity  20  at  2920.636 x 174.8377  with an id of  11  and a state of  1 
+>>>destroyed entity  21  at  2729.875 x 214.3984  with an id of  11  and a state of  1 
+   entity 21 state post-deletion: 0 
+   reducing entity count by 1
+   Entity count now at 31 
+>>>order recieved to create entity with an id of 11 
+   unused location in entity array found at 21 -- creating entity...
+   created entity  21  at  2920.636 x 174.8377  with an id of  11  and a state of  1 
+>>>destroyed entity  22  at  2844.125 x 422.5938  with an id of  11  and a state of  1 
+   entity 22 state post-deletion: 0 
+   reducing entity count by 1
+   Entity count now at 31 
+>>>order recieved to create entity with an id of 11 
+   unused location in entity array found at 22 -- creating entity...
+   created entity  22  at  2920.636 x 174.8377  with an id of  11  and a state of  1 
+>>>destroyed entity  23  at  2698.875 x 399.6406  with an id of  11  and a state of  1 
+   entity 23 state post-deletion: 0 
+   reducing entity count by 1
+   Entity count now at 31 
+>>>order recieved to create entity with an id of 11 
+   unused location in entity array found at 23 -- creating entity...
+   created entity  23  at  2920.636 x 174.8377  with an id of  11  and a state of  1 
+>>>destroyed entity  28  at  3049.375 x 403.3906  with an id of  11  and a state of  1 
+   entity 28 state post-deletion: 0 
+   reducing entity count by 1
+   Entity count now at 31 
+>>>order recieved to create entity with an id of 11 
+   unused location in entity array found at 28 -- creating entity...
+   created entity  28  at  2920.636 x 174.8377  with an id of  11  and a state of  1 
+>>>destroyed entity  2  at  2924.375 x 255.8516  with an id of  11  and a state of  1 
+   entity 2 state post-deletion: 0 
+   reducing entity count by 1
+   Entity count now at 31 
+>>>order recieved to create entity with an id of 11 
+   unused location in entity array found at 2 -- creating entity...
+   created entity  2  at  2920.636 x 174.8377  with an id of  11  and a state of  1 
+>>>destroyed entity  3  at  2918.875 x 292.0938  with an id of  11  and a state of  1 
+   entity 3 state post-deletion: 0 
+   reducing entity count by 1
+   Entity count now at 31 
+>>>order recieved to create entity with an id of 11 
+   unused location in entity array found at 3 -- creating entity...
+   created entity  3  at  2920.636 x 174.8377  with an id of  11  and a state of  1 
+>>>destroyed entity  25  at  3039.25 x 222.8203  with an id of  11  and a state of  1 
+   entity 25 state post-deletion: 0 
+   reducing entity count by 1
+   Entity count now at 31 
+>>>destroyed entity  6  at  3117.865 x 31.95644  with an id of  11  and a state of  1 
+   entity 6 state post-deletion: 0 
+   reducing entity count by 1
+   Entity count now at 30 
+>>>order recieved to create entity with an id of 11 
+   unused location in entity array found at 6 -- creating entity...
+   created entity  6  at  2920.636 x 174.8377  with an id of  11  and a state of  1 
+>>>destroyed entity  4  at  2897.625 x 89.38416  with an id of  11  and a state of  1 
+   entity 4 state post-deletion: 0 
+   reducing entity count by 1
+   Entity count now at 30 
+>>>order recieved to create entity with an id of 11 
+   unused location in entity array found at 4 -- creating entity...
+   created entity  4  at  2920.636 x 174.8377  with an id of  11  and a state of  1 
+>>>destroyed entity  5  at  3048.423 x 360.7344  with an id of  11  and a state of  1 
+   entity 5 state post-deletion: 0 
+   reducing entity count by 1
+   Entity count now at 30 
+>>>order recieved to create entity with an id of 11 
+   unused location in entity array found at 5 -- creating entity...
+   created entity  5  at  2920.636 x 174.8377  with an id of  11  and a state of  1 
+>>>order recieved to create entity with an id of 11 
+   unused location in entity array found at 25 -- creating entity...
+   created entity  25  at  2920.636 x 174.8377  with an id of  11  and a state of  1 
+>>>destroyed entity  7  at  2768.127 x 334.1544  with an id of  11  and a state of  1 
+   entity 7 state post-deletion: 0 
+   reducing entity count by 1
+   Entity count now at 31 
+>>>destroyed entity  20  at  2780.93 x 31.80214  with an id of  11  and a state of  1 
+   entity 20 state post-deletion: 0 
+   reducing entity count by 1
+   Entity count now at 30 
+>>>order recieved to create entity with an id of 11 
+   unused location in entity array found at 7 -- creating entity...
+   created entity  7  at  2920.636 x 174.8377  with an id of  11  and a state of  1 
+>>>destroyed entity  8  at  3138.511 x 316.7628  with an id of  11  and a state of  1 
+   entity 8 state post-deletion: 0 
+   reducing entity count by 1
+   Entity count now at 30 
+>>>order recieved to create entity with an id of 11 
+   unused location in entity array found at 8 -- creating entity...
+   created entity  8  at  2920.636 x 174.8377  with an id of  11  and a state of  1 
+>>>destroyed entity  9  at  2961.886 x 207.2753  with an id of  11  and a state of  1 
+   entity 9 state post-deletion: 0 
+   reducing entity count by 1
+   Entity count now at 30 
+>>>order recieved to create entity with an id of 11 
+   unused location in entity array found at 9 -- creating entity...
+   created entity  9  at  2920.636 x 174.8377  with an id of  11  and a state of  1 
+>>>destroyed entity  10  at  2731.136 x 331.2636  with an id of  11  and a state of  1 
+   entity 10 state post-deletion: 0 
+   reducing entity count by 1
+   Entity count now at 30 
+>>>destroyed entity  22  at  2873.714 x 31.71385  with an id of  11  and a state of  1 
+   entity 22 state post-deletion: 0 
+   reducing entity count by 1
+   Entity count now at 29 
+>>>destroyed entity  21  at  3019.612 x 31.9114  with an id of  11  and a state of  1 
+   entity 21 state post-deletion: 0 
+   reducing entity count by 1
+   Entity count now at 28 
+>>>order recieved to create entity with an id of 11 
+   unused location in entity array found at 10 -- creating entity...
+   created entity  10  at  2920.636 x 174.8377  with an id of  11  and a state of  1 
+>>>destroyed entity  18  at  2970.261 x 141.8455  with an id of  11  and a state of  1 
+   entity 18 state post-deletion: 0 
+   reducing entity count by 1
+   Entity count now at 28 
+>>>order recieved to create entity with an id of 11 
+   unused location in entity array found at 18 -- creating entity...
+   created entity  18  at  2920.636 x 174.8377  with an id of  11  and a state of  1 
+>>>destroyed entity  19  at  2702.886 x 282.6346  with an id of  11  and a state of  1 
+   entity 19 state post-deletion: 0 
+   reducing entity count by 1
+   Entity count now at 28 
+sword attack!
+sword struck enemy 1 !
+>>>order recieved to create entity with an id of 11 
+   unused location in entity array found at 19 -- creating entity...
+   created entity  19  at  2922.42 x 162.3377  with an id of  11  and a state of  1 
+>>>order recieved to create entity with an id of 11 
+   unused location in entity array found at 20 -- creating entity...
+   created entity  20  at  2922.98 x 146.5619  with an id of  11  and a state of  1 
+>>>destroyed entity  23  at  2762.484 x 31.79139  with an id of  11  and a state of  1 
+   entity 23 state post-deletion: 0 
+   reducing entity count by 1
+   Entity count now at 29 
+>>>destroyed entity  3  at  3013.371 x 31.76763  with an id of  11  and a state of  1 
+   entity 3 state post-deletion: 0 
+   reducing entity count by 1
+   Entity count now at 28 
+>>>order recieved to create entity with an id of 11 
+   unused location in entity array found at 3 -- creating entity...
+   created entity  3  at  2923.017 x 140.845  with an id of  11  and a state of  1 
+>>>order recieved to create entity with an id of 11 
+   unused location in entity array found at 21 -- creating entity...
+   created entity  21  at  2923.019 x 140.3967  with an id of  11  and a state of  1 
+>>>order recieved to create entity with an id of 11 
+   unused location in entity array found at 22 -- creating entity...
+   created entity  22  at  2923.019 x 140.3727  with an id of  11  and a state of  1 
+>>>destroyed entity  28  at  2823.761 x 82.17363  with an id of  11  and a state of  1 
+   entity 28 state post-deletion: 0 
+   reducing entity count by 1
+   Entity count now at 30 
+>>>order recieved to create entity with an id of 11 
+   unused location in entity array found at 23 -- creating entity...
+   created entity  23  at  2923.019 x 140.3716  with an id of  11  and a state of  1 
+>>>destroyed entity  2  at  2881.886 x 91.85332  with an id of  11  and a state of  1 
+   entity 2 state post-deletion: 0 
+   reducing entity count by 1
+   Entity count now at 30 
+>>>order recieved to create entity with an id of 11 
+   unused location in entity array found at 2 -- creating entity...
+   created entity  2  at  2923.019 x 140.3716  with an id of  11  and a state of  1 
+>>>order recieved to create entity with an id of 11 
+   unused location in entity array found at 28 -- creating entity...
+   created entity  28  at  2923.019 x 140.3716  with an id of  11  and a state of  1 
+>>>destroyed entity  6  at  2985.386 x 87.27337  with an id of  11  and a state of  1 
+   entity 6 state post-deletion: 0 
+   reducing entity count by 1
+   Entity count now at 31 
+>>>destroyed entity  7  at  2913.612 x 31.83182  with an id of  11  and a state of  1 
+   entity 7 state post-deletion: 0 
+   reducing entity count by 1
+   Entity count now at 30 
+>>>order recieved to create entity with an id of 11 
+   unused location in entity array found at 6 -- creating entity...
+   created entity  6  at  2923.019 x 140.3716  with an id of  11  and a state of  1 
+>>>destroyed entity  4  at  2721.386 x 260.0178  with an id of  11  and a state of  1 
+   entity 4 state post-deletion: 0 
+   reducing entity count by 1
+   Entity count now at 30 
+>>>order recieved to create entity with an id of 11 
+   unused location in entity array found at 4 -- creating entity...
+   created entity  4  at  2923.019 x 140.3716  with an id of  11  and a state of  1 
+>>>destroyed entity  5  at  2966.886 x 54.90258  with an id of  11  and a state of  1 
+   entity 5 state post-deletion: 0 
+   reducing entity count by 1
+   Entity count now at 30 
+>>>order recieved to create entity with an id of 11 
+   unused location in entity array found at 5 -- creating entity...
+   created entity  5  at  2923.019 x 140.3716  with an id of  11  and a state of  1 
+>>>destroyed entity  25  at  2737.136 x 111.1268  with an id of  11  and a state of  1 
+   entity 25 state post-deletion: 0 
+   reducing entity count by 1
+   Entity count now at 30 
+Player has collided with a fireball! decrementing health by 1 and setting i-frames...
+>>>order recieved to create entity with an id of 11 
+   unused location in entity array found at 7 -- creating entity...
+   created entity  7  at  2923.019 x 140.3716  with an id of  11  and a state of  1 
+>>>order recieved to create entity with an id of 11 
+   unused location in entity array found at 25 -- creating entity...
+   created entity  25  at  2923.019 x 140.3716  with an id of  11  and a state of  1 
+>>>destroyed entity  8  at  2774.636 x 64.42588  with an id of  11  and a state of  1 
+   entity 8 state post-deletion: 0 
+   reducing entity count by 1
+   Entity count now at 31 
+>>>destroyed entity  21  at  2802.427 x 31.86866  with an id of  11  and a state of  1 
+   entity 21 state post-deletion: 0 
+   reducing entity count by 1
+   Entity count now at 30 
+>>>order recieved to create entity with an id of 11 
+   unused location in entity array found at 8 -- creating entity...
+   created entity  8  at  2923.019 x 140.3716  with an id of  11  and a state of  1 
+>>>destroyed entity  9  at  2969.761 x 185.0252  with an id of  11  and a state of  1 
+   entity 9 state post-deletion: 0 
+   reducing entity count by 1
+   Entity count now at 30 
+>>>order recieved to create entity with an id of 11 
+   unused location in entity array found at 9 -- creating entity...
+   created entity  9  at  2923.019 x 140.3716  with an id of  11  and a state of  1 
+>>>destroyed entity  10  at  3082.261 x 325.0408  with an id of  11  and a state of  1 
+   entity 10 state post-deletion: 0 
+   reducing entity count by 1
+   Entity count now at 30 
+>>>order recieved to create entity with an id of 11 
+   unused location in entity array found at 10 -- creating entity...
+   created entity  10  at  2923.019 x 140.3716  with an id of  11  and a state of  1 
+>>>destroyed entity  18  at  2899.511 x 219.5408  with an id of  11  and a state of  1 
+   entity 18 state post-deletion: 0 
+   reducing entity count by 1
+   Entity count now at 30 
+>>>destroyed entity  19  at  3112.774 x 31.90517  with an id of  11  and a state of  1 
+   entity 19 state post-deletion: 0 
+   reducing entity count by 1
+   Entity count now at 29 
+>>>order recieved to create entity with an id of 11 
+   unused location in entity array found at 18 -- creating entity...
+   created entity  18  at  2923.019 x 140.3716  with an id of  11  and a state of  1 
+>>>order recieved to create entity with an id of 11 
+   unused location in entity array found at 19 -- creating entity...
+   created entity  19  at  2923.019 x 140.3716  with an id of  11  and a state of  1 
+>>>destroyed entity  20  at  2872.98 x 316.2232  with an id of  11  and a state of  1 
+   entity 20 state post-deletion: 0 
+   reducing entity count by 1
+   Entity count now at 30 
+sword attack!
+sword struck enemy 1 !
+>>>order recieved to create entity with an id of 11 
+   unused location in entity array found at 20 -- creating entity...
+   created entity  20  at  2926.519 x 136.8716  with an id of  11  and a state of  1 
+>>>destroyed entity  3  at  3076.767 x 112.7513  with an id of  11  and a state of  1 
+   entity 3 state post-deletion: 0 
+   reducing entity count by 1
+   Entity count now at 30 
+>>>destroyed entity  22  at  3020.403 x 31.90433  with an id of  11  and a state of  1 
+   entity 22 state post-deletion: 0 
+   reducing entity count by 1
+   Entity count now at 29 
+>>>order recieved to create entity with an id of 11 
+   unused location in entity array found at 3 -- creating entity...
+   created entity  3  at  2942.519 x 120.8716  with an id of  11  and a state of  1 
+>>>destroyed entity  5  at  2831.167 x 31.73402  with an id of  11  and a state of  1 
+   entity 5 state post-deletion: 0 
+   reducing entity count by 1
+   Entity count now at 29 
+>>>order recieved to create entity with an id of 11 
+   unused location in entity array found at 5 -- creating entity...
+   created entity  5  at  2955.641 x 108.087  with an id of  11  and a state of  1 
+>>>order recieved to create entity with an id of 11 
+   unused location in entity array found at 21 -- creating entity...
+   created entity  21  at  2957.861 x 106.0467  with an id of  11  and a state of  1 
+>>>destroyed entity  23  at  2884.269 x 330.57  with an id of  11  and a state of  1 
+   entity 23 state post-deletion: 0 
+   reducing entity count by 1
+   Entity count now at 30 
+>>>destroyed entity  9  at  2911.594 x 31.71089  with an id of  11  and a state of  1 
+   entity 9 state post-deletion: 0 
+   reducing entity count by 1
+   Entity count now at 29 
+>>>order recieved to create entity with an id of 11 
+   unused location in entity array found at 9 -- creating entity...
+   created entity  9  at  2958.001 x 105.9191  with an id of  11  and a state of  1 
+>>>destroyed entity  2  at  3082.894 x 121.1685  with an id of  11  and a state of  1 
+   entity 2 state post-deletion: 0 
+   reducing entity count by 1
+   Entity count now at 29 
+>>>order recieved to create entity with an id of 11 
+   unused location in entity array found at 2 -- creating entity...
+   created entity  2  at  2958.008 x 105.9127  with an id of  11  and a state of  1 
+>>>destroyed entity  28  at  2840.019 x 295.4127  with an id of  11  and a state of  1 
+   entity 28 state post-deletion: 0 
+   reducing entity count by 1
+   Entity count now at 29 
+>>>order recieved to create entity with an id of 11 
+   unused location in entity array found at 22 -- creating entity...
+   created entity  22  at  2958.008 x 105.9124  with an id of  11  and a state of  1 
+>>>destroyed entity  6  at  2886.519 x 348.5747  with an id of  11  and a state of  1 
+   entity 6 state post-deletion: 0 
+   reducing entity count by 1
+   Entity count now at 29 
+>>>order recieved to create entity with an id of 11 
+   unused location in entity array found at 6 -- creating entity...
+   created entity  6  at  2958.008 x 105.9124  with an id of  11  and a state of  1 
+>>>destroyed entity  10  at  2956.196 x 31.86896  with an id of  11  and a state of  1 
+   entity 10 state post-deletion: 0 
+   reducing entity count by 1
+   Entity count now at 29 
+>>>destroyed entity  4  at  2897.144 x 324.5122  with an id of  11  and a state of  1 
+   entity 4 state post-deletion: 0 
+   reducing entity count by 1
+   Entity count now at 28 
+>>>destroyed entity  19  at  2977.372 x 31.85126  with an id of  11  and a state of  1 
+   entity 19 state post-deletion: 0 
+   reducing entity count by 1
+   Entity count now at 27 
+>>>order recieved to create entity with an id of 11 
+   unused location in entity array found at 4 -- creating entity...
+   created entity  4  at  2958.008 x 105.9124  with an id of  11  and a state of  1 
+>>>order recieved to create entity with an id of 11 
+   unused location in entity array found at 10 -- creating entity...
+   created entity  10  at  2958.008 x 105.9124  with an id of  11  and a state of  1 
+>>>destroyed entity  7  at  3125.769 x 237.3247  with an id of  11  and a state of  1 
+   entity 7 state post-deletion: 0 
+   reducing entity count by 1
+   Entity count now at 28 
+>>>destroyed entity  5  at  2992.731 x 31.96491  with an id of  11  and a state of  1 
+   entity 5 state post-deletion: 0 
+   reducing entity count by 1
+   Entity count now at 27 
+>>>order recieved to create entity with an id of 11 
+   unused location in entity array found at 5 -- creating entity...
+   created entity  5  at  2958.008 x 105.9124  with an id of  11  and a state of  1 
+>>>destroyed entity  25  at  2736.144 x 161.02  with an id of  11  and a state of  1 
+   entity 25 state post-deletion: 0 
+   reducing entity count by 1
+   Entity count now at 27 
+>>>order recieved to create entity with an id of 11 
+   unused location in entity array found at 7 -- creating entity...
+   created entity  7  at  2958.008 x 105.9124  with an id of  11  and a state of  1 
+>>>destroyed entity  8  at  2841.769 x 271.3716  with an id of  11  and a state of  1 
+   entity 8 state post-deletion: 0 
+   reducing entity count by 1
+   Entity count now at 27 
+>>>order recieved to create entity with an id of 11 
+   unused location in entity array found at 8 -- creating entity...
+   created entity  8  at  2958.008 x 105.9124  with an id of  11  and a state of  1 
+>>>destroyed entity  22  at  3049.856 x 31.84742  with an id of  11  and a state of  1 
+   entity 22 state post-deletion: 0 
+   reducing entity count by 1
+   Entity count now at 27 
+>>>order recieved to create entity with an id of 11 
+   unused location in entity array found at 19 -- creating entity...
+   created entity  19  at  2958.008 x 105.9124  with an id of  11  and a state of  1 
+>>>destroyed entity  20  at  2775.94 x 31.93385  with an id of  11  and a state of  1 
+   entity 20 state post-deletion: 0 
+   reducing entity count by 1
+   Entity count now at 27 
+>>>order recieved to create entity with an id of 11 
+   unused location in entity array found at 20 -- creating entity...
+   created entity  20  at  2958.008 x 105.9124  with an id of  11  and a state of  1 
+>>>destroyed entity  18  at  2713.519 x 201.9653  with an id of  11  and a state of  1 
+   entity 18 state post-deletion: 0 
+   reducing entity count by 1
+   Entity count now at 27 
+>>>destroyed entity  4  at  2895.441 x 31.99792  with an id of  11  and a state of  1 
+   entity 4 state post-deletion: 0 
+   reducing entity count by 1
+   Entity count now at 26 
+>>>order recieved to create entity with an id of 11 
+   unused location in entity array found at 4 -- creating entity...
+   created entity  4  at  2958.008 x 105.9124  with an id of  11  and a state of  1 
+Player has collided with a fireball! decrementing health by 1 and setting i-frames...
+>>>order recieved to create entity with an id of 11 
+   unused location in entity array found at 18 -- creating entity...
+   created entity  18  at  2958.008 x 105.9124  with an id of  11  and a state of  1 
+>>>order recieved to create entity with an id of 11 
+   unused location in entity array found at 22 -- creating entity...
+   created entity  22  at  2958.008 x 105.9124  with an id of  11  and a state of  1 
+>>>destroyed entity  3  at  2838.519 x 220.8247  with an id of  11  and a state of  1 
+   entity 3 state post-deletion: 0 
+   reducing entity count by 1
+   Entity count now at 28 
+>>>order recieved to create entity with an id of 11 
+   unused location in entity array found at 3 -- creating entity...
+   created entity  3  at  2958.008 x 105.9124  with an id of  11  and a state of  1 
+>>>order recieved to create entity with an id of 11 
+   unused location in entity array found at 23 -- creating entity...
+   created entity  23  at  2958.008 x 105.9124  with an id of  11  and a state of  1 
+>>>destroyed entity  21  at  2790.361 x 155.3184  with an id of  11  and a state of  1 
+   entity 21 state post-deletion: 0 
+   reducing entity count by 1
+   Entity count now at 29 
+>>>order recieved to create entity with an id of 11 
+   unused location in entity array found at 21 -- creating entity...
+   created entity  21  at  2958.008 x 105.9124  with an id of  11  and a state of  1 
+>>>destroyed entity  9  at  3106.001 x 101.4308  with an id of  11  and a state of  1 
+   entity 9 state post-deletion: 0 
+   reducing entity count by 1
+   Entity count now at 29 
+>>>destroyed entity  2  at  3168.294 x 185.6086  with an id of  11  and a state of  1 
+   entity 2 state post-deletion: 0 
+   reducing entity count by 1
+   Entity count now at 28 
+sword attack!
+sword struck enemy 1 !
+>>>order recieved to create entity with an id of 11 
+   unused location in entity array found at 2 -- creating entity...
+   created entity  2  at  2961.008 x 108.9124  with an id of  11  and a state of  1 
+>>>order recieved to create entity with an id of 11 
+   unused location in entity array found at 9 -- creating entity...
+   created entity  9  at  2977.008 x 124.1691  with an id of  11  and a state of  1 
+>>>destroyed entity  10  at  2792.365 x 31.86921  with an id of  11  and a state of  1 
+   entity 10 state post-deletion: 0 
+   reducing entity count by 1
+   Entity count now at 29 
+>>>order recieved to create entity with an id of 11 
+   unused location in entity array found at 10 -- creating entity...
+   created entity  10  at  2990.451 x 128.4784  with an id of  11  and a state of  1 
+>>>destroyed entity  6  at  2765.883 x 205.9593  with an id of  11  and a state of  1 
+   entity 6 state post-deletion: 0 
+   reducing entity count by 1
+   Entity count now at 29 
+>>>destroyed entity  20  at  2868.008 x 31.76571  with an id of  11  and a state of  1 
+   entity 20 state post-deletion: 0 
+   reducing entity count by 1
+   Entity count now at 28 
+>>>order recieved to create entity with an id of 11 
+   unused location in entity array found at 6 -- creating entity...
+   created entity  6  at  2992.863 x 128.7894  with an id of  11  and a state of  1 
+>>>destroyed entity  22  at  2975.94 x 31.97135  with an id of  11  and a state of  1 
+   entity 22 state post-deletion: 0 
+   reducing entity count by 1
+   Entity count now at 28 
+>>>order recieved to create entity with an id of 11 
+   unused location in entity array found at 20 -- creating entity...
+   created entity  20  at  2993.017 x 128.8056  with an id of  11  and a state of  1 
+>>>order recieved to create entity with an id of 11 
+   unused location in entity array found at 22 -- creating entity...
+   created entity  22  at  2993.024 x 128.8064  with an id of  11  and a state of  1 
+>>>destroyed entity  5  at  3099.758 x 317.7253  with an id of  11  and a state of  1 
+   entity 5 state post-deletion: 0 
+   reducing entity count by 1
+   Entity count now at 29 
+>>>order recieved to create entity with an id of 11 
+   unused location in entity array found at 5 -- creating entity...
+   created entity  5  at  2993.024 x 128.8064  with an id of  11  and a state of  1 
+>>>destroyed entity  7  at  2746.633 x 276.763  with an id of  11  and a state of  1 
+   entity 7 state post-deletion: 0 
+   reducing entity count by 1
+   Entity count now at 29 
+>>>order recieved to create entity with an id of 11 
+   unused location in entity array found at 7 -- creating entity...
+   created entity  7  at  2993.024 x 128.8064  with an id of  11  and a state of  1 
+>>>destroyed entity  8  at  2772.383 x 87.74056  with an id of  11  and a state of  1 
+   entity 8 state post-deletion: 0 
+   reducing entity count by 1
+   Entity count now at 29 
+>>>order recieved to create entity with an id of 11 
+   unused location in entity array found at 8 -- creating entity...
+   created entity  8  at  2993.024 x 128.8064  with an id of  11  and a state of  1 
+>>>destroyed entity  19  at  3041.133 x 233.9124  with an id of  11  and a state of  1 
+   entity 19 state post-deletion: 0 
+   reducing entity count by 1
+   Entity count now at 29 
+sword attack!
+sword struck enemy 1 !
+>>>order recieved to create entity with an id of 11 
+   unused location in entity array found at 19 -- creating entity...
+   created entity  19  at  2994.024 x 129.8064  with an id of  11  and a state of  1 
+>>>order recieved to create entity with an id of 11 
+   unused location in entity array found at 25 -- creating entity...
+   created entity  25  at  3010.024 x 145.5515  with an id of  11  and a state of  1 
+>>>destroyed entity  4  at  3146.758 x 276.928  with an id of  11  and a state of  1 
+   entity 4 state post-deletion: 0 
+   reducing entity count by 1
+   Entity count now at 30 
+>>>destroyed entity  20  at  2910.946 x 31.89901  with an id of  11  and a state of  1 
+   entity 20 state post-deletion: 0 
+   reducing entity count by 1
+   Entity count now at 29 
+>>>order recieved to create entity with an id of 11 
+   unused location in entity array found at 4 -- creating entity...
+   created entity  4  at  3024.422 x 151.1481  with an id of  11  and a state of  1 
+>>>destroyed entity  18  at  3086.133 x 276.8568  with an id of  11  and a state of  1 
+   entity 18 state post-deletion: 0 
+   reducing entity count by 1
+   Entity count now at 29 
+>>>order recieved to create entity with an id of 11 
+   unused location in entity array found at 18 -- creating entity...
+   created entity  18  at  3027.589 x 151.584  with an id of  11  and a state of  1 
+>>>order recieved to create entity with an id of 11 
+   unused location in entity array found at 20 -- creating entity...
+   created entity  20  at  3027.803 x 151.6073  with an id of  11  and a state of  1 
+>>>destroyed entity  3  at  2879.258 x 72.54134  with an id of  11  and a state of  1 
+   entity 3 state post-deletion: 0 
+   reducing entity count by 1
+   Entity count now at 30 
+>>>destroyed entity  22  at  2936.802 x 31.96464  with an id of  11  and a state of  1 
+   entity 22 state post-deletion: 0 
+   reducing entity count by 1
+   Entity count now at 29 
+>>>order recieved to create entity with an id of 11 
+   unused location in entity array found at 3 -- creating entity...
+   created entity  3  at  3027.814 x 151.6084  with an id of  11  and a state of  1 
+>>>destroyed entity  23  at  2976.758 x 180.5698  with an id of  11  and a state of  1 
+   entity 23 state post-deletion: 0 
+   reducing entity count by 1
+   Entity count now at 29 
+>>>destroyed entity  7  at  2961.794 x 31.83034  with an id of  11  and a state of  1 
+   entity 7 state post-deletion: 0 
+   reducing entity count by 1
+   Entity count now at 28 
+>>>order recieved to create entity with an id of 11 
+   unused location in entity array found at 7 -- creating entity...
+   created entity  7  at  3027.814 x 151.6084  with an id of  11  and a state of  1 
+>>>destroyed entity  21  at  3120.758 x 245.3109  with an id of  11  and a state of  1 
+   entity 21 state post-deletion: 0 
+   reducing entity count by 1
+   Entity count now at 28 
+>>>destroyed entity  8  at  2979.256 x 31.68338  with an id of  11  and a state of  1 
+   entity 8 state post-deletion: 0 
+   reducing entity count by 1
+   Entity count now at 27 
+>>>destroyed entity  6  at  2848.187 x 31.90518  with an id of  11  and a state of  1 
+   entity 6 state post-deletion: 0 
+   reducing entity count by 1
+   Entity count now at 26 
+>>>order recieved to create entity with an id of 11 
+   unused location in entity array found at 6 -- creating entity...
+   created entity  6  at  3027.814 x 151.6084  with an id of  11  and a state of  1 
+>>>destroyed entity  2  at  2952.508 x 185.1859  with an id of  11  and a state of  1 
+   entity 2 state post-deletion: 0 
+   reducing entity count by 1
+   Entity count now at 26 
+sword attack!
+sword struck enemy 1 !
+>>>order recieved to create entity with an id of 11 
+   unused location in entity array found at 2 -- creating entity...
+   created entity  2  at  3038.314 x 161.1755  with an id of  11  and a state of  1 
+>>>destroyed entity  9  at  2857.008 x 275.2785  with an id of  11  and a state of  1 
+   entity 9 state post-deletion: 0 
+   reducing entity count by 1
+   Entity count now at 26 
+>>>order recieved to create entity with an id of 11 
+   unused location in entity array found at 8 -- creating entity...
+   created entity  8  at  3054.299 x 166.3061  with an id of  11  and a state of  1 
+>>>destroyed entity  10  at  2791.826 x 135.5956  with an id of  11  and a state of  1 
+   entity 10 state post-deletion: 0 
+   reducing entity count by 1
+   Entity count now at 26 
+Player has collided with a fireball! decrementing health by 1 and setting i-frames...
+>>>destroyed entity  19  at  2936.961 x 31.88551  with an id of  11  and a state of  1 
+   entity 19 state post-deletion: 0 
+   reducing entity count by 1
+   Entity count now at 25 
+>>>order recieved to create entity with an id of 11 
+   unused location in entity array found at 9 -- creating entity...
+   created entity  9  at  3061.762 x 166.6947  with an id of  11  and a state of  1 
+>>>order recieved to create entity with an id of 11 
+   unused location in entity array found at 10 -- creating entity...
+   created entity  10  at  3062.417 x 166.7153  with an id of  11  and a state of  1 
+>>>order recieved to create entity with an id of 11 
+   unused location in entity array found at 19 -- creating entity...
+   created entity  19  at  3062.453 x 166.7163  with an id of  11  and a state of  1 
+>>>order recieved to create entity with an id of 11 
+   unused location in entity array found at 21 -- creating entity...
+   created entity  21  at  3062.454 x 166.7163  with an id of  11  and a state of  1 
+>>>destroyed entity  5  at  3108.149 x 145.2282  with an id of  11  and a state of  1 
+   entity 5 state post-deletion: 0 
+   reducing entity count by 1
+   Entity count now at 28 
+>>>order recieved to create entity with an id of 11 
+   unused location in entity array found at 5 -- creating entity...
+   created entity  5  at  3062.454 x 166.7163  with an id of  11  and a state of  1 
+>>>order recieved to create entity with an id of 11 
+   unused location in entity array found at 22 -- creating entity...
+   created entity  22  at  3062.454 x 166.7163  with an id of  11  and a state of  1 
+>>>order recieved to create entity with an id of 11 
+   unused location in entity array found at 23 -- creating entity...
+   created entity  23  at  3062.454 x 166.7163  with an id of  11  and a state of  1 
+sword attack!
+sword struck enemy 1 !
+>>>order recieved to create entity with an id of 11 
+   unused location in entity array found at 28 -- creating entity...
+   created entity  28  at  3075.454 x 179.7163  with an id of  11  and a state of  1 
+>>>destroyed entity  25  at  2871.899 x 335.2859  with an id of  11  and a state of  1 
+   entity 25 state post-deletion: 0 
+   reducing entity count by 1
+   Entity count now at 31 
+Player has collided with a fireball! decrementing health by 1 and setting i-frames...
+>>>order recieved to create entity with an id of 11 
+   unused location in entity array found at 25 -- creating entity...
+   created entity  25  at  3091.249 x 188.1981  with an id of  11  and a state of  1 
+>>>destroyed entity  4  at  2872.047 x 109.2106  with an id of  11  and a state of  1 
+   entity 4 state post-deletion: 0 
+   reducing entity count by 1
+   Entity count now at 31 
+>>>destroyed entity  8  at  3168.148 x 189.0518  with an id of  11  and a state of  1 
+   entity 8 state post-deletion: 0 
+   reducing entity count by 1
+   Entity count now at 30 
+>>>order recieved to create entity with an id of 11 
+   unused location in entity array found at 4 -- creating entity...
+   created entity  4  at  3097.052 x 189.0021  with an id of  11  and a state of  1 
+>>>destroyed entity  18  at  2838.964 x 165.3418  with an id of  11  and a state of  1 
+   entity 18 state post-deletion: 0 
+   reducing entity count by 1
+   Entity count now at 30 
+>>>order recieved to create entity with an id of 11 
+   unused location in entity array found at 8 -- creating entity...
+   created entity  8  at  3097.51 x 189.0473  with an id of  11  and a state of  1 
+>>>destroyed entity  20  at  3118.553 x 349.502  with an id of  11  and a state of  1 
+   entity 20 state post-deletion: 0 
+   reducing entity count by 1
+   Entity count now at 30 
+>>>destroyed entity  7  at  3125.47 x 31.77516  with an id of  11  and a state of  1 
+   entity 7 state post-deletion: 0 
+   reducing entity count by 1
+   Entity count now at 29 
+>>>order recieved to create entity with an id of 11 
+   unused location in entity array found at 7 -- creating entity...
+   created entity  7  at  3097.535 x 189.0495  with an id of  11  and a state of  1 
+>>>destroyed entity  3  at  3013.064 x 304.5043  with an id of  11  and a state of  1 
+   entity 3 state post-deletion: 0 
+   reducing entity count by 1
+   Entity count now at 29 
+>>>destroyed entity  10  at  3168.117 x 167.7659  with an id of  11  and a state of  1 
+   entity 10 state post-deletion: 0 
+   reducing entity count by 1
+   Entity count now at 28 
+>>>order recieved to create entity with an id of 11 
+   unused location in entity array found at 3 -- creating entity...
+   created entity  3  at  3097.535 x 189.0495  with an id of  11  and a state of  1 
+>>>destroyed entity  22  at  3168.397 x 108.9073  with an id of  11  and a state of  1 
+   entity 22 state post-deletion: 0 
+   reducing entity count by 1
+   Entity count now at 28 
+sword attack!
+>>>order recieved to create entity with an id of 11 
+   unused location in entity array found at 10 -- creating entity...
+   created entity  10  at  3097.535 x 189.0495  with an id of  11  and a state of  1 
+>>>destroyed entity  6  at  3108.189 x 83.89745  with an id of  11  and a state of  1 
+   entity 6 state post-deletion: 0 
+   reducing entity count by 1
+   Entity count now at 28 
+>>>order recieved to create entity with an id of 11 
+   unused location in entity array found at 6 -- creating entity...
+   created entity  6  at  3097.535 x 189.0495  with an id of  11  and a state of  1 
+>>>destroyed entity  2  at  3126.064 x 260.6993  with an id of  11  and a state of  1 
+   entity 2 state post-deletion: 0 
+   reducing entity count by 1
+   Entity count now at 28 
+>>>order recieved to create entity with an id of 11 
+   unused location in entity array found at 2 -- creating entity...
+   created entity  2  at  3097.535 x 189.0495  with an id of  11  and a state of  1 
+>>>order recieved to create entity with an id of 11 
+   unused location in entity array found at 18 -- creating entity...
+   created entity  18  at  3097.535 x 189.0495  with an id of  11  and a state of  1 
+>>>destroyed entity  9  at  2899.887 x 204.9447  with an id of  11  and a state of  1 
+   entity 9 state post-deletion: 0 
+   reducing entity count by 1
+   Entity count now at 29 
+>>>order recieved to create entity with an id of 11 
+   unused location in entity array found at 9 -- creating entity...
+   created entity  9  at  3097.535 x 189.0495  with an id of  11  and a state of  1 
+>>>destroyed entity  28  at  3168.082 x 67.94216  with an id of  11  and a state of  1 
+   entity 28 state post-deletion: 0 
+   reducing entity count by 1
+   Entity count now at 29 
+>>>destroyed entity  5  at  2885.127 x 31.73453  with an id of  11  and a state of  1 
+   entity 5 state post-deletion: 0 
+   reducing entity count by 1
+   Entity count now at 28 
+>>>order recieved to create entity with an id of 11 
+   unused location in entity array found at 5 -- creating entity...
+   created entity  5  at  3097.535 x 189.0495  with an id of  11  and a state of  1 
+>>>destroyed entity  19  at  3109.578 x 332.4663  with an id of  11  and a state of  1 
+   entity 19 state post-deletion: 0 
+   reducing entity count by 1
+   Entity count now at 28 
+sword attack!
+sword struck enemy 1 !
+>>>order recieved to create entity with an id of 11 
+   unused location in entity array found at 19 -- creating entity...
+   created entity  19  at  3103.528 x 198.5495  with an id of  11  and a state of  1 
+>>>destroyed entity  21  at  2999.704 x 32.67219  with an id of  11  and a state of  1 
+   entity 21 state post-deletion: 0 
+   reducing entity count by 1
+   Entity count now at 28 
+Player has collided with a fireball! decrementing health by 1 and setting i-frames...
+>>>destroyed entity  25  at  3135.542 x 31.658  with an id of  11  and a state of  1 
+   entity 25 state post-deletion: 0 
+   reducing entity count by 1
+   Entity count now at 27 
+>>>order recieved to create entity with an id of 11 
+   unused location in entity array found at 20 -- creating entity...
+   created entity  20  at  3103.971 x 209.8244  with an id of  11  and a state of  1 
+>>>order recieved to create entity with an id of 11 
+   unused location in entity array found at 21 -- creating entity...
+   created entity  21  at  3103.999 x 211.2644  with an id of  11  and a state of  1 
+>>>destroyed entity  4  at  3079.121 x 31.9734  with an id of  11  and a state of  1 
+   entity 4 state post-deletion: 0 
+   reducing entity count by 1
+   Entity count now at 28 
+>>>order recieved to create entity with an id of 11 
+   unused location in entity array found at 4 -- creating entity...
+   created entity  4  at  3104 x 211.3504  with an id of  11  and a state of  1 
+>>>destroyed entity  23  at  3127.704 x 143.2085  with an id of  11  and a state of  1 
+   entity 23 state post-deletion: 0 
+   reducing entity count by 1
+   Entity count now at 28 
+>>>destroyed entity  9  at  3168.265 x 206.278  with an id of  11  and a state of  1 
+   entity 9 state post-deletion: 0 
+   reducing entity count by 1
+   Entity count now at 27 
+>>>order recieved to create entity with an id of 11 
+   unused location in entity array found at 9 -- creating entity...
+   created entity  9  at  3103.994 x 211.3546  with an id of  11  and a state of  1 
+>>>order recieved to create entity with an id of 11 
+   unused location in entity array found at 22 -- creating entity...
+   created entity  22  at  3103.994 x 211.3547  with an id of  11  and a state of  1 
+>>>order recieved to create entity with an id of 11 
+   unused location in entity array found at 23 -- creating entity...
+   created entity  23  at  3103.994 x 211.3547  with an id of  11  and a state of  1 
+sword attack!
+>>>destroyed entity  2  at  3168.104 x 109.1563  with an id of  11  and a state of  1 
+   entity 2 state post-deletion: 0 
+   reducing entity count by 1
+   Entity count now at 29 
+>>>order recieved to create entity with an id of 11 
+   unused location in entity array found at 2 -- creating entity...
+   created entity  2  at  3103.994 x 211.3547  with an id of  11  and a state of  1 
+>>>destroyed entity  8  at  3112.26 x 139.9067  with an id of  11  and a state of  1 
+   entity 8 state post-deletion: 0 
+   reducing entity count by 1
+   Entity count now at 29 
+>>>order recieved to create entity with an id of 11 
+   unused location in entity array found at 8 -- creating entity...
+   created entity  8  at  3103.994 x 211.3547  with an id of  11  and a state of  1 
+>>>destroyed entity  7  at  3060.41 x 50.22917  with an id of  11  and a state of  1 
+   entity 7 state post-deletion: 0 
+   reducing entity count by 1
+   Entity count now at 29 
+>>>order recieved to create entity with an id of 11 
+   unused location in entity array found at 7 -- creating entity...
+   created entity  7  at  3103.994 x 211.3547  with an id of  11  and a state of  1 
+>>>destroyed entity  3  at  2971.285 x 67.17648  with an id of  11  and a state of  1 
+   entity 3 state post-deletion: 0 
+   reducing entity count by 1
+   Entity count now at 29 
+>>>destroyed entity  9  at  3168.057 x 175.7076  with an id of  11  and a state of  1 
+   entity 9 state post-deletion: 0 
+   reducing entity count by 1
+   Entity count now at 28 
+>>>destroyed entity  18  at  3168.133 x 196.5147  with an id of  11  and a state of  1 
+   entity 18 state post-deletion: 0 
+   reducing entity count by 1
+   Entity count now at 27 
+sword attack!
+sword struck enemy 1 !
+>>>order recieved to create entity with an id of 11 
+   unused location in entity array found at 3 -- creating entity...
+   created entity  3  at  3103.988 x 214.3547  with an id of  11  and a state of  1 
+>>>destroyed entity  10  at  3037.91 x 33.09402  with an id of  11  and a state of  1 
+   entity 10 state post-deletion: 0 
+   reducing entity count by 1
+   Entity count now at 27 
+>>>destroyed entity  5  at  3168.061 x 137.1987  with an id of  11  and a state of  1 
+   entity 5 state post-deletion: 0 
+   reducing entity count by 1
+   Entity count now at 26 
+>>>order recieved to create entity with an id of 11 
+   unused location in entity array found at 5 -- creating entity...
+   created entity  5  at  3103.957 x 229.8004  with an id of  11  and a state of  1 
+>>>destroyed entity  6  at  2930.535 x 120.1823  with an id of  11  and a state of  1 
+   entity 6 state post-deletion: 0 
+   reducing entity count by 1
+   Entity count now at 26 
+>>>destroyed entity  4  at  3168.166 x 167.8903  with an id of  11  and a state of  1 
+   entity 4 state post-deletion: 0 
+   reducing entity count by 1
+   Entity count now at 25 
+sword attack!
+>>>order recieved to create entity with an id of 11 
+   unused location in entity array found at 4 -- creating entity...
+   created entity  4  at  3103.994 x 234.4949  with an id of  11  and a state of  1 
+>>>order recieved to create entity with an id of 11 
+   unused location in entity array found at 6 -- creating entity...
+   created entity  6  at  3103.998 x 234.8413  with an id of  11  and a state of  1 
+>>>order recieved to create entity with an id of 11 
+   unused location in entity array found at 9 -- creating entity...
+   created entity  9  at  3103.995 x 234.8596  with an id of  11  and a state of  1 
+>>>order recieved to create entity with an id of 11 
+   unused location in entity array found at 10 -- creating entity...
+   created entity  10  at  3103.995 x 234.8604  with an id of  11  and a state of  1 
+>>>order recieved to create entity with an id of 11 
+   unused location in entity array found at 18 -- creating entity...
+   created entity  18  at  3103.995 x 234.8604  with an id of  11  and a state of  1 
+>>>destroyed entity  19  at  2902.903 x 105.8152  with an id of  11  and a state of  1 
+   entity 19 state post-deletion: 0 
+   reducing entity count by 1
+   Entity count now at 29 
+sword attack!
+>>>order recieved to create entity with an id of 11 
+   unused location in entity array found at 19 -- creating entity...
+   created entity  19  at  3103.995 x 234.8604  with an id of  11  and a state of  1 
+>>>destroyed entity  20  at  3077.971 x 50.59194  with an id of  11  and a state of  1 
+   entity 20 state post-deletion: 0 
+   reducing entity count by 1
+   Entity count now at 29 
+>>>destroyed entity  4  at  3168.257 x 265.2299  with an id of  11  and a state of  1 
+   entity 4 state post-deletion: 0 
+   reducing entity count by 1
+   Entity count now at 28 
+>>>destroyed entity  21  at  3114.375 x 31.73742  with an id of  11  and a state of  1 
+   entity 21 state post-deletion: 0 
+   reducing entity count by 1
+   Entity count now at 27 
+>>>order recieved to create entity with an id of 11 
+   unused location in entity array found at 4 -- creating entity...
+   created entity  4  at  3103.995 x 234.8604  with an id of  11  and a state of  1 
+>>>order recieved to create entity with an id of 11 
+   unused location in entity array found at 20 -- creating entity...
+   created entity  20  at  3103.995 x 234.8604  with an id of  11  and a state of  1 
+>>>order recieved to create entity with an id of 11 
+   unused location in entity array found at 21 -- creating entity...
+   created entity  21  at  3103.995 x 234.8604  with an id of  11  and a state of  1 
+>>>order recieved to create entity with an id of 11 
+   unused location in entity array found at 25 -- creating entity...
+   created entity  25  at  3103.995 x 234.8604  with an id of  11  and a state of  1 
+>>>destroyed entity  10  at  3168.307 x 229.9854  with an id of  11  and a state of  1 
+   entity 10 state post-deletion: 0 
+   reducing entity count by 1
+   Entity count now at 30 
+>>>destroyed entity  22  at  3011.744 x 411.3391  with an id of  11  and a state of  1 
+   entity 22 state post-deletion: 0 
+   reducing entity count by 1
+   Entity count now at 29 
+sword attack!
+>>>destroyed entity  7  at  3168.083 x 384.4572  with an id of  11  and a state of  1 
+   entity 7 state post-deletion: 0 
+   reducing entity count by 1
+   Entity count now at 28 
+>>>destroyed entity  23  at  3168.116 x 387.0846  with an id of  11  and a state of  1 
+   entity 23 state post-deletion: 0 
+   reducing entity count by 1
+   Entity count now at 27 
+>>>order recieved to create entity with an id of 11 
+   unused location in entity array found at 7 -- creating entity...
+   created entity  7  at  3103.995 x 234.8604  with an id of  11  and a state of  1 
+>>>order recieved to create entity with an id of 11 
+   unused location in entity array found at 10 -- creating entity...
+   created entity  10  at  3103.995 x 234.8604  with an id of  11  and a state of  1 
+>>>destroyed entity  2  at  3106.369 x 105.9337  with an id of  11  and a state of  1 
+   entity 2 state post-deletion: 0 
+   reducing entity count by 1
+   Entity count now at 28 
+>>>destroyed entity  4  at  3168.25 x 170.5816  with an id of  11  and a state of  1 
+   entity 4 state post-deletion: 0 
+   reducing entity count by 1
+   Entity count now at 27 
+>>>order recieved to create entity with an id of 11 
+   unused location in entity array found at 2 -- creating entity...
+   created entity  2  at  3103.995 x 234.8604  with an id of  11  and a state of  1 
+>>>destroyed entity  8  at  2881.994 x 363.107  with an id of  11  and a state of  1 
+   entity 8 state post-deletion: 0 
+   reducing entity count by 1
+   Entity count now at 27 
+>>>destroyed entity  20  at  3168.025 x 275.497  with an id of  11  and a state of  1 
+   entity 20 state post-deletion: 0 
+   reducing entity count by 1
+   Entity count now at 26 
+>>>order recieved to create entity with an id of 11 
+   unused location in entity array found at 4 -- creating entity...
+   created entity  4  at  3103.995 x 234.8604  with an id of  11  and a state of  1 
+>>>order recieved to create entity with an id of 11 
+   unused location in entity array found at 8 -- creating entity...
+   created entity  8  at  3103.995 x 234.8604  with an id of  11  and a state of  1 
+>>>destroyed entity  3  at  2885.988 x 437.2595  with an id of  11  and a state of  1 
+   entity 3 state post-deletion: 0 
+   reducing entity count by 1
+   Entity count now at 27 
+>>>destroyed entity  7  at  3168.211 x 231.6411  with an id of  11  and a state of  1 
+   entity 7 state post-deletion: 0 
+   reducing entity count by 1
+   Entity count now at 26 
+>>>order recieved to create entity with an id of 11 
+   unused location in entity array found at 3 -- creating entity...
+   created entity  3  at  3103.995 x 234.8604  with an id of  11  and a state of  1 
+>>>destroyed entity  5  at  3125.707 x 341.6736  with an id of  11  and a state of  1 
+   entity 5 state post-deletion: 0 
+   reducing entity count by 1
+   Entity count now at 26 
+>>>destroyed entity  25  at  3168.278 x 203.7675  with an id of  11  and a state of  1 
+   entity 25 state post-deletion: 0 
+   reducing entity count by 1
+   Entity count now at 25 
+>>>order recieved to create entity with an id of 11 
+   unused location in entity array found at 5 -- creating entity...
+   created entity  5  at  3103.995 x 234.8604  with an id of  11  and a state of  1 
+>>>order recieved to create entity with an id of 11 
+   unused location in entity array found at 7 -- creating entity...
+   created entity  7  at  3103.995 x 234.8604  with an id of  11  and a state of  1 
+>>>destroyed entity  6  at  3000.498 x 52.22248  with an id of  11  and a state of  1 
+   entity 6 state post-deletion: 0 
+   reducing entity count by 1
+   Entity count now at 26 
+>>>order recieved to create entity with an id of 11 
+   unused location in entity array found at 6 -- creating entity...
+   created entity  6  at  3103.995 x 234.8604  with an id of  11  and a state of  1 
+>>>destroyed entity  9  at  3088.87 x 243.8362  with an id of  11  and a state of  1 
+   entity 9 state post-deletion: 0 
+   reducing entity count by 1
+   Entity count now at 26 
+>>>order recieved to create entity with an id of 11 
+   unused location in entity array found at 9 -- creating entity...
+   created entity  9  at  3103.995 x 234.8604  with an id of  11  and a state of  1 
+>>>order recieved to create entity with an id of 11 
+   unused location in entity array found at 20 -- creating entity...
+   created entity  20  at  3103.995 x 234.8604  with an id of  11  and a state of  1 
+>>>destroyed entity  18  at  2936.87 x 204.6182  with an id of  11  and a state of  1 
+   entity 18 state post-deletion: 0 
+   reducing entity count by 1
+   Entity count now at 27 
+>>>order recieved to create entity with an id of 11 
+   unused location in entity array found at 18 -- creating entity...
+   created entity  18  at  3103.995 x 234.8604  with an id of  11  and a state of  1 
+>>>destroyed entity  19  at  3149.745 x 61.69635  with an id of  11  and a state of  1 
+   entity 19 state post-deletion: 0 
+   reducing entity count by 1
+   Entity count now at 27 
+>>>order recieved to create entity with an id of 11 
+   unused location in entity array found at 19 -- creating entity...
+   created entity  19  at  3103.995 x 234.8604  with an id of  11  and a state of  1 
+>>>destroyed entity  4  at  3168.205 x 115.1276  with an id of  11  and a state of  1 
+   entity 4 state post-deletion: 0 
+   reducing entity count by 1
+   Entity count now at 27 
+>>>order recieved to create entity with an id of 11 
+   unused location in entity array found at 4 -- creating entity...
+   created entity  4  at  3103.995 x 234.8604  with an id of  11  and a state of  1 
+sword attack!
+sword struck enemy 1 !
+>>>destroyed entity  1  at  3103.995 x 234.8604  with an id of  10  and a state of  1 
+>>>order recieved to create entity with an id of 13 
+   unused location in entity array found at 22 -- creating entity...
+   created entity  22  at  3103.995 x 234.8604  with an id of  13  and a state of  1 
+   entity 1 state post-deletion: 0 
+   reducing entity count by 1
+   Entity count now at 28 
+>>>destroyed entity  7  at  3168.275 x 165.7056  with an id of  11  and a state of  1 
+   entity 7 state post-deletion: 0 
+   reducing entity count by 1
+   Entity count now at 27 
+>>>destroyed entity  21  at  3126.87 x 400.0635  with an id of  11  and a state of  1 
+   entity 21 state post-deletion: 0 
+   reducing entity count by 1
+   Entity count now at 26 
+>>>destroyed entity  10  at  3168.056 x 84.29523  with an id of  11  and a state of  1 
+   entity 10 state post-deletion: 0 
+   reducing entity count by 1
+   Entity count now at 25 
+>>>destroyed entity  18  at  3168.419 x 231.3691  with an id of  11  and a state of  1 
+   entity 18 state post-deletion: 0 
+   reducing entity count by 1
+   Entity count now at 24 
+>>>destroyed entity  3  at  3168.158 x 178.3752  with an id of  11  and a state of  1 
+   entity 3 state post-deletion: 0 
+   reducing entity count by 1
+   Entity count now at 23 
+>>>destroyed entity  2  at  2938.62 x 268.4747  with an id of  11  and a state of  1 
+   entity 2 state post-deletion: 0 
+   reducing entity count by 1
+   Entity count now at 22 
+Player has collided with a fireball! decrementing health by 1 and setting i-frames...
+>>>destroyed entity  8  at  2911.87 x 330.6573  with an id of  11  and a state of  1 
+   entity 8 state post-deletion: 0 
+   reducing entity count by 1
+   Entity count now at 21 
+>>>destroyed entity  4  at  3168.282 x 277.6047  with an id of  11  and a state of  1 
+   entity 4 state post-deletion: 0 
+   reducing entity count by 1
+   Entity count now at 20 
+>>>destroyed entity  5  at  2912.37 x 262.7823  with an id of  11  and a state of  1 
+   entity 5 state post-deletion: 0 
+   reducing entity count by 1
+   Entity count now at 19 
+>>>destroyed entity  9  at  3168.081 x 392.2704  with an id of  11  and a state of  1 
+   entity 9 state post-deletion: 0 
+   reducing entity count by 1
    Entity count now at 18 
-sword struck enemy 4 !
+>>>destroyed entity  22  at  3103.995 x 234.8604  with an id of  13  and a state of  1 
+   entity 22 state post-deletion: 0 
+   reducing entity count by 1
+   Entity count now at 17 
+!!!adding itemSun Pearlto player's inventory! Searching for a suitable inventory slot...
+   first, we look for a slot already containing this item.
+>>>destroyed entity  6  at  2987.87 x 180.2042  with an id of  11  and a state of  1 
+   entity 6 state post-deletion: 0 
+   reducing entity count by 1
+   Entity count now at 16 
 sword attack!
-sword struck enemy 5 !
+sword struck enemy 14 !
+>>>destroyed entity  14  at  2801 x 1169  with an id of  2  and a state of  1 
+>>>order recieved to create entity with an id of 7 
+   unused location in entity array found at 1 -- creating entity...
+   created entity  1  at  2801 x 1169  with an id of  7  and a state of  1 
+   entity 14 state post-deletion: 0 
+   reducing entity count by 1
+   Entity count now at 16 
+>>>destroyed entity  1  at  2801 x 1169  with an id of  7  and a state of  1 
+   entity 1 state post-deletion: 0 
+   reducing entity count by 1
+   Entity count now at 15 
+!!!adding itemcointo player's inventory! Searching for a suitable inventory slot...
+   first, we look for a slot already containing this item.
 sword attack!
+sword struck enemy 13 !
+>>>destroyed entity  13  at  2705.27 x 1169.27  with an id of  2  and a state of  1 
+>>>order recieved to create entity with an id of 7 
+   unused location in entity array found at 1 -- creating entity...
+   created entity  1  at  2705.27 x 1169.27  with an id of  7  and a state of  1 
+   entity 13 state post-deletion: 0 
+   reducing entity count by 1
+   Entity count now at 15 
+>>>destroyed entity  1  at  2705.27 x 1169.27  with an id of  7  and a state of  1 
+   entity 1 state post-deletion: 0 
+   reducing entity count by 1
+   Entity count now at 14 
+!!!adding itemcointo player's inventory! Searching for a suitable inventory slot...
+   first, we look for a slot already containing this item.
+   found slot already containing the item. Adding to it...
 sword attack!
-sword struck enemy 4 !
+sword struck enemy 16 !
+>>>destroyed entity  16  at  2739.883 x 1261.042  with an id of  2  and a state of  1 
+>>>order recieved to create entity with an id of 7 
+   unused location in entity array found at 1 -- creating entity...
+   created entity  1  at  2739.883 x 1261.042  with an id of  7  and a state of  1 
+   entity 16 state post-deletion: 0 
+   reducing entity count by 1
+   Entity count now at 14 
+>>>destroyed entity  1  at  2739.883 x 1261.042  with an id of  7  and a state of  1 
+   entity 1 state post-deletion: 0 
+   reducing entity count by 1
+   Entity count now at 13 
+!!!adding itemcointo player's inventory! Searching for a suitable inventory slot...
+   first, we look for a slot already containing this item.
+   found slot already containing the item. Adding to it...
 sword attack!
-sword struck enemy 5 !
+sword struck enemy 17 !
+>>>destroyed entity  17  at  2679.891 x 1322.117  with an id of  2  and a state of  1 
+>>>order recieved to create entity with an id of 7 
+   unused location in entity array found at 1 -- creating entity...
+   created entity  1  at  2679.891 x 1322.117  with an id of  7  and a state of  1 
+   entity 17 state post-deletion: 0 
+   reducing entity count by 1
+   Entity count now at 13 
+>>>destroyed entity  1  at  2679.891 x 1322.117  with an id of  7  and a state of  1 
+   entity 1 state post-deletion: 0 
+   reducing entity count by 1
+   Entity count now at 12 
+!!!adding itemcointo player's inventory! Searching for a suitable inventory slot...
+   first, we look for a slot already containing this item.
+   found slot already containing the item. Adding to it...
 sword attack!
-sword struck enemy 4 !
->>>destroyed entity  4  at  57.58503 x 139.5393  with an
+sword struck enemy 15 !
+>>>destroyed entity  15  at  2683.36 x 1235.429  with an id of  2  and a state of  1 
+>>>order recieved to create entity with an id of 7 
+   unused location in entity array found at 1 -- creating entity...
+   created entity  1  at  2683.36 x 1235.429  with an id of  7  and a state of  1 
+   entity 15 state post-deletion: 0 
+   reducing entity count by 1
+   Entity count now at 12 
+>>>destroyed entity  1  at  2683.36 x 1235.429  with an id of  7  and a state of  1 
+   entity 1 state post-deletion: 0 
+   reducing entity count by 1
+   Entity count now at 11 
+!!!adding itemcointo player's inventory! Searching for a suitable inventory slot...
+   first, we look for a slot already containing this item.
+   found slot already containing the item. Adding to it...
+sword attack!
+sword struck enemy 12 !
+>>>destroyed entity  12  at  2766.679 x 1116.222  with an id of  2  and a state of  1 
+>>>order recieved to create entity with an id of 7 
+   unused location in entity array found at 1 -- creating entity...
+   created entity  1  at  2766.679 x 1116.222  with an id of  7  and a state of  1 
+   entity 12 state post-deletion: 0 
+   reducing entity count by 1
+   Entity count now at 11 
+>>>destroyed entity  1  at  2766.679 x 1116.222  with an id of  7  and a state of  1 
+   entity 1 state post-deletion: 0 
+   reducing entity count by 1
+   Entity count now at 10 
+!!!adding itemcointo player's inventory! Searching for a suitable inventory slot...
+   first, we look for a slot already containing this item.
+   found slot already containing the item. Adding to it...
+sword attack!
+sword struck enemy 11 !
+>>>destroyed entity  11  at  2676.165 x 1085.062  with an id of  2  and a state of  1 
+>>>order recieved to create entity with an id of 7 
+   unused location in entity array found at 1 -- creating entity...
+   created entity  1  at  2676.165 x 1085.062  with an id of  7  and a state of  1 
+   entity 11 state post-deletion: 0 
+   reducing entity count by 1
+   Entity count now at 10 
+>>>destroyed entity  1  at  2676.165 x 1085.062  with an id of  7  and a state of  1 
+   entity 1 state post-deletion: 0 
+   reducing entity count by 1
+   Entity count now at 9 
+!!!adding itemcointo player's inventory! Searching for a suitable inventory slot...
+   first, we look for a slot already containing this item.
+   found slot already containing the item. Adding to it...
+>>>order recieved to create entity with an id of 2 
+   unused location in entity array found at 1 -- creating entity...
+   created entity  1  at  2065 x 1073  with an id of  2  and a state of  1 
+>>>order recieved to create entity with an id of 2 
+   unused location in entity array found at 2 -- creating entity...
+   created entity  2  at  2161 x 1073  with an id of  2  and a state of  1 
+>>>order recieved to create entity with an id of 2 
+   unused location in entity array found at 3 -- creating entity...
+   created entity  3  at  2225 x 1073  with an id of  2  and a state of  1 
+>>>order recieved to create entity with an id of 2 
+   unused location in entity array found at 4 -- creating entity...
+   created entity  4  at  2449 x 1073  with an id of  2  and a state of  1 
+>>>order recieved to create entity with an id of 2 
+   unused location in entity array found at 5 -- creating entity...
+   created entity  5  at  2321 x 1105  with an id of  2  and a state of  1 
+>>>order recieved to create entity with an id of 2 
+   unused location in entity array found at 6 -- creating entity...
+   created entity  6  at  2065 x 1137  with an id of  2  and a state of  1 
+>>>order recieved to create entity with an id of 2 
+   unused location in entity array found at 7 -- creating entity...
+   created entity  7  at  2161 x 1137  with an id of  2  and a state of  1 
+>>>order recieved to create entity with an id of 2 
+   unused location in entity array found at 8 -- creating entity...
+   created entity  8  at  2385 x 1137  with an id of  2  and a state of  1 
+>>>order recieved to create entity with an id of 2 
+   unused location in entity array found at 9 -- creating entity...
+   created entity  9  at  2449 x 1137  with an id of  2  and a state of  1 
+>>>order recieved to create entity with an id of 2 
+   unused location in entity array found at 10 -- creating entity...
+   created entity  10  at  2225 x 1169  with an id of  2  and a state of  1 
+>>>order recieved to create entity with an id of 2 
+   unused location in entity array found at 11 -- creating entity...
+   created entity  11  at  2129 x 1201  with an id of  2  and a state of  1 
+>>>order recieved to create entity with an id of 2 
+   unused location in entity array found at 12 -- creating entity...
+   created entity  12  at  2321 x 1201  with an id of  2  and a state of  1 
+>>>order recieved to create entity with an id of 2 
+   unused location in entity array found at 13 -- creating entity...
+   created entity  13  at  2449 x 1201  with an id of  2  and a state of  1 
+>>>order recieved to create entity with an id of 2 
+   unused location in entity array found at 14 -- creating entity...
+   created entity  14  at  2097 x 1265  with an id of  2  and a state of  1 
+>>>order recieved to create entity with an id of 2 
+   unused location in entity array found at 15 -- creating entity...
+   created entity  15  at  2257 x 1265  with an id of  2  and a state of  1 
+>>>order recieved to create entity with an id of 2 
+   unused location in entity array found at 16 -- creating entity...
+   created entity  16  at  2385 x 1265  with an id of  2  and a state of  1 
+>>>order recieved to create entity with an id of 2 
+   unused location in entity array found at 17 -- creating entity...
+   created entity  17  at  2481 x 1297  with an id of  2  and a state of  1 
+>>>order recieved to create entity with an id of 2 
+   unused location in entity array found at 18 -- creating entity...
+   created entity  18  at  2097 x 1329  with an id of  2  and a state of  1 
+>>>order recieved to create entity with an id of 2 
+   unused location in entity array found at 21 -- creating entity...
+   created entity  21  at  2321 x 1361  with an id of  2  and a state of  1 
+>>>order recieved to create entity with an id of 2 
+   unused location in entity array found at 22 -- creating entity...
+   created entity  22  at  2417 x 1361  with an id of  2  and a state of  1 
+sword attack!
+sword struck enemy 13 !
+>>>destroyed entit

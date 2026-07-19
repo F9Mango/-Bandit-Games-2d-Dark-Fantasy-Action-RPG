@@ -11,7 +11,7 @@ sub create_entity(id as integer, spawner as string * 4, x as double, y as double
 	
 	for i = 0 to 128
 		if entities(i).state = 0 then
-			print "   unused location in entity array found at"; i; "-- creating entity..."
+			print #1, "   unused location in entity array found at"; i; "-- creating entity..."
 			entities(i) = blank_entity
 			entities(i).id = id
 			gset.numberOfEntities = gset.numberOfEntities + 1
@@ -29,10 +29,10 @@ sub create_entity(id as integer, spawner as string * 4, x as double, y as double
 				entities(i).p.y = y
 			end if
 			
-			if drop <> 0 then
-				entities(i).drop_entity = 1
-				entities(i).drop_entity_id = drop_id
-			end if
+			'if drop <> 0 then
+			'	entities(i).drop_entity = 1
+			'	entities(i).drop_entity_id = drop_id
+			'end if
 			
 			entities(i).home = entities(i).p
 			
@@ -69,6 +69,8 @@ sub create_entity(id as integer, spawner as string * 4, x as double, y as double
 						entities(i).index_start = 1
 						entities(i).index_end = 1
 						entities(i).var_H = 1
+						entities(i).drop_entity = 1
+						entities(i).drop_entity_id = 7
 					case 2: 'husk
 						'entities(i).w = int(rnd * 64)
 						'entities(i).h = int(rnd * 64)
@@ -85,6 +87,8 @@ sub create_entity(id as integer, spawner as string * 4, x as double, y as double
 						'entities(i).index_start = 1
 						'entities(i).index_end = 1
 						entities(i).var_H = 4
+						entities(i).drop_entity = 1
+						entities(i).drop_entity_id = 7
 					case 3: 'food
 						'entities(i).w = int(rnd * 64)
 						'entities(i).h = int(rnd * 64)
@@ -98,7 +102,7 @@ sub create_entity(id as integer, spawner as string * 4, x as double, y as double
 						entities(i).is_image = 1
 						entities(i).index_start = 2
 						entities(i).index_end = 2
-					case 4: 'sword
+					case 4: 'sword lvl 1
 						'entities(i).w = int(rnd * 64)
 						'entities(i).h = int(rnd * 64)
 						entities(i).w = 16
@@ -132,6 +136,90 @@ sub create_entity(id as integer, spawner as string * 4, x as double, y as double
 						entities(i).is_image = 1
 						entities(i).index_start = 5
 						entities(i).index_end = 5
+					case 8: 'sword lvl 2
+						'entities(i).w = int(rnd * 64)
+						'entities(i).h = int(rnd * 64)
+						entities(i).w = 16
+						entities(i).h = 16
+						entities(i).wm = 1
+						entities(i).hm = 1
+						'entities(i).look.r = int(rnd * 256)
+						'entities(i).look.g = int(rnd * 256)
+						'entities(i).look.b = int(rnd * 256)
+						entities(i).is_image = 1
+						entities(i).index_start = 3
+						entities(i).index_end = 3
+						entities(i).var_A = 2
+					case 9: 'Moon god
+						entities(i).w = 128
+						entities(i).h = 128
+						entities(i).o.x = -(entities(i).w / 2)
+						entities(i).o.y = -(entities(i).h / 2)
+						entities(i).wm = 1
+						entities(i).hm = 1
+						entities(i).look.r = 200
+						entities(i).look.g = 200
+						entities(i).look.b = 200
+						'entities(i).is_image = 1
+						'entities(i).index_start = 1
+						'entities(i).index_end = 1
+						entities(i).var_A = 32
+						entities(i).var_H = 20
+						entities(i).drop_entity = 1
+						entities(i).drop_entity_id = 12
+					case 10: 'Sun god
+						entities(i).w = 128
+						entities(i).h = 128
+						entities(i).o.x = -(entities(i).w / 2)
+						entities(i).o.y = -(entities(i).h / 2)
+						entities(i).wm = 1
+						entities(i).hm = 1
+						entities(i).look.r = 200
+						entities(i).look.g = 200
+						entities(i).look.b = 100
+						'entities(i).is_image = 1
+						'entities(i).index_start = 1
+						'entities(i).index_end = 1
+						entities(i).var_A = 32
+						entities(i).var_H = 40
+						entities(i).drop_entity = 1
+						entities(i).drop_entity_id = 13
+					case 11: 'fireball
+						entities(i).w = 16
+						entities(i).h = 16
+						entities(i).o.x = -(entities(i).w / 2)
+						entities(i).o.y = -(entities(i).h / 2)
+						entities(i).wm = 1
+						entities(i).hm = 1
+						entities(i).look.r = 200
+						entities(i).look.g = 100
+						entities(i).look.b = 0
+						entities(i).direction.x = rnd - 0.5
+						entities(i).direction.y = rnd - 0.5
+						entities(i).isFlying = 1
+						entities(i).var_A = 512
+					case 12: 'moon pearl
+						entities(i).w = 16
+						entities(i).h = 16
+						entities(i).o.x = -(entities(i).w / 2)
+						entities(i).o.y = -(entities(i).h / 2)
+						entities(i).wm = 1
+						entities(i).hm = 1
+						entities(i).look.r = 200
+						entities(i).look.g = 200
+						entities(i).look.b = 250
+						entities(i).isFlying = 1
+					case 13: 'sun pearl
+						entities(i).w = 16
+						entities(i).h = 16
+						entities(i).o.x = -(entities(i).w / 2)
+						entities(i).o.y = -(entities(i).h / 2)
+						entities(i).wm = 1
+						entities(i).hm = 1
+						entities(i).look.r = 200
+						entities(i).look.g = 200
+						entities(i).look.b = 0
+						entities(i).isFlying = 1
 					case else:
 						entities(i).w = int(rnd * 64)
 						entities(i).h = int(rnd * 64)
@@ -160,7 +248,9 @@ sub destroy_entity(e as _unsigned _byte, reason as _unsigned _byte)
 	if reason = 0 then 'If the entity is destroyed for normal reasons.
 		if entities(e).drop_entity = 1 then
 			create_entity entities(e).drop_entity_id, "free", entities(e).p.x, entities(e).p.y, 0, 0
+		'	create_entity 7, "free", entities(e).p.x, entities(e).p.y, 0, 0
 		end if
+		
 		if entities(e).grid_home.x <> 0 and entities(e).grid_home.y <> 0 then
 			if map(entities(e).grid_home.x, entities(e).grid_home.y).spawn_entity = 1 and map(entities(e).grid_home.x, entities(e).grid_home.y).entity_id = entities(e).id then
 				if map(entities(e).grid_home.x, entities(e).grid_home.y).dont_repeat_spawning = 0 then
@@ -453,7 +543,20 @@ sub entity_ai(e as _unsigned _byte)
 					end if
 				
 			end select
-			
+		
+		case 9 to 10: 'moon and sun gods
+			'print #1, "Sun god cooldown!"; entities(e).var_A
+			if entities(e).var_A > 0 then entities(e).var_A = entities(e).var_A - 1
+			if entities(e).var_A <= 0 then
+				'for i = 0 to 10
+					create_entity 11, "free", entities(e).p.x, entities(e).p.y, 0, 0
+				'next i
+				entities(e).var_A = 32
+			end if
+		case 11: 'fireball
+			entities(e).v = entities(e).direction
+			if isColWMap(entities(e).p.x, entities(e).p.y) = 1 or entities(e).var_A <= 0 then destroy_entity e, 0
+			entities(e).var_A = entities(e).var_A - 1
 	end select
 	
 end sub

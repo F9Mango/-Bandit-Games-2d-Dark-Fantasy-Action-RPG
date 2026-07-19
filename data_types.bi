@@ -26,7 +26,7 @@ type settings
 	interaction_mode as _unsigned _byte
 end type
 type graphics_data
-	bg_image as long
+	bg_image as _unsigned _byte
 	bg_tiles as long
 	entity_layer as long
 	entity_fg_layer as long
@@ -86,6 +86,7 @@ type player_variables
 	sanity as double
 	maxSanity as double
 	sword_level as _unsigned _byte
+	sword_cooldown as _unsigned _byte
 	bow_level as _unsigned _byte
 	keys as _unsigned integer
 	big_keys as _unsigned integer

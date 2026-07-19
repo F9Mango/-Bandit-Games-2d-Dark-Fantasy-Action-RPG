@@ -2,3 +2,9 @@
 1,"Hoho! Too bad!`I don't remember ANYTHING hah!`Sucker!","wtf?"," "," ",0,0,0,5113,5113,5113
 2,"That's too bad.`You would regret not hearing my wisdom young person.","See ya!"," "," ",0,0,0,5113,5113,5113
 3,"How rude!`Hear this you little shit!`You're nothing without me! NOTHING!`Go eat shit!","Goodbye!"," "," ",0,0,0,5113,5113,5113
+4,"Why how strange! Do you not know how`dangerous it is go`alone young one? Here you go! Take this sword for protection.","Gee thanks!","","",5,4,4,10,0,0
+5,"THE OLD MAN GIVES YOU A WOOD SWORD","Neat!","","",0,5,5,5113,0,0
+6,"Good luck stranger!","Thanks!","","",0,6,6,5113,5113,5113
+7,"Welcome to my shop traveler!`What would you like to buy?","Food (1 coin)", "5x Arrows (2 coins)", "Health Expansion(10 coins)",9,9,9,20,25,30
+8,"Sorry! You can't afford that!`Come back when you're a little mmmm richer!","Damn!","","",0,0,0,5113,5113,5113
+9,"Thank you for your purchase!","","","",0,0,0,5113,5113,5113

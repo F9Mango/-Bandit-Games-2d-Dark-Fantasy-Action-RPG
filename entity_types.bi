@@ -8,6 +8,7 @@ type entity
 	p as xy
 	v as xy
 	knock_v as xy
+	screenpos as xy_int
 	'Base dimensions
 	w as double
 	h as double

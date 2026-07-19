@@ -42,7 +42,7 @@ sub draw_screen_gameplay
 	_clearcolor _rgb(255, 64, 255), gdata.ui_bg
 	_clearcolor _rgb(255, 64, 255), gdata.ui
 
-	_putimage (gset.window_offset.x, gset.window_offset.y), gdata.bg_image
+	_putimage (gset.window_offset.x, gset.window_offset.y)-(gset.window_offset.x + (gset.screen_resolution.x * gset.window_size), gset.window_offset.y + (gset.screen_resolution.y * gset.window_size)), map_backgrounds(gdata.bg_image)
 	_putimage (gset.window_offset.x, gset.window_offset.y), gdata.bg_tiles
 	_putimage (gset.window_offset.x, gset.window_offset.y), gdata.entity_layer
 	_putimage (gset.window_offset.x, gset.window_offset.y), gdata.fg_tiles
@@ -83,8 +83,23 @@ sub update_ui
 		if inventory(i + 6).state = 0 then color _rgb(100, 100, 100) else color _rgb(0, 255, 0)
 		_printstring (180 + (i * 192), 564), str$(i + 7) + ". " + str$(inventory(i + 6).quantity) + "x " + inventory(i + 6).item_name
 	next i
-	color _rgb(255, 255, 255)
-	_printstring (72, 532 + 32), "Sword: lvl" + str$(player_data.sword_level)
+		if player_data.sword_level <> 0 then color _rgba(0, 0, 0, 255): _printstring (73, 565), "Sword: lvl" + str$(player_data.sword_level)
+	select case player_data.sword_level
+		case 0:
+			color _rgba(0, 0, 0, 0)
+		case 1:
+			color _rgb(255, 0, 0)
+		case 2:
+			color _rgb(255, 255, 0)
+		case 3:
+			color _rgb(255, 255, 255)
+		case 4:
+			color _rgb(0, 255, 255)
+	end select
+	if player_data.sword_level <> 0 then
+		if player_data.sword_cooldown > 0 then color _rgb(64, 0, 0)
+		_printstring (72, 564), "Sword: lvl" + str$(player_data.sword_level)
+	end if
 end sub
 
 sub draw_hotpoints
@@ -375,6 +390,12 @@ sub draw_screen_editor(mx as double, my as double)
 							line (tile_map(x, y).tile_start.x, tile_map(x, y).tile_start.y)-(tile_map(x, y).tile_end.x, tile_map(x, y).tile_end.y), _rgba(255, 255, 0, 127), bf
 						end if
 						
+						
+						datastring$ = "X:" + str$(newx) + " Y:" + str$(newy)
+						color _rgba(0, 0, 0, 127)
+						_printstring (tile_map(x, y).tile_end.x + 3, tile_map(x, y).tile_start.y - 16), datastring$
+						color _rgba(255, 255, 255, 255)
+						_printstring (tile_map(x, y).tile_end.x + 2, tile_map(x, y).tile_start.y - 17), datastring$
 						
 						datastring$ = "id:" + str$(map(newx, newy).tile_type) + " ei:" + str$(map(newx, newy).event_index_interact) + " ez:" + str$(map(newx, newy).event_index_zone)
 						color _rgba(0, 0, 0, 127)
